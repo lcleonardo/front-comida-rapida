@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  endpoint: '/prospectos-vida'
+  endpoint: 'http://localhost:8083/venta-comida-domicilio/pedidos'
+
 };
 
 /*

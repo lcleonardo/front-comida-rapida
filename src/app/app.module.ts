@@ -8,6 +8,8 @@ import { ProductoModule } from '@producto/producto.module';
 import { CoreModule } from '@core/core.module';
 import { CookieService } from 'ngx-cookie-service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PedidoModule } from './feature/pedido/pedido.module';
+
 
 
 
@@ -21,6 +23,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     AppRoutingModule,
     ProductoModule,
+    PedidoModule,
     CoreModule,
     NgbModule
   ],
