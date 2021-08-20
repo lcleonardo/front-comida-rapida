@@ -1,1 +1,6 @@
 <p>listar-pedido works!</p>
+
+<tr *ngFor="let pedido of listaPedido; let i = index">
+  <td>{{ pedido.id }}  ,  </td>
+  <td>{{ i }}</td>
+</tr>

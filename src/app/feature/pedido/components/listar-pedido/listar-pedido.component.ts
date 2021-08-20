@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { Observable } from "rxjs";
 import { Pedido } from "../../shared/model/pedido";
 import { PedidoService } from "../../shared/service/pedido.service";
 
@@ -9,15 +8,13 @@ import { PedidoService } from "../../shared/service/pedido.service";
   styleUrls: ["./listar-pedido.component.css"],
 })
 export class ListarPedidoComponent implements OnInit {
-  public listaPedido: Observable<Pedido[]>;
+  public listaPedido: Pedido[] = [];
 
   constructor(protected pedidoService: PedidoService) {}
 
   ngOnInit(): void {
-    this.listaPedido = this.pedidoService.consultar();
-
-    this.listaPedido.subscribe(value => console.log(value));
-    
-        
+    this.pedidoService
+      .consultar()
+      .subscribe((value : Pedido[]) => (this.listaPedido = value));
   }
 }
