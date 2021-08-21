@@ -1,17 +1,9 @@
 <nav>
-    <a
-      id="linkPedido"
-      routerLink="./"
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }"
-      >Pedido
-    </a>
-    <a id="linkCrearPedido" routerLink="./crear" routerLinkActive="active"
-      >Crear pedido 
-    </a>
-    <a id="linkListarPedido" routerLink="./listar" routerLinkActive="active"
-      >listar pedido
-    </a>
-  </nav>
-  <router-outlet></router-outlet>
-  
+  <a id="linkCrearPedido" routerLink="./crear" routerLinkActive="active"
+    >Crear pedido
+  </a>
+  <a id="linkListarPedido" routerLink="./listar" routerLinkActive="active"
+    >Listar pedido
+  </a>
+</nav>
+<router-outlet></router-outlet>

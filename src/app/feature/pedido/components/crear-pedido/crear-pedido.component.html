@@ -1,5 +1,72 @@
-<h1>Registrar Pedido</h1>
-
-<form (ngSubmit)="crear()">
-  <button type="submit" >Crear</button>
-</form>
+<div>
+  <form [formGroup]="pedidoForm" (ngSubmit)="crear()">
+    <div class="form-group">
+      <small for="inputCodigoProducto">Código del producto</small>
+      <input
+        validar
+        type="text"
+        class="form-control"
+        id="inputCodigoProducto"
+        aria-describedby="Código del prodcuto"
+        placeholder="Ingrese el código del producto"
+        formControlName="codigoProducto"
+      />
+    </div>
+    <div class="form-group">
+      <small for="inputCodigoCliente">Código del cliente</small>
+      <input
+        validar
+        type="text"
+        class="form-control"
+        id="inputCodigoCliente"
+        aria-describedby="Código del cliente"
+        placeholder="Ingrese el código del cliente"
+        formControlName="codigoCliente"
+      />
+    </div>
+    <div class="form-group">
+      <small for="inputDireccionDomicilio">Dirección del domicilio</small>
+      <input
+        validar
+        type="text"
+        class="form-control"
+        id="direccionDomicilio"
+        aria-describedby="Dirección del domicilio"
+        placeholder="Ingrese la dirección del domicilio"
+        formControlName="direccionDomicilio"
+      />
+    </div>
+    <div class="form-group">
+      <small for="inputPlacaVehiculo">Placa del vehículo</small>
+      <input
+        validar
+        type="text"
+        class="form-control"
+        id="placaVehiculo"
+        aria-describedby="Placa del vehículo"
+        placeholder="Ingrese la placa del vehículo"
+        formControlName="placaVehiculo"
+      />
+    </div>
+    <div class="form-group">
+      <small for="inputPrecioCompra">Precio de la compra</small>
+      <input
+        validar
+        type="text"
+        class="form-control"
+        id="precioCompra"
+        aria-describedby="Precio de la compra"
+        placeholder="Precio de la compra"
+        formControlName="precioCompra"
+      />
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="pedidoForm.invalid && pedidoForm.touched"
+      (click)="crear()"
+    >
+      Crear
+    </button>
+  </form>
+</div>

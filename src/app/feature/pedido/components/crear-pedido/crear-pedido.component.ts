@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Pedido } from "../../shared/model/pedido";
 import { PedidoService } from "../../shared/service/pedido.service";
 
@@ -11,26 +11,39 @@ import { PedidoService } from "../../shared/service/pedido.service";
 export class CrearPedidoComponent implements OnInit {
   pedidoForm: FormGroup;
 
-  constructor(protected pedidoService: PedidoService) {}
+  constructor(
+    protected pedidoService: PedidoService,
+    protected formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.construirFormulario();
   }
 
   crear(): void {
-    const pedido: Pedido = {
-      id: 1000,
-      fecha: "2021-08-19",
-      codigoCliente: "194911832",
-      codigoProducto: "0001",
-      direccionDomicilio: "San juan de carolina Calle 123",
-      placaVehiculo: "VKH525",
-      precioTotalCompra: 20000,
-    };
-    this.pedidoService.guardar(pedido);
+    if (this.pedidoForm.valid) {
+      let pedido: Pedido = {
+        id: 0,
+        fecha: "2021-08-20",
+        codigoProducto: this.pedidoForm.get("codigoProducto").value,
+        codigoCliente: this.pedidoForm.get("codigoCliente").value,
+        direccionDomicilio: this.pedidoForm.get("direccionDomicilio").value,
+        placaVehiculo: this.pedidoForm.get("placaVehiculo").value,
+        precioTotalCompra: Number.parseInt(
+          this.pedidoForm.get("precioCompra").value
+        ),
+      };
+      this.pedidoService.guardar(pedido);
+    }
   }
 
   private construirFormulario(): void {
-    // this.pedidoForm = new FormGroup({});
+    this.pedidoForm = this.formBuilder.group({
+      codigoProducto: ["", Validators.required],
+      codigoCliente: ["", Validators.required],
+      direccionDomicilio: ["", Validators.required],
+      placaVehiculo: ["", Validators.required],
+      precioCompra: ["0", Validators.required],
+    });
   }
 }
