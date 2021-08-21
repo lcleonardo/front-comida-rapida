@@ -1,15 +1,15 @@
 <div>
   <form [formGroup]="pedidoForm" (ngSubmit)="crear()">
     <div class="form-group">
-      <small for="inputCodigoProducto">Código del producto</small>
+      <small for="inputFecha">Fecha</small>
       <input
         validar
-        type="text"
+        type="date"
         class="form-control"
-        id="inputCodigoProducto"
-        aria-describedby="Código del prodcuto"
-        placeholder="Ingrese el código del producto"
-        formControlName="codigoProducto"
+        id="inputFecha"
+        aria-describedby="Fecha"
+        placeholder="Ingrese la fecha"
+        formControlName="fecha"
       />
     </div>
     <div class="form-group">
@@ -63,7 +63,6 @@
     <button
       type="submit"
       class="btn btn-primary"
-      [disabled]="pedidoForm.invalid && pedidoForm.touched"
       (click)="crear()"
     >
       Crear

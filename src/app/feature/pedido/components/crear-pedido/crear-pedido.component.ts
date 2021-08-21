@@ -24,14 +24,12 @@ export class CrearPedidoComponent implements OnInit {
     if (this.pedidoForm.valid) {
       let pedido: Pedido = {
         id: 0,
-        fecha: "2021-08-20",
+        fecha: this.pedidoForm.get("fecha").value,
         codigoProducto: this.pedidoForm.get("codigoProducto").value,
         codigoCliente: this.pedidoForm.get("codigoCliente").value,
         direccionDomicilio: this.pedidoForm.get("direccionDomicilio").value,
         placaVehiculo: this.pedidoForm.get("placaVehiculo").value,
-        precioTotalCompra: Number.parseInt(
-          this.pedidoForm.get("precioCompra").value
-        ),
+        precioTotalCompra: this.pedidoForm.get("precioCompra").value,
       };
       this.pedidoService.guardar(pedido);
     }
@@ -39,11 +37,12 @@ export class CrearPedidoComponent implements OnInit {
 
   private construirFormulario(): void {
     this.pedidoForm = this.formBuilder.group({
+      fecha: ["", Validators.required],
       codigoProducto: ["", Validators.required],
       codigoCliente: ["", Validators.required],
       direccionDomicilio: ["", Validators.required],
       placaVehiculo: ["", Validators.required],
-      precioCompra: ["0", Validators.required],
+      precioCompra: ["", Validators.required],
     });
   }
 }

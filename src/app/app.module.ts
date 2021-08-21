@@ -7,7 +7,6 @@ import { HomeComponent } from "@home/home.component";
 import { ProductoModule } from "@producto/producto.module";
 import { CoreModule } from "@core/core.module";
 import { CookieService } from "ngx-cookie-service";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { PedidoModule } from "./feature/pedido/pedido.module";
 
 @NgModule({
@@ -18,7 +17,6 @@ import { PedidoModule } from "./feature/pedido/pedido.module";
     ProductoModule,
     PedidoModule,
     CoreModule,
-    NgbModule,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],
