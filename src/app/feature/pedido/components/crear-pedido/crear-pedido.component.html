@@ -1,71 +1,102 @@
-<div>
-  <form [formGroup]="pedidoForm" (ngSubmit)="crear()">
-    <div class="form-group">
-      <small for="inputFecha">Fecha</small>
-      <input
-        validar
-        type="date"
-        class="form-control"
-        id="inputFecha"
-        aria-describedby="Fecha"
-        placeholder="Ingrese la fecha"
-        formControlName="fecha"
-      />
+<div class="container">
+  <div class="columns">
+    <div class="column is-three-fifths">
+      <br />
+      <div *ngIf="pedidoCreadoConExito" class="notification is-info">
+        <button class="delete" (click)="pedidoCreadoConExito = false"></button>
+        <label>Pedido creado con éxito.</label>
+      </div>
+      <form [formGroup]="pedidoForm" (ngSubmit)="crear()">
+        <div class="field">
+          <label class="label">Fecha</label>
+          <div class="control">
+            <input
+              validar
+              class="input is-small"
+              type="date"
+              placeholder="Ingrese la fecha"
+              formControlName="fecha"
+            />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Código del producto</label>
+          <div class="control">
+            <input
+              validar
+              class="input is-small"
+              type="text"
+              placeholder="Ingrese el código del producto"
+              formControlName="codigoProducto"
+            />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Código del cliente</label>
+          <div class="control">
+            <input
+              validar
+              class="input is-small"
+              type="text"
+              placeholder="Ingrese el código del cliente"
+              formControlName="codigoCliente"
+            />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Dirección del domicilio</label>
+          <div class="control">
+            <input
+              validar
+              class="input is-small"
+              type="text"
+              placeholder="Ingrese la dirección del domicilio"
+              formControlName="direccionDomicilio"
+            />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Placa del vehículo</label>
+          <div class="control">
+            <input
+              validar
+              class="input is-small"
+              type="text"
+              placeholder="Ingrese la placa del vehículo"
+              formControlName="placaVehiculo"
+            />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Precio de la compra</label>
+          <div class="control">
+            <input
+              validar
+              class="input is-small"
+              type="text"
+              placeholder="Ingrese el precio de la compra"
+              formControlName="precioTotalCompra"
+            />
+          </div>
+        </div>
+        <br />
+        <div class="field is-grouped">
+          <div class="control">
+            <button
+              type="submit"
+              class="button is-link"
+              [disabled]="ejecutarTarea"
+            >
+              Crear
+            </button>
+          </div>
+          <div class="control">
+            <button class="button is-link is-light" (onClick)="cancelar()">
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
-    <div class="form-group">
-      <small for="inputCodigoCliente">Código del cliente</small>
-      <input
-        validar
-        type="text"
-        class="form-control"
-        id="inputCodigoCliente"
-        aria-describedby="Código del cliente"
-        placeholder="Ingrese el código del cliente"
-        formControlName="codigoCliente"
-      />
-    </div>
-    <div class="form-group">
-      <small for="inputDireccionDomicilio">Dirección del domicilio</small>
-      <input
-        validar
-        type="text"
-        class="form-control"
-        id="direccionDomicilio"
-        aria-describedby="Dirección del domicilio"
-        placeholder="Ingrese la dirección del domicilio"
-        formControlName="direccionDomicilio"
-      />
-    </div>
-    <div class="form-group">
-      <small for="inputPlacaVehiculo">Placa del vehículo</small>
-      <input
-        validar
-        type="text"
-        class="form-control"
-        id="placaVehiculo"
-        aria-describedby="Placa del vehículo"
-        placeholder="Ingrese la placa del vehículo"
-        formControlName="placaVehiculo"
-      />
-    </div>
-    <div class="form-group">
-      <small for="inputPrecioCompra">Precio de la compra</small>
-      <input
-        validar
-        type="text"
-        class="form-control"
-        id="precioCompra"
-        aria-describedby="Precio de la compra"
-        placeholder="Precio de la compra"
-        formControlName="precioCompra"
-      />
-    </div>
-    <button
-      type="submit"
-      class="btn btn-primary"
-      (click)="crear()"
-    >
-      Crear
-    </button>
-  </form>
+  </div>
 </div>

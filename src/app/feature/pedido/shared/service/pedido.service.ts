@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpService, Options } from "@core/services/http.service";
+import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { Pedido } from "../model/pedido";
 
@@ -16,14 +17,13 @@ export class PedidoService {
     );
   }
 
-  public guardar(pedido: Pedido) {
+  public guardar(pedido: Pedido): Observable<Options> {
     return this.http
       .doPost<Pedido, Options>(
         `${environment.endpoint}`,
         pedido,
         this.http.createDefaultOptions()
-      )
-      .subscribe((value) => console.log(value));
+      );
   }
 
   public eliminar(id: number) {

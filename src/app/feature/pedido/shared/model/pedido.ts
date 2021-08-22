@@ -5,5 +5,6 @@ export interface Pedido {
   codigoProducto: string;
   direccionDomicilio: string;
   placaVehiculo: string;
+  precioDomicilio: number;
   precioTotalCompra: number;
 }

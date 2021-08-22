@@ -20,9 +20,12 @@
     "@angular/platform-browser": "~11.2.8",
     "@angular/platform-browser-dynamic": "~11.2.8",
     "@angular/router": "~11.2.8",
+    "@mdi/font": "^5.9.55",
     "bootstrap": "^4.5.0",
+    "bulma": "^0.9.3",
     "ngx-cookie-service": "^11.0.2",
     "rxjs": "~6.6.7",
+    "trmcol": "^2.0.2",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
   },
