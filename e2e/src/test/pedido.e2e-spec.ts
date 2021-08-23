@@ -1,3 +1,4 @@
+import { browser } from "protractor";
 import { AppPage } from "../app.po";
 import { CrearPedidoPage } from "../page/pedido/crear-pedido.po";
 import { ListarPedidoPage } from "../page/pedido/listar-pedido.po";
@@ -12,6 +13,11 @@ describe("workspace-project Pedido", () => {
     crearPedidoPage = new CrearPedidoPage();
     listarPedidoPage = new ListarPedidoPage();
   });
+
+  afterEach(() => {
+    browser.driver.sleep(3000);
+  });
+ 
 
   it("Deberia crear un pedido", async () => {
     const FECHA = "22-08-2021";

@@ -8,8 +8,8 @@ import { PedidoService } from "../../shared/service/pedido.service";
   styleUrls: ["./listar-pedido.component.css"],
 })
 export class ListarPedidoComponent implements OnInit {
-  public listaPedido: Pedido[] = [];
-  ejecutarTarea : boolean = false;
+  listaPedido: Pedido[] = [];
+  ejecutarTarea: boolean = false;
 
   constructor(protected pedidoService: PedidoService) {}
 
@@ -19,14 +19,14 @@ export class ListarPedidoComponent implements OnInit {
 
   consultar() {
     this.pedidoService
-    .consultar()
-    .subscribe((value: Pedido[]) => (this.listaPedido = value));
+      .consultar()
+      .subscribe((value: Pedido[]) => (this.listaPedido = value));
   }
 
   eliminar(id: number) {
     this.ejecutarTarea = true;
     this.pedidoService.eliminar(id);
     this.consultar();
-    this.ejecutarTarea = false;    
+    this.ejecutarTarea = false;
   }
 }

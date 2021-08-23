@@ -14,17 +14,17 @@ describe("PedidoService", () => {
     servicio = TestBed.inject(PedidoService);
   });
 
-  it("should be created", () => {
+  it("should be created", async () => {
     expect(servicio).toBeTruthy();
   });
 
-  it("deberia consultar pedidos", () => {
-    servicio.consultar().subscribe(
-      (respuesta) => expect(respuesta.values).not.toBeNull()
-    );
+  it("deberia consultar pedidos", async () => {
+    servicio
+      .consultar()
+      .subscribe((respuesta) => expect(respuesta.values).not.toBeNull());
   });
 
-  it("deberia guardar un pedido", () => {
+  it("deberia guardar un pedido", async () => {
     let pedido: Pedido = {
       id: 0,
       fecha: "2021-08-22",
@@ -35,12 +35,12 @@ describe("PedidoService", () => {
       precioDomicilio: 0,
       precioTotalCompra: 0,
     };
-    servicio.guardar(pedido).subscribe(
-      (respuesta) => expect(respuesta).not.toBeNull()
-    );
+    servicio
+      .guardar(pedido)
+      .subscribe((respuesta) => expect(respuesta).not.toBeNull());
   });
 
-  it("deberia eliminar un pedido", () => {
+  it("deberia eliminar un pedido", async () => {
     let idPedido = 1;
     expect(
       servicio
