@@ -31,7 +31,6 @@ export class PedidoService {
       .doDelete<boolean>(
         `${environment.endpoint}/${id}`,
         this.http.optsName("eliminar pedido")
-      )
-      .subscribe((value) => console.log(value));
+      );
   }
 }

@@ -54,7 +54,7 @@ export class CrearPedidoComponent implements OnInit {
       codigoProducto: this.pedidoForm.get("codigoProducto").value,
       codigoCliente: this.pedidoForm.get("codigoCliente").value,
       direccionDomicilio: this.pedidoForm.get("direccionDomicilio").value,
-      placaVehiculo: this.pedidoForm.get("placaVehiculo").value,
+      placaVehiculo: this.pedidoForm.get("placaVehiculo").value.toUpperCase(),
       precioDomicilio: 0,
       precioTotalCompra: this.pedidoForm.get("precioTotalCompra").value,
     };
