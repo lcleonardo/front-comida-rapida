@@ -1,45 +1,64 @@
 import { by, element } from "protractor";
 
 export class CrearPedidoPage {
-  public labelPedidoCreado = element(by.id("idLabelPedidoCreado"));
-  private inputIdFecha = element(by.id("idFecha"));
-  private inputCodigoProducto = element(by.id("idCodigoProducto"));
-  private inputCodigoCliente = element(by.id("idCodigoCliente"));
-  private inputDireccionDomicilio = element(by.id("idDireccionDomicilio"));
-  private inputPlacaVehiculo = element(by.id("idPlacaVehiculo"));
-  private inputPrecioTotalCompra = element(by.id("idPrecioTotalCompra"));
-  private botonCreaPedido = element(by.id("idBotonCrearPedido"));
-  private botonCancelarPedido = element(by.id("idBotonCancelarPedido"));
+  public etiquetaPedidoCreado = element(by.id("idLabelPedidoCreado"));
+  public controlFecha = element(by.id("idFecha"));
+  public controlCodigoProducto = element(by.id("idCodigoProducto"));
+  public controlCodigoCliente = element(by.id("idCodigoCliente"));
+  public controlDireccionDomicilio = element(by.id("idDireccionDomicilio"));
+  public controlPlacaVehiculo = element(by.id("idPlacaVehiculo"));
+  public controlPrecioTotalCompra = element(by.id("idPrecioTotalCompra"));
+  public controlCreaPedido = element(by.id("idBotonCrearPedido"));
+  public botonCancelarPedido = element(by.id("idBotonCancelarPedido"));
+
+  async todosLosControlesVacios(): Promise<boolean> {
+    let textoPedidoCreado = await this.etiquetaPedidoCreado.getText();
+    let fecha = await this.controlFecha.getText();
+    let codigoProducto = await this.controlCodigoProducto.getText();
+    let codigoCliente = await this.controlCodigoCliente.getText();
+    let direccionDomicilio = await this.controlDireccionDomicilio.getText();
+    let placaVehiculo = await this.controlPlacaVehiculo.getText();
+    let precioTotalCompra = await this.controlPrecioTotalCompra.getText();
+    return (
+      textoPedidoCreado.length === 0 &&
+      fecha.length === 0 &&
+      codigoProducto.length === 0 &&
+      codigoCliente.length === 0 &&
+      direccionDomicilio.length === 0 &&
+      placaVehiculo.length === 0 &&
+      precioTotalCompra.length === 0
+    );
+  }
 
   async ingresarFecha(fecha) {
-    await this.inputIdFecha.sendKeys(fecha);
+    await this.controlFecha.sendKeys(fecha);
   }
 
   async ingresarCodigoProducto(codigoProducto) {
-    await this.inputCodigoProducto.sendKeys(codigoProducto);
+    await this.controlCodigoProducto.sendKeys(codigoProducto);
   }
 
   async ingresarCodigoCliente(codigoCliente) {
-    await this.inputCodigoCliente.sendKeys(codigoCliente);
+    await this.controlCodigoCliente.sendKeys(codigoCliente);
   }
 
   async ingresarDireccionDomicilio(direccionDomicilio) {
-    await this.inputDireccionDomicilio.sendKeys(direccionDomicilio);
+    await this.controlDireccionDomicilio.sendKeys(direccionDomicilio);
   }
 
   async ingresarPlacaVehiculo(placaVehiculo) {
-    await this.inputPlacaVehiculo.sendKeys(placaVehiculo);
+    await this.controlPlacaVehiculo.sendKeys(placaVehiculo);
   }
 
   async ingresarPrecioTotalCompra(precioTotalCompra) {
-    await this.inputPrecioTotalCompra.sendKeys(precioTotalCompra);
+    await this.controlPrecioTotalCompra.sendKeys(precioTotalCompra);
   }
 
-  async clickBotonCrearPedido() {
-    await this.botonCreaPedido.click();
+  async crearPedido() {
+    await this.controlCreaPedido.click();
   }
 
-  async clickBotonCancelarPedido() {
+  async cancelarPedido() {
     await this.botonCancelarPedido.click();
   }
 }
