@@ -4,7 +4,6 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { HomeComponent } from "@home/home.component";
-import { ProductoModule } from "@producto/producto.module";
 import { CoreModule } from "@core/core.module";
 import { CookieService } from "ngx-cookie-service";
 import { PedidoModule } from "./feature/pedido/pedido.module";
@@ -14,7 +13,6 @@ import { PedidoModule } from "./feature/pedido/pedido.module";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ProductoModule,
     PedidoModule,
     CoreModule,
   ],

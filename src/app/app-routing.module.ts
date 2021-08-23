@@ -7,11 +7,6 @@ const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
   { path: "home", component: HomeComponent, canActivate: [SecurityGuard] },
   {
-    path: "producto",
-    loadChildren: () =>
-      import("@producto/producto.module").then((mod) => mod.ProductoModule),
-  },
-  {
     path: "pedido",
     loadChildren: () =>
       import("src/app/feature/pedido/pedido.module").then(

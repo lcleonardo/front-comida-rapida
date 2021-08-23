@@ -4,7 +4,7 @@
       <br />
       <div *ngIf="pedidoCreadoConExito" class="notification is-info">
         <button class="delete" (click)="pedidoCreadoConExito = false"></button>
-        <label>Pedido creado con éxito.</label>
+        <label id="idLabelPedidoCreado">Pedido creado con éxito.</label>
       </div>
       <form [formGroup]="pedidoForm" (ngSubmit)="crear()">
         <div class="field">
@@ -12,6 +12,7 @@
           <div class="control">
             <input
               validar
+              id="idFecha"
               class="input is-small"
               type="date"
               placeholder="Ingrese la fecha"
@@ -24,6 +25,7 @@
           <div class="control">
             <input
               validar
+              id="idCodigoProducto"
               class="input is-small"
               type="text"
               placeholder="Ingrese el código del producto"
@@ -36,6 +38,7 @@
           <div class="control">
             <input
               validar
+              id="idCodigoCliente"
               class="input is-small"
               type="text"
               placeholder="Ingrese el código del cliente"
@@ -48,6 +51,7 @@
           <div class="control">
             <input
               validar
+              id="idDireccionDomicilio"
               class="input is-small"
               type="text"
               placeholder="Ingrese la dirección del domicilio"
@@ -60,6 +64,7 @@
           <div class="control">
             <input
               validar
+              id="idPlacaVehiculo"
               class="input is-small"
               type="text"
               placeholder="Ingrese la placa del vehículo"
@@ -72,6 +77,7 @@
           <div class="control">
             <input
               validar
+              id="idPrecioTotalCompra"
               class="input is-small"
               type="text"
               placeholder="Ingrese el precio de la compra"
@@ -83,6 +89,7 @@
         <div class="field is-grouped">
           <div class="control">
             <button
+              id="idBotonCrearPedido"
               type="submit"
               class="button is-link"
               [disabled]="ejecutarTarea"
@@ -90,7 +97,7 @@
               Crear
             </button>
           </div>
-          <div class="control">
+          <div id="idBotonCancelarPedido" class="control">
             <button class="button is-link is-light" (onClick)="cancelar()">
               Cancelar
             </button>
