@@ -9,9 +9,9 @@ import { PedidoService } from "../../shared/service/pedido.service";
 })
 export class ListarPedidoComponent implements OnInit {
   listaPedido: Pedido[] = [];
-  ejecutarTarea: boolean = false;
 
-  constructor(protected pedidoService: PedidoService) {}
+  constructor(
+    protected pedidoService: PedidoService) {}
 
   ngOnInit(): void {
     this.consultar();
@@ -20,13 +20,11 @@ export class ListarPedidoComponent implements OnInit {
   consultar() {
     this.pedidoService
       .consultar()
-      .subscribe((value: Pedido[]) => (this.listaPedido = value));
+      .subscribe((respuesta: Pedido[]) => (this.listaPedido = respuesta));
   }
 
   eliminar(id: number) {
-    this.ejecutarTarea = true;
-    this.pedidoService.eliminar(id);
+    this.pedidoService.eliminar(id).subscribe();
     this.consultar();
-    this.ejecutarTarea = false;
   }
 }

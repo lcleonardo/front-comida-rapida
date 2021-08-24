@@ -2,11 +2,19 @@
   <div class="columns">
     <div class="column is-three-fifths">
       <br />
-      <div *ngIf="pedidoCreadoConExito" class="notification is-info">
+      <div
+        id="idDivPedidoCreado"
+        *ngIf="pedidoCreadoConExito"
+        class="notification is-info"
+      >
         <button class="delete" (click)="pedidoCreadoConExito = false"></button>
-        <label id="idLabelPedidoCreado">Pedido creado con éxito.</label>
+        <label>Pedido creado con éxito.</label>
       </div>
-      <form [formGroup]="pedidoForm" (ngSubmit)="crear()">
+      <div *ngIf="mostrarMensajeError()" class="notification is-danger">
+        <button class="delete" (click)="vaciarMensajeError()"></button>
+        <label id="idLabelNoPedidoCreado">{{ mensajeError }}</label>
+      </div>
+      <form [formGroup]="formulario" (ngSubmit)="crear()">
         <div class="field">
           <label class="label">Fecha</label>
           <div class="control">
@@ -92,7 +100,7 @@
               id="idBotonCrearPedido"
               type="submit"
               class="button is-link"
-              [disabled]="ejecutarTarea"
+              [disabled]="empezarGuardado"
             >
               Crear
             </button>

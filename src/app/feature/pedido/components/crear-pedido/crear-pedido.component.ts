@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Pedido } from "../../shared/model/pedido";
 import { PedidoService } from "../../shared/service/pedido.service";
 import { DatePipe } from "@angular/common";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
   selector: "app-crear-pedido",
@@ -10,14 +11,15 @@ import { DatePipe } from "@angular/common";
   styleUrls: ["./crear-pedido.component.css"],
 })
 export class CrearPedidoComponent implements OnInit {
-  pedidoForm: FormGroup;
-  ejecutarTarea: boolean = false;
+  formulario: FormGroup;
+  empezarGuardado: boolean = false;
   pedidoCreadoConExito: boolean = false;
+  mensajeError: string = "";
 
   constructor(
     protected pedidoService: PedidoService,
-    protected formBuilder: FormBuilder,
-    protected datePipe: DatePipe
+    protected constructorFormulario: FormBuilder,
+    protected formatoFecha: DatePipe
   ) {}
 
   ngOnInit(): void {
@@ -27,43 +29,49 @@ export class CrearPedidoComponent implements OnInit {
   cancelar(): void {
     this.construirFormulario();
     this.pedidoCreadoConExito = false;
-    this.ejecutarTarea = false;
+    this.empezarGuardado = false;
   }
 
   crear(): void {
     this.pedidoCreadoConExito = false;
-
-    if (!this.pedidoForm.valid) {
+    this.mensajeError = "";
+    if (!this.formulario.valid) {
       return;
     }
+    this.empezarGuardado = true;
+    this.pedidoService.guardar(this.obtenerPedido()).subscribe(
+      () => this.prepararNuevoPedido(),
+      (error) => this.manejarError(error)
+    );
+    this.empezarGuardado = false;
+  }
 
-    this.ejecutarTarea = true;
-
-    this.pedidoService
-      .guardar(this.obtenerPedido());
+  private prepararNuevoPedido(): void {
     this.construirFormulario();
-
-    this.ejecutarTarea = false;
     this.pedidoCreadoConExito = true;
+  }
+
+  private manejarError(error: HttpErrorResponse): void {
+    this.mensajeError = error.error["mensaje"];
   }
 
   private obtenerPedido(): Pedido {
     return {
       id: 0,
-      fecha: this.pedidoForm.get("fecha").value,
-      codigoProducto: this.pedidoForm.get("codigoProducto").value,
-      codigoCliente: this.pedidoForm.get("codigoCliente").value,
-      direccionDomicilio: this.pedidoForm.get("direccionDomicilio").value,
-      placaVehiculo: this.pedidoForm.get("placaVehiculo").value.toUpperCase(),
+      fecha: this.formulario.get("fecha").value,
+      codigoProducto: this.formulario.get("codigoProducto").value,
+      codigoCliente: this.formulario.get("codigoCliente").value,
+      direccionDomicilio: this.formulario.get("direccionDomicilio").value,
+      placaVehiculo: this.formulario.get("placaVehiculo").value.toUpperCase(),
       precioDomicilio: 0,
-      precioTotalCompra: this.pedidoForm.get("precioTotalCompra").value,
+      precioTotalCompra: this.formulario.get("precioTotalCompra").value,
     };
   }
 
   private construirFormulario(): void {
-    this.pedidoForm = this.formBuilder.group({
+    this.formulario = this.constructorFormulario.group({
       fecha: [
-        this.datePipe.transform(Date.now(), "yyyy-MM-dd"),
+        this.formatoFecha.transform(Date.now(), "yyyy-MM-dd"),
         Validators.required,
       ],
       codigoProducto: ["", Validators.required],
@@ -72,5 +80,13 @@ export class CrearPedidoComponent implements OnInit {
       placaVehiculo: ["", Validators.required],
       precioTotalCompra: ["", Validators.required],
     });
+  }
+
+  vaciarMensajeError() {
+    this.mensajeError = "";
+  }
+
+  mostrarMensajeError(): boolean {
+    return this.mensajeError.length !== 0;
   }
 }

@@ -1,7 +1,7 @@
 import { by, element } from "protractor";
 
 export class CrearPedidoPage {
-  public etiquetaPedidoCreado = element(by.id("idLabelPedidoCreado"));
+  public divPedidoCreado = element(by.id("idDivPedidoCreado"));
   public controlFecha = element(by.id("idFecha"));
   public controlCodigoProducto = element(by.id("idCodigoProducto"));
   public controlCodigoCliente = element(by.id("idCodigoCliente"));
@@ -12,7 +12,6 @@ export class CrearPedidoPage {
   public botonCancelarPedido = element(by.id("idBotonCancelarPedido"));
 
   async todosLosControlesVacios(): Promise<boolean> {
-    let textoPedidoCreado = await this.etiquetaPedidoCreado.getText();
     let fecha = await this.controlFecha.getText();
     let codigoProducto = await this.controlCodigoProducto.getText();
     let codigoCliente = await this.controlCodigoCliente.getText();
@@ -20,7 +19,6 @@ export class CrearPedidoPage {
     let placaVehiculo = await this.controlPlacaVehiculo.getText();
     let precioTotalCompra = await this.controlPrecioTotalCompra.getText();
     return (
-      textoPedidoCreado.length === 0 &&
       fecha.length === 0 &&
       codigoProducto.length === 0 &&
       codigoCliente.length === 0 &&

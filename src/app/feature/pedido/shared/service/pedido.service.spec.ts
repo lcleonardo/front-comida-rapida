@@ -27,13 +27,13 @@ describe("PedidoService", () => {
   it("deberia guardar un pedido", async () => {
     let pedido: Pedido = {
       id: 0,
-      fecha: "2021-08-22",
+      fecha: "2021-08-21",
       codigoCliente: "109491183",
       codigoProducto: "1000",
       direccionDomicilio: "Calle 123",
       placaVehiculo: "VHG234",
       precioDomicilio: 0,
-      precioTotalCompra: 0,
+      precioTotalCompra: 2000,
     };
     servicio
       .guardar(pedido)
@@ -42,10 +42,6 @@ describe("PedidoService", () => {
 
   it("deberia eliminar un pedido", async () => {
     let idPedido = 1;
-    expect(
-      servicio
-        .eliminar(idPedido)
-        .subscribe((respuesta) => expect(respuesta).toBeTrue())
-    );
+    expect(servicio.eliminar(idPedido)).toBeTrue;
   });
 });

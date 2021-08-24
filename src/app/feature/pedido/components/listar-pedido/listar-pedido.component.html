@@ -1,7 +1,10 @@
 <div class="container">
   <table class="table">
-    <caption>
-      {{listaPedido.length}} <div id="idCaptionPedidosCreados">Pedidos creados</div>
+    <caption id="idCaptionPedidosCreados">
+      {{
+        listaPedido.length
+      }}
+      <div>Pedidos creados</div>
     </caption>
     <thead>
       <tr>
@@ -18,19 +21,21 @@
     </thead>
     <tbody>
       <tr *ngFor="let pedido of listaPedido; let i = index">
-        <td>{{ i }}</td>
-        <th >{{ pedido.fecha }}</th>
-        <th >{{ pedido.codigoProducto }}</th>
-        <th >{{ pedido.codigoCliente }}</th>
-        <th >{{ pedido.direccionDomicilio }}</th>
-        <th >{{ pedido.placaVehiculo }}</th>
-        <th >{{ pedido.precioDomicilio | currency }}</th>
-        <th >{{ pedido.precioTotalCompra | currency }}</th>
-        <th (click)="eliminar(pedido.id)">
-          <span
-            class="mdi mdi mdi-24px mdi-delete"
-            style="cursor: pointer; color:red;"
-          ></span>
+        <td>{{ i + 1 }}</td>
+        <th>{{ pedido.fecha | date: "shortDate" }}</th>
+        <th>{{ pedido.codigoProducto }}</th>
+        <th>{{ pedido.codigoCliente }}</th>
+        <th>{{ pedido.direccionDomicilio }}</th>
+        <th>{{ pedido.placaVehiculo }}</th>
+        <th>{{ pedido.precioDomicilio | currency: "COP" }}</th>
+        <th>{{ pedido.precioTotalCompra | currency: "COP" }}</th>
+        <th>
+          <button (click)="eliminar(pedido.id)">
+            <span
+              class="mdi mdi mdi-24px mdi-delete"
+              style="cursor: pointer; color: red"
+            ></span>
+          </button>
         </th>
       </tr>
     </tbody>

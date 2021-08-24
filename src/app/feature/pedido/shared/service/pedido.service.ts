@@ -8,29 +8,27 @@ import { Pedido } from "../model/pedido";
   providedIn: "root",
 })
 export class PedidoService {
-  constructor(protected http: HttpService) {}
+  constructor(protected servicioHttp: HttpService) {}
 
-  public consultar() {
-    return this.http.doGet<Pedido[]>(
+  public consultar(): Observable<Pedido[]> {
+    return this.servicioHttp.doGet<Pedido[]>(
       `${environment.endpoint}`,
-      this.http.optsName("consultar pedidos")
+      this.servicioHttp.optsName("consultar pedidos")
     );
   }
 
   public guardar(pedido: Pedido): Observable<Options> {
-    return this.http
-      .doPost<Pedido, Options>(
-        `${environment.endpoint}`,
-        pedido,
-        this.http.createDefaultOptions()
-      );
+    return this.servicioHttp.doPost<Pedido, Options>(
+      `${environment.endpoint}`,
+      pedido,
+      this.servicioHttp.createDefaultOptions()
+    );
   }
 
-  public eliminar(id: number) {
-    return this.http
-      .doDelete<boolean>(
-        `${environment.endpoint}/${id}`,
-        this.http.optsName("eliminar pedido")
-      );
+  public eliminar(id: number): Observable<boolean> {
+    return this.servicioHttp.doDelete<boolean>(
+      `${environment.endpoint}/${id}`,
+      this.servicioHttp.optsName("eliminar pedido")
+    );
   }
 }
