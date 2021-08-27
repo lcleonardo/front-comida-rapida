@@ -1,6 +1,7 @@
 {
   "/api/*": {
-    "target": "",
+    "target": "https://www.superfinanciera.gov.co",
+    "changeOrigin":true,
     "secure": false,
     "logLevel": "debug"
   }
