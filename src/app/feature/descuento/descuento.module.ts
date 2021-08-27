@@ -18,4 +18,4 @@ import { DescuentoComponent } from './components/descuento/descuento.component';
     DecuentoRoutingModule
   ]
 })
-export class DecuentoModule { }
+export class DescuentoModule { }

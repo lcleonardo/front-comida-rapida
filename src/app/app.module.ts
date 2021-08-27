@@ -7,6 +7,7 @@ import { HomeComponent } from "@home/home.component";
 import { CoreModule } from "@core/core.module";
 import { CookieService } from "ngx-cookie-service";
 import { PedidoModule } from "./feature/pedido/pedido.module";
+import { DescuentoModule } from "./feature/descuento/descuento.module";
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -14,6 +15,7 @@ import { PedidoModule } from "./feature/pedido/pedido.module";
     BrowserModule,
     AppRoutingModule,
     PedidoModule,
+    DescuentoModule,
     CoreModule,
   ],
   providers: [CookieService],
