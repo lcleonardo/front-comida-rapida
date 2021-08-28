@@ -13,6 +13,13 @@ const routes: Routes = [
         (mod) => mod.PedidoModule
       ),
   },
+  {
+    path: "descuento",
+    loadChildren: () =>
+      import("src/app/feature/descuento/descuento.module").then(
+        (mod) => mod.DescuentoModule
+      ),
+  },
 ];
 
 @NgModule({
