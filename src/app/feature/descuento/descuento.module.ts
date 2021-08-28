@@ -5,6 +5,7 @@ import { ListarDescuentoComponent } from './components/listar-descuento/listar-d
 import { CrearDescuentoComponent } from './components/crear-descuento/crear-descuento.component';
 import { DescuentoComponent } from './components/descuento/descuento.component';
 import { SharedModule } from '@shared/shared.module';
+import { DescuentoService } from './shared/service/descuento.service';
 
 
 @NgModule({
@@ -16,7 +17,7 @@ import { SharedModule } from '@shared/shared.module';
   imports: [
     DecuentoRoutingModule,
     SharedModule,
-
-  ]
+  ],
+  providers:[DescuentoService]
 })
 export class DescuentoModule { }

@@ -12,14 +12,14 @@ export class PedidoService {
 
   public consultar(): Observable<Pedido[]> {
     return this.servicioHttp.doGet<Pedido[]>(
-      `${environment.endpoint}`,
+      `${environment.endpoint}/pedidos`,
       this.servicioHttp.optsName("consultar pedidos")
     );
   }
 
   public guardar(pedido: Pedido): Observable<Options> {
     return this.servicioHttp.doPost<Pedido, Options>(
-      `${environment.endpoint}`,
+      `${environment.endpoint}/pedidos`,
       pedido,
       this.servicioHttp.createDefaultOptions()
     );
@@ -27,7 +27,7 @@ export class PedidoService {
 
   public eliminar(id: number): Observable<boolean> {
     return this.servicioHttp.doDelete<boolean>(
-      `${environment.endpoint}/${id}`,
+      `${environment.endpoint}/pedidos/${id}`,
       this.servicioHttp.optsName("eliminar pedido")
     );
   }
