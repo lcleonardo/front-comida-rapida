@@ -19,12 +19,8 @@ export class ListarDescuentoComponent implements OnInit {
   consultar(): void {
     this.listaDescuento = [];
     this.servicioDescuento.consultar().subscribe(
-      (response: Descuento[]) => this.llenarListaDescuento(response),
-      (error) => {
-        console.error(error);
-      }
+      (response: Descuento[]) => this.llenarListaDescuento(response)
     );
-    console.log(this.listaDescuento);
   }
 
   private llenarListaDescuento(response: Descuento[]) {

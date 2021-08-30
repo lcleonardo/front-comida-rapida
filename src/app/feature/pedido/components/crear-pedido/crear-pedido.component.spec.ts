@@ -34,7 +34,7 @@ describe("CrearPedidoComponent", () => {
       codigoCliente: "1094911833",
       direccionDomicilio: "BIS Avenida centenario 123",
       placaVehiculo: "VHJ234",
-      precioTotalCompra: "20000",
+      precioCompra: "20000",
     });
     component.crear();
     expect(component.pedidoCreadoConExito).toBeTrue;

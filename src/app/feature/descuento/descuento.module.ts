@@ -21,3 +21,4 @@ import { DescuentoService } from './shared/service/descuento.service';
   providers:[DescuentoService]
 })
 export class DescuentoModule { }
+

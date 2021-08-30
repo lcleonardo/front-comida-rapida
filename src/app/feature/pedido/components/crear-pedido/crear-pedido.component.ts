@@ -17,7 +17,7 @@ export class CrearPedidoComponent implements OnInit {
   mensajeError: string = "";
 
   constructor(
-    protected pedidoService: PedidoService,
+    protected servicioPedido: PedidoService,
     protected constructorFormulario: FormBuilder,
     protected formatoFecha: DatePipe
   ) {}
@@ -39,7 +39,7 @@ export class CrearPedidoComponent implements OnInit {
       return;
     }
     this.empezarGuardado = true;
-    this.pedidoService.guardar(this.obtenerPedido()).subscribe(
+    this.servicioPedido.guardar(this.obtenerPedido()).subscribe(
       () => this.prepararNuevoPedido(),
       (error) => this.manejarError(error)
     );
@@ -56,16 +56,14 @@ export class CrearPedidoComponent implements OnInit {
   }
 
   private obtenerPedido(): Pedido {
-    return {
-      id: 0,
-      fecha: this.formulario.get("fecha").value,
-      codigoProducto: this.formulario.get("codigoProducto").value,
-      codigoCliente: this.formulario.get("codigoCliente").value,
-      direccionDomicilio: this.formulario.get("direccionDomicilio").value,
-      placaVehiculo: this.formulario.get("placaVehiculo").value.toUpperCase(),
-      precioDomicilio: 0,
-      precioTotalCompra: this.formulario.get("precioTotalCompra").value,
-    };
+    return new Pedido(
+      this.formulario.get("fecha").value,
+      this.formulario.get("codigoCliente").value,
+      this.formulario.get("codigoProducto").value,
+      this.formulario.get("direccionDomicilio").value,
+      this.formulario.get("placaVehiculo").value.toUpperCase(),
+      this.formulario.get("precioCompra").value
+    );
   }
 
   private construirFormulario(): void {
@@ -74,11 +72,14 @@ export class CrearPedidoComponent implements OnInit {
         this.formatoFecha.transform(Date.now(), "yyyy-MM-dd"),
         Validators.required,
       ],
-      codigoProducto: ["", Validators.required],
       codigoCliente: ["", Validators.required],
+      codigoProducto: ["", Validators.required],
       direccionDomicilio: ["", Validators.required],
       placaVehiculo: ["", Validators.required],
-      precioTotalCompra: ["", Validators.required],
+      precioCompra: [
+        "",
+        Validators.required,
+      ],
     });
   }
 

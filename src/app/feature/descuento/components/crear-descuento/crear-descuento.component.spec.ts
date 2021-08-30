@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AppModule } from 'src/app/app.module';
 
 import { CrearDescuentoComponent } from './crear-descuento.component';
 
@@ -8,6 +9,7 @@ describe('CrearDescuentoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [AppModule],
       declarations: [ CrearDescuentoComponent ]
     })
     .compileComponents();

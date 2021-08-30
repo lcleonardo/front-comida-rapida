@@ -1,5 +1,5 @@
-<div class="container">
-  <table class="table">
+
+  <table class="table" style=" width: 100%;overflow-x: auto;">
     <caption id="idCaptionPedidosCreados">
       {{
         listaPedido.length
@@ -14,8 +14,10 @@
         <th>Código cliente</th>
         <th>Dirección domicilio</th>
         <th>Placa vehículo</th>
-        <th>Precio domicilio</th>
-        <th>Precio total</th>
+        <th>Precio compra</th>
+        <th>% descuento</th>
+        <th>% promoción</th>
+        <th>Total</th>
         <th>Eliminar</th>
       </tr>
     </thead>
@@ -27,8 +29,10 @@
         <th>{{ pedido.codigoCliente }}</th>
         <th>{{ pedido.direccionDomicilio }}</th>
         <th>{{ pedido.placaVehiculo }}</th>
-        <th>{{ pedido.precioDomicilio | currency: "COP" }}</th>
-        <th>{{ pedido.precioTotalCompra | currency: "COP" }}</th>
+        <th>{{ pedido.precioCompra | currency: "COP" }}</th>
+        <th>{{ pedido.porcentajeDescuento }}</th>
+        <th>{{ pedido.aplicaPromocion === 0 ? "0" : "50"}}</th>
+        <th>{{ pedido.precioTotal | currency: "COP" }}</th>
         <th>
           <button (click)="eliminar(pedido.id)">
             <span
@@ -40,4 +44,3 @@
       </tr>
     </tbody>
   </table>
-</div>

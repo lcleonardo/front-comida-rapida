@@ -1,5 +1,10 @@
-export interface  Descuento {
+export class Descuento {
   id: number;
   fecha: string;
-  porcentajeDescuento: number;
+  porcentaje: number;
+
+  constructor(fecha: string, porcentaje: number) {
+    this.fecha = fecha;
+    this.porcentaje = porcentaje;
+  }
 }
