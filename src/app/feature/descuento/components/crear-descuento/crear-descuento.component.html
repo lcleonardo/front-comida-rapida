@@ -23,6 +23,7 @@
           <div class="control">
             <input
               validar
+              validacionInicial
               id="idFecha"
               class="input is-small"
               type="date"
@@ -36,12 +37,13 @@
           <div class="control">
             <input
               validar
+              validacionInicial
               id="idPorcentajeDescuento"
               class="input is-small"
               type="number"
+              formControlName="porcentaje"
               min="0"
               placeholder="Ingrese el porcentaje de descuento."
-              formControlName="porcentaje"
             />
           </div>
         </div>

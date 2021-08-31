@@ -1,7 +1,9 @@
 import { DatePipe } from "@angular/common";
 import { HttpErrorResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { Validador } from "@shared/utilidades/validador";
 import { Descuento } from "../../shared/model/descuento";
 import { DescuentoService } from "../../shared/service/descuento.service";
 
@@ -18,8 +20,8 @@ export class CrearDescuentoComponent implements OnInit {
 
   constructor(
     protected servicio: DescuentoService,
-    protected constructorFormulario: FormBuilder,
-    protected formatoFecha: DatePipe
+    protected formatoFecha: DatePipe,
+    protected enrutador: Router
   ) {}
 
   ngOnInit(): void {
@@ -35,9 +37,13 @@ export class CrearDescuentoComponent implements OnInit {
   guardar() {
     this.descuentoCreadoConExito = false;
     this.mensajeError = "";
-    if (!this.formulario.valid) {
+
+    console.warn(this.formulario.value);
+
+    if (this.formulario.invalid) {
       return;
     }
+
     this.empezarGuardado = true;
     let descuento: Descuento = this.obtenerDescuento();
     this.servicio.guardar(descuento).subscribe(
@@ -52,24 +58,26 @@ export class CrearDescuentoComponent implements OnInit {
   }
 
   private obtenerDescuento(): Descuento {
-    return new Descuento(
-      this.formulario.get("fecha").value,
-      this.formulario.get("porcentaje").value
-    );
+    let porcentaje = this.formulario.get("porcentaje").value / 100;
+    return new Descuento(this.formulario.get("fecha").value, porcentaje);
   }
 
   private prepararNuevoDescuento(): void {
     this.construirFormulario();
     this.descuentoCreadoConExito = true;
+    this.enrutador.navigate(["descuento/listar"]);
   }
 
   private construirFormulario(): void {
-    this.formulario = this.constructorFormulario.group({
-      fecha: [
+    this.formulario = new FormGroup({
+      fecha: new FormControl(
         this.formatoFecha.transform(Date.now(), "yyyy-MM-dd"),
+        [Validators.required, Validador.fechaMenorAFechaActual]
+      ),
+      porcentaje: new FormControl("0", [
         Validators.required,
-      ],
-      porcentaje: ["0", Validators.required],
+        Validador.menorOIgualACero,
+      ]),
     });
   }
 
@@ -80,5 +88,4 @@ export class CrearDescuentoComponent implements OnInit {
   mostrarMensajeError(): boolean {
     return this.mensajeError.length !== 0;
   }
-
 }
