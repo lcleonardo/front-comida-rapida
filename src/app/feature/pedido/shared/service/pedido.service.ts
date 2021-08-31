@@ -4,13 +4,9 @@ import { Observable } from "rxjs";
 import { environment } from "src/environments/environment.prod";
 import { Pedido } from "../model/pedido";
 
-@Injectable({
-  providedIn: "root",
-})
+@Injectable()
 export class PedidoService {
   constructor(protected servicioHttp: HttpService) {}
-
-  // return this.http.doGet<Producto[]>(`${environment.apiEndpoint}/tiposFamilia`, this.http.optsName('consultar productos'));
 
   public consultar(): Observable<Pedido[]> {
     return this.servicioHttp.doGet<Pedido[]>(

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpService, Options } from '@core/services/http.service';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import { Descuento } from '../model/descuento';
 
-@Injectable()//DEBE QUEDAR DE ESTA MANERA
+@Injectable()
 export class DescuentoService {
 
   constructor(protected servicioHttp : HttpService) { }
