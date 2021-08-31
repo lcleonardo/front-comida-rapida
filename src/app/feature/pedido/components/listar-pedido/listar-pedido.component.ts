@@ -5,7 +5,7 @@ import { PedidoService } from "../../shared/service/pedido.service";
 @Component({
   selector: "app-listar-pedido",
   templateUrl: "./listar-pedido.component.html",
-  styleUrls: ["./listar-pedido.component.css"],
+  styleUrls: [],
 })
 export class ListarPedidoComponent implements OnInit {
   listaPedido: Pedido[] = [];

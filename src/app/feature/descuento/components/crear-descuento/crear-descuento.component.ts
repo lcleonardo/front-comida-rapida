@@ -8,7 +8,7 @@ import { DescuentoService } from "../../shared/service/descuento.service";
 @Component({
   selector: "app-crear-descuento",
   templateUrl: "./crear-descuento.component.html",
-  styleUrls: ["./crear-descuento.component.css"],
+  styleUrls: [],
 })
 export class CrearDescuentoComponent implements OnInit {
   formulario: FormGroup;

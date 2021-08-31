@@ -5,7 +5,7 @@ import { DescuentoService } from "../../shared/service/descuento.service";
 @Component({
   selector: "app-listar-descuento",
   templateUrl: "./listar-descuento.component.html",
-  styleUrls: ["./listar-descuento.component.css"],
+  styleUrls: [],
 })
 export class ListarDescuentoComponent implements OnInit {
   listaDescuento: Descuento[] = [];

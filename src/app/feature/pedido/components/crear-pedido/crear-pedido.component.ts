@@ -8,7 +8,7 @@ import { HttpErrorResponse } from "@angular/common/http";
 @Component({
   selector: "app-crear-pedido",
   templateUrl: "./crear-pedido.component.html",
-  styleUrls: ["./crear-pedido.component.css"],
+  styleUrls: [],
 })
 export class CrearPedidoComponent implements OnInit {
   formulario: FormGroup;
