@@ -26,6 +26,7 @@ export class ListarDescuentoComponent implements OnInit {
   private llenarListaDescuento(response: Descuento[]) {
     response.forEach((object: Descuento) => {
       this.listaDescuento.push(object);
+      console.log(object);
     });
   }
 }

@@ -1,1 +1,69 @@
-<p>crear-descuento works!</p>
+<div class="container">
+  <div class="columns">
+    <div class="column is-three-fifths">
+      <br />
+      <div
+        id="idDivDescuentoCreado"
+        *ngIf="descuentoCreadoConExito"
+        class="notification is-info"
+      >
+        <button
+          class="delete"
+          (click)="descuentoCreadoConExito = false"
+        ></button>
+        <label>Descuento creado con éxito.</label>
+      </div>
+      <div *ngIf="mostrarMensajeError()" class="notification is-danger">
+        <button class="delete" (click)="vaciarMensajeError()"></button>
+        <label id="idLabelNoDescuentoCreado">{{ mensajeError }}</label>
+      </div>
+      <form [formGroup]="formulario" (ngSubmit)="guardar()">
+        <div class="field">
+          <label class="label">Fecha</label>
+          <div class="control">
+            <input
+              validar
+              id="idFecha"
+              class="input is-small"
+              type="date"
+              placeholder="Ingrese la fecha"
+              formControlName="fecha"
+            />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Porcentaje de descuento</label>
+          <div class="control">
+            <input
+              validar
+              id="idPorcentajeDescuento"
+              class="input is-small"
+              type="number"
+              min="0"
+              placeholder="Ingrese el porcentaje de descuento."
+              formControlName="porcentaje"
+            />
+          </div>
+        </div>
+        <br />
+        <div class="field is-grouped">
+          <div class="control">
+            <button
+              id="idBotonCrearDescuento"
+              type="submit"
+              class="button is-link"
+              [disabled]="empezarGuardado"
+            >
+              Crear
+            </button>
+          </div>
+          <div id="idBotonCancelarDescuento" class="control">
+            <button class="button is-link is-light" (onClick)="cancelar()">
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

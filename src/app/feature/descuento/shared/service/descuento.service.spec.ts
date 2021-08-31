@@ -30,10 +30,10 @@ describe("DescuentoService", () => {
     expect(descuento.porcentaje).toEqual(5.0);
   });
 
-  it("deberia guarar un descuento correctamente", async () => {
+  it("deberia guardar un descuento correctamente", async () => {
     let descuento: Descuento = new Descuento("2021-08-23", 5.0);
     servicio
       .guardar(descuento)
-      .subscribe((respuesta) => expect(respuesta).toContain("valor"));
+      .subscribe((respuesta) => expect(respuesta).not.toBeNull());
   });
 });

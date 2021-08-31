@@ -30,8 +30,8 @@
         <th>{{ pedido.direccionDomicilio }}</th>
         <th>{{ pedido.placaVehiculo }}</th>
         <th>{{ pedido.precioCompra | currency: "COP" }}</th>
-        <th>{{ pedido.porcentajeDescuento }}</th>
-        <th>{{ pedido.aplicaPromocion === 0 ? "0" : "50"}}</th>
+        <th>{{ pedido.porcentajeDescuento | percent }}</th>
+        <th>{{ pedido.aplicaPromocion === 0 ? "0" : "50" | percent}}</th>
         <th>{{ pedido.precioTotal | currency: "COP" }}</th>
         <th>
           <button (click)="eliminar(pedido.id)">

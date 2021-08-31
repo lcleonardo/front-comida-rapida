@@ -1,1 +1,27 @@
-<p>listar-descuento works!</p>
+
+<div class="columns">
+    <div class="column is-half">
+  <table class="table" style=" width: 100%;overflow-x: auto;">
+    <caption id="idCaptionDescuentosCreados">
+      {{
+        listaDescuento.length
+      }}
+      <div>Descuentos creados</div>
+    </caption>
+    <thead>
+      <tr>
+        <td>#</td>
+        <th>Fecha</th>
+        <th>% descuento</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let descuento of listaDescuento; let i = index">
+        <td>{{ i + 1 }}</td>
+        <th>{{ descuento.fecha }}</th>
+        <th>{{ descuento.porcentaje | percent}}</th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>

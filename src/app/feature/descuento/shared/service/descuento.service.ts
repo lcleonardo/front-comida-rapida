@@ -4,15 +4,13 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Descuento } from '../model/descuento';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()//DEBE QUEDAR DE ESTA MANERA
 export class DescuentoService {
 
   constructor(protected servicioHttp : HttpService) { }
 
   public consultar(): Observable<Descuento[]> {
-    return this.servicioHttp.doGet<any>(
+    return this.servicioHttp.doGet<Descuento[]>(
       `${environment.endpoint}/descuentos`,
       this.servicioHttp.optsName("consultar descuentos")
     );

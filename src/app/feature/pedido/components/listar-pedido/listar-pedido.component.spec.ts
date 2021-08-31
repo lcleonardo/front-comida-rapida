@@ -24,7 +24,7 @@ describe("ListarPedidoComponent", () => {
     expect(component).toBeTruthy();
   });
 
-  it("deberia crear un pedido", async () => {
+  it("deberia listar un pedido", async () => {
     
   });
 

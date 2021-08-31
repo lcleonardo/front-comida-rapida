@@ -1,7 +1,6 @@
 {
-  "/api/*": {
-    "target": "https://www.superfinanciera.gov.co",
-    "changeOrigin":true,
+  "/": {
+    "target": "http://localhost:8083",
     "secure": false,
     "logLevel": "debug"
   }

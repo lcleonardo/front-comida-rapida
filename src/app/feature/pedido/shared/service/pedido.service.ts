@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpService, Options } from "@core/services/http.service";
 import { Observable } from "rxjs";
-import { environment } from "src/environments/environment";
+import { environment } from "src/environments/environment.prod";
 import { Pedido } from "../model/pedido";
 
 @Injectable({
@@ -9,6 +9,8 @@ import { Pedido } from "../model/pedido";
 })
 export class PedidoService {
   constructor(protected servicioHttp: HttpService) {}
+
+  // return this.http.doGet<Producto[]>(`${environment.apiEndpoint}/tiposFamilia`, this.http.optsName('consultar productos'));
 
   public consultar(): Observable<Pedido[]> {
     return this.servicioHttp.doGet<Pedido[]>(
