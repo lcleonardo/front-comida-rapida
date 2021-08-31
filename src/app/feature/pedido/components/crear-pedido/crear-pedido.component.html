@@ -14,12 +14,13 @@
         <button class="delete" (click)="vaciarMensajeError()"></button>
         <label id="idLabelNoPedidoCreado">{{ mensajeError }}</label>
       </div>
-      <form [formGroup]="formulario" (ngSubmit)="crear()">
+      <form [formGroup]="formulario" (ngSubmit)="guardar()">
         <div class="field">
           <label class="label">Fecha</label>
           <div class="control">
             <input
               validar
+              validacionInicial
               id="idFecha"
               class="input is-small"
               type="date"
@@ -33,6 +34,7 @@
           <div class="control">
             <input
               validar
+              validacionInicial
               id="idCodigoProducto"
               class="input is-small"
               type="text"
@@ -46,6 +48,7 @@
           <div class="control">
             <input
               validar
+              validacionInicial
               id="idCodigoCliente"
               class="input is-small"
               type="text"
@@ -59,6 +62,7 @@
           <div class="control">
             <input
               validar
+              validacionInicial
               id="idDireccionDomicilio"
               class="input is-small"
               type="text"
@@ -72,6 +76,7 @@
           <div class="control">
             <input
               validar
+              validacionInicial
               id="idPlacaVehiculo"
               class="input is-small"
               type="text"
@@ -85,13 +90,13 @@
           <div class="control">
             <input
               validar
+              validacionInicial
               id="idPrecioTotalCompra"
               class="input is-small"
               type="number"
               min="0"
               placeholder="Ingrese el precio de la compra"
               formControlName="precioCompra"
-
             />
           </div>
         </div>
@@ -105,11 +110,6 @@
               [disabled]="empezarGuardado"
             >
               Crear
-            </button>
-          </div>
-          <div id="idBotonCancelarPedido" class="control">
-            <button class="button is-link is-light" (onClick)="cancelar()">
-              Cancelar
             </button>
           </div>
         </div>

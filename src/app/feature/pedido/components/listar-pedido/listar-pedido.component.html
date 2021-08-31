@@ -34,7 +34,7 @@
         <th>{{ pedido.aplicaPromocion === 0 ? "0" : "0.5" | percent}}</th>
         <th>{{ pedido.precioTotal | currency: "COP" }}</th>
         <th>
-          <button (click)="eliminar(pedido.id)">
+          <button (click)="eliminar(pedido.id)" | async>
             <span
               class="mdi mdi mdi-24px mdi-delete"
               style="cursor: pointer; color: red"

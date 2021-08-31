@@ -1,13 +1,20 @@
+import { DatePipe } from "@angular/common";
 import { AbstractControl } from "@angular/forms";
 
 export class Validador {
+  static validarPlacaVehiculo(control: AbstractControl) {
+    let ultimoCaracter = control.value.slice(-1);
+    if(!Number.isInteger(ultimoCaracter)){
+      return { validarPlacaVehiculo: true };
+    }
+    return null;
+  }
+
   static fechaMenorAFechaActual(control: AbstractControl) {
-    const fecha = new Date(control.value);
-    const fechaActual = new Date(Date.now());
-    if (
-      fecha.toLocaleDateString().replace("/", "").replace("/", "") <
-      fechaActual.toLocaleDateString().replace("/", "").replace("/", "")
-    ) {
+    const datepipe: DatePipe = new DatePipe("en-US");
+    const fecha = datepipe.transform(control.value, "yyyy-MM-dd");
+    const fechaActual = datepipe.transform(Date.now(), "yyyy-MM-dd");
+    if (fecha < fechaActual) {
       return { fechaMenorAFechaActual: true };
     }
     return null;

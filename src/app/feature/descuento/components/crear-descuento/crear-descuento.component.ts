@@ -28,22 +28,12 @@ export class CrearDescuentoComponent implements OnInit {
     this.construirFormulario();
   }
 
-  cancelar(): void {
-    this.construirFormulario();
-    this.descuentoCreadoConExito = false;
-    this.empezarGuardado = false;
-  }
-
   guardar() {
     this.descuentoCreadoConExito = false;
     this.mensajeError = "";
-
-    console.warn(this.formulario.value);
-
     if (this.formulario.invalid) {
       return;
     }
-
     this.empezarGuardado = true;
     let descuento: Descuento = this.obtenerDescuento();
     this.servicio.guardar(descuento).subscribe(
@@ -69,16 +59,19 @@ export class CrearDescuentoComponent implements OnInit {
   }
 
   private construirFormulario(): void {
-    this.formulario = new FormGroup({
-      fecha: new FormControl(
-        this.formatoFecha.transform(Date.now(), "yyyy-MM-dd"),
-        [Validators.required, Validador.fechaMenorAFechaActual]
-      ),
-      porcentaje: new FormControl("0", [
-        Validators.required,
-        Validador.menorOIgualACero,
-      ]),
-    });
+    this.formulario = new FormGroup(
+      {
+        fecha: new FormControl(
+          this.formatoFecha.transform(Date.now(), "yyyy-MM-dd"),
+          [Validators.required, Validador.fechaMenorAFechaActual]
+        ),
+        porcentaje: new FormControl("0", [
+          Validators.required,
+          Validador.menorOIgualACero,
+        ]),
+      },
+      { updateOn: "blur" }
+    );
   }
 
   vaciarMensajeError() {

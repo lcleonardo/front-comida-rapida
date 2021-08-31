@@ -1,9 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Pedido } from "../../shared/model/pedido";
 import { PedidoService } from "../../shared/service/pedido.service";
 import { DatePipe } from "@angular/common";
 import { HttpErrorResponse } from "@angular/common/http";
+import { Router } from "@angular/router";
+import { Validador } from "@shared/utilidades/validador";
 
 @Component({
   selector: "app-crear-pedido",
@@ -18,24 +20,19 @@ export class CrearPedidoComponent implements OnInit {
 
   constructor(
     protected servicioPedido: PedidoService,
-    protected constructorFormulario: FormBuilder,
-    protected formatoFecha: DatePipe
+    protected formatoFecha: DatePipe,
+    protected enrutador: Router
   ) {}
 
   ngOnInit(): void {
     this.construirFormulario();
   }
 
-  cancelar(): void {
-    this.construirFormulario();
-    this.pedidoCreadoConExito = false;
-    this.empezarGuardado = false;
-  }
-
-  crear(): void {
+  guardar(): void {
     this.pedidoCreadoConExito = false;
     this.mensajeError = "";
     if (!this.formulario.valid) {
+      this.formulario.markAllAsTouched();
       return;
     }
     this.empezarGuardado = true;
@@ -47,8 +44,9 @@ export class CrearPedidoComponent implements OnInit {
   }
 
   private prepararNuevoPedido(): void {
-    this.construirFormulario();
+    this.formulario.reset();
     this.pedidoCreadoConExito = true;
+    this.enrutador.navigate(["pedido/listar"]);
   }
 
   private manejarError(error: HttpErrorResponse): void {
@@ -67,20 +65,26 @@ export class CrearPedidoComponent implements OnInit {
   }
 
   private construirFormulario(): void {
-    this.formulario = this.constructorFormulario.group({
-      fecha: [
-        this.formatoFecha.transform(Date.now(), "yyyy-MM-dd"),
-        Validators.required,
-      ],
-      codigoCliente: ["", Validators.required],
-      codigoProducto: ["", Validators.required],
-      direccionDomicilio: ["", Validators.required],
-      placaVehiculo: ["", Validators.required],
-      precioCompra: [
-        "",
-        Validators.required,
-      ],
-    });
+    this.formulario = new FormGroup(
+      {
+        fecha: new FormControl(
+          this.formatoFecha.transform(Date.now(), "yyyy-MM-dd"),
+          [Validators.required, Validador.fechaMenorAFechaActual]
+        ),
+        codigoCliente: new FormControl("", [Validators.required]),
+        codigoProducto: new FormControl("", [Validators.required]),
+        direccionDomicilio: new FormControl("", [Validators.required]),
+        placaVehiculo: new FormControl("", [
+          Validators.required,
+          Validador.validarPlacaVehiculo,
+        ]),
+        precioCompra: new FormControl("", [
+          Validators.required,
+          Validador.menorOIgualACero,
+        ]),
+      },
+      { updateOn: "blur" }
+    );
   }
 
   vaciarMensajeError() {
