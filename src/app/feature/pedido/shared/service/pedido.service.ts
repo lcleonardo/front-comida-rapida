@@ -23,10 +23,12 @@ export class PedidoService {
     );
   }
 
-  public eliminar(id: number): Observable<boolean> {
-    return this.servicioHttp.doDelete<boolean>(
-      `${environment.endpoint}/pedidos/${id}`,
-      this.servicioHttp.optsName("eliminar pedido")
-    );
+  public eliminar(id: number) {
+    return this.servicioHttp
+      .doDelete<boolean>(
+        `${environment.endpoint}/pedidos/${id}`,
+        this.servicioHttp.optsName("eliminar pedido")
+      )
+      .subscribe();
   }
 }

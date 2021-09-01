@@ -19,13 +19,11 @@ export class ListarDescuentoComponent implements OnInit {
   consultar(): void {
     this.servicioDescuento
       .consultar()
-      .subscribe((respuesta: Descuento[]) =>
-        this.listaDescuento = respuesta
-      );
+      .subscribe((respuesta: Descuento[]) => (this.listaDescuento = respuesta));
   }
 
   eliminar(id: number): void {
-    console.log(id);
-    
+    this.servicioDescuento.eliminar(id);
+    this.consultar();
   }
 }

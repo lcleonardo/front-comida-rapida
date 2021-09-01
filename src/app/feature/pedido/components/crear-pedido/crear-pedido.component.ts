@@ -19,7 +19,7 @@ export class CrearPedidoComponent implements OnInit {
   mensajeError: string = "";
 
   constructor(
-    protected servicioPedido: PedidoService,
+    protected servicio: PedidoService,
     protected formatoFecha: DatePipe,
     protected enrutador: Router
   ) {}
@@ -36,7 +36,8 @@ export class CrearPedidoComponent implements OnInit {
       return;
     }
     this.empezarGuardado = true;
-    this.servicioPedido.guardar(this.obtenerPedido()).subscribe(
+    this.servicio.guardar(
+      this.obtenerPedido()).subscribe(
       () => this.prepararNuevoPedido(),
       (error) => this.manejarError(error)
     );
@@ -44,7 +45,7 @@ export class CrearPedidoComponent implements OnInit {
   }
 
   private prepararNuevoPedido(): void {
-    this.formulario.reset();
+    this.construirFormulario();
     this.pedidoCreadoConExito = true;
     this.enrutador.navigate(["pedido/listar"]);
   }

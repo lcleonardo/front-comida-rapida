@@ -31,7 +31,8 @@ export class CrearDescuentoComponent implements OnInit {
   guardar() {
     this.descuentoCreadoConExito = false;
     this.mensajeError = "";
-    if (this.formulario.invalid) {
+    if (!this.formulario.valid) {
+      this.formulario.markAllAsTouched();
       return;
     }
     this.empezarGuardado = true;
