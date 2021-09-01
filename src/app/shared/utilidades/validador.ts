@@ -4,7 +4,8 @@ import { AbstractControl } from "@angular/forms";
 export class Validador {
   static validarPlacaVehiculo(control: AbstractControl) {
     let ultimoCaracter = control.value.slice(-1);
-    if(!Number.isInteger(ultimoCaracter)){
+    let num = parseInt(ultimoCaracter);
+    if(isNaN(num)) {
       return { validarPlacaVehiculo: true };
     }
     return null;

@@ -17,16 +17,15 @@ export class ListarDescuentoComponent implements OnInit {
   }
 
   consultar(): void {
-    this.listaDescuento = [];
-    this.servicioDescuento.consultar().subscribe(
-      (response: Descuento[]) => this.llenarListaDescuento(response)
-    );
+    this.servicioDescuento
+      .consultar()
+      .subscribe((respuesta: Descuento[]) =>
+        this.listaDescuento = respuesta
+      );
   }
 
-  private llenarListaDescuento(response: Descuento[]) {
-    response.forEach((object: Descuento) => {
-      this.listaDescuento.push(object);
-      console.log(object);
-    });
+  eliminar(id: number): void {
+    console.log(id);
+    
   }
 }

@@ -1,10 +1,10 @@
 
   <table class="table" style=" width: 100%;overflow-x: auto;">
-    <caption id="idCaptionPedidosCreados">
+    <caption id="idCaptionPedidosCreados" style="text-align:center;">
       {{
         listaPedido.length
       }}
-      <div>Pedidos creados</div>
+      Pedidos creados
     </caption>
     <thead>
       <tr>
@@ -37,7 +37,7 @@
           <button (click)="eliminar(pedido.id)" | async>
             <span
               class="mdi mdi mdi-24px mdi-delete"
-              style="cursor: pointer; color: red"
+              style="cursor: pointer; color:hsl(348, 100%, 61%)"
             ></span>
           </button>
         </th>
