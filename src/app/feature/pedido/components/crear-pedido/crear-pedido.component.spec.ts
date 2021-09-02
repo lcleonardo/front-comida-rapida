@@ -36,7 +36,7 @@ describe("CrearPedidoComponent", () => {
       placaVehiculo: "VHJ234",
       precioCompra: "20000",
     });
-    component.crear();
+    component.guardar();
     expect(component.pedidoCreadoConExito).toBeTrue;
   });
 });

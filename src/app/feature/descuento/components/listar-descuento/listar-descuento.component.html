@@ -19,7 +19,7 @@
         <tr *ngFor="let descuento of listaDescuento; let i = index">
           <td>{{ i + 1 }}</td>
           <th>{{ descuento.fecha }}</th>
-          <th>{{ descuento.porcentaje | percent }}</th>
+          <th>{{ (descuento.porcentaje / 100) | percent }}</th>
           <th>
             <button (click)="eliminar(descuento.id)">
               <span

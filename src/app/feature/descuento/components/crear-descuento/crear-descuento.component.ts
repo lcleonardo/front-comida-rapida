@@ -49,7 +49,7 @@ export class CrearDescuentoComponent implements OnInit {
   }
 
   private obtenerDescuento(): Descuento {
-    let porcentaje = this.formulario.get("porcentaje").value / 100;
+    let porcentaje = this.formulario.get("porcentaje").value;
     return new Descuento(this.formulario.get("fecha").value, porcentaje);
   }
 

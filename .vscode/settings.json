@@ -1,0 +1,10 @@
+{
+  "files.exclude": {
+    ".gradle": true,
+    ".vscode": true,
+    "node_modules": true,
+    "reports": true,
+    "rules": true,
+    "tmp": true
+  }
+}

@@ -15,6 +15,6 @@ import { DatePipe } from "@angular/common";
     CrearPedidoComponent],
   imports: [PedidoRoutingModule, SharedModule, 
   ],
-  providers: [PedidoService, DatePipe]
+  providers: [PedidoService, DatePipe],
 })
 export class PedidoModule {}

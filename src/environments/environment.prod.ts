@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  endpoint: '/venta-comida-domicilio'
+  endpoint: '/venta-comida-domicilio',
+
 };
