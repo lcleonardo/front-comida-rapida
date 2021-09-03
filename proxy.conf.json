@@ -2,7 +2,21 @@
   "/": {
     "target": "http://localhost:8083",
     "secure": false,
-    "logLevel": "debug"
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "changeOrigin": true
+  }
+  ,
+  "/trm": {
+    "target": "https://www.superfinanciera.gov.co",
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "changeOrigin": true
   }
 }
 

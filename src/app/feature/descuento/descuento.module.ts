@@ -6,20 +6,22 @@ import { DescuentoComponent } from './components/descuento/descuento.component';
 import { SharedModule } from '@shared/shared.module';
 import { DescuentoService } from './shared/service/descuento.service';
 import { DescuentoRoutingModule } from './descuento-routing.module';
+import { HttpService } from '@core/services/http.service';
+import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 
 
 @NgModule({
   declarations: [
+    DescuentoComponent,
     ListarDescuentoComponent,
-    CrearDescuentoComponent,
-    DescuentoComponent
+    CrearDescuentoComponent
   ],
   imports: [
     SharedModule,
     DescuentoRoutingModule,
   ],
-  providers:[DescuentoService,DatePipe]
+  providers:[DescuentoService, HttpService,HttpClient, DatePipe]
 })
 export class DescuentoModule { }
 

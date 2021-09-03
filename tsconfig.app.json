@@ -20,6 +20,12 @@
       "@shared/*": [
         "src/app/shared/*"
       ],
+      "@pedido/*": [
+        "src/app/feature/pedido/*"
+      ],
+      "@descuento/*": [
+        "src/app/feature/descuento/*"
+      ]
     }
   },
   "files": [

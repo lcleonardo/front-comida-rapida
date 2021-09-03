@@ -23,7 +23,8 @@ export class ListarPedidoComponent implements OnInit {
   }
 
   eliminar(id: number): void {
-    this.pedidoService.eliminar(id);
+    this.pedidoService.eliminar(id).subscribe(respuesta => console.log(respuesta)
+    );
     this.consultar();
   }
 }
