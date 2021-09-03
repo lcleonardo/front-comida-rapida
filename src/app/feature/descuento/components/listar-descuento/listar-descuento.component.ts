@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Observable } from "rxjs";
 import { Descuento } from "../../shared/model/descuento";
 import { DescuentoService } from "../../shared/service/descuento.service";
 
@@ -8,7 +9,7 @@ import { DescuentoService } from "../../shared/service/descuento.service";
   styleUrls: [],
 })
 export class ListarDescuentoComponent implements OnInit {
-  listaDescuento: Descuento[] = [];
+  descuentos: Observable<Descuento[]>;
 
   constructor(protected servicioDescuento: DescuentoService) {}
 
@@ -17,9 +18,7 @@ export class ListarDescuentoComponent implements OnInit {
   }
 
   consultar(): void {
-    this.servicioDescuento
-      .consultar()
-      .subscribe((respuesta: Descuento[]) => (this.listaDescuento = respuesta));
+    this.descuentos = this.servicioDescuento.consultar();
   }
 
   eliminar(id: number): void {

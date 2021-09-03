@@ -1,9 +1,9 @@
 <div class="columns">
   <div class="column is-half">
     <table class="table" style="width: 100%; overflow-x: auto">
-      <caption id="idCaptionDescuentosCreados" style="text-align: center">
+      <caption id="idCaptionDescuentosCreados" style="text-align: center;">
         {{
-          listaDescuento.length
+          (descuentos | async).length
         }}
         Descuentos creados
       </caption>
@@ -16,10 +16,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let descuento of listaDescuento; let i = index">
+        <tr *ngFor="let descuento of descuentos | async; let i = index">
           <td>{{ i + 1 }}</td>
           <th>{{ descuento.fecha }}</th>
-          <th>{{ (descuento.porcentaje / 100) | percent }}</th>
+          <th>{{ descuento.porcentaje / 100 | percent }}</th>
           <th>
             <button (click)="eliminar(descuento.id)">
               <span

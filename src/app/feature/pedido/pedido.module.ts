@@ -6,7 +6,6 @@ import { ListarPedidoComponent } from "./components/listar-pedido/listar-pedido.
 import { CrearPedidoComponent } from "./components/crear-pedido/crear-pedido.component";
 import { SharedModule } from "@shared/shared.module";
 import { PedidoService } from "./shared/service/pedido.service";
-import { HttpClient } from "@angular/common/http";
 import { HttpService } from "@core/services/http.service";
 import { DatePipe } from "@angular/common";
 
@@ -17,6 +16,6 @@ import { DatePipe } from "@angular/common";
     CrearPedidoComponent],
   imports: [SharedModule ,PedidoRoutingModule 
   ],
-  providers: [PedidoService, HttpService,HttpClient, DatePipe],
+  providers: [PedidoService, HttpService, DatePipe],
 })
 export class PedidoModule {}

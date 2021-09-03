@@ -7,7 +7,6 @@ import { SharedModule } from '@shared/shared.module';
 import { DescuentoService } from './shared/service/descuento.service';
 import { DescuentoRoutingModule } from './descuento-routing.module';
 import { HttpService } from '@core/services/http.service';
-import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 
 
@@ -21,7 +20,7 @@ import { DatePipe } from '@angular/common';
     SharedModule,
     DescuentoRoutingModule,
   ],
-  providers:[DescuentoService, HttpService,HttpClient, DatePipe]
+  providers:[DescuentoService, HttpService, DatePipe]
 })
 export class DescuentoModule { }
 

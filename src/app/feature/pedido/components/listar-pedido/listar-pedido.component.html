@@ -1,46 +1,45 @@
-
-  <table class="table" style=" width: 100%;overflow-x: auto;">
-    <caption id="idCaptionPedidosCreados" style="text-align:center;">
-      {{
-        listaPedido.length
-      }}
-      Pedidos creados
-    </caption>
-    <thead>
-      <tr>
-        <td>#</td>
-        <th>Fecha</th>
-        <th>Código producto</th>
-        <th>Código cliente</th>
-        <th>Dirección domicilio</th>
-        <th>Placa vehículo</th>
-        <th>Precio compra</th>
-        <th>% descuento</th>
-        <th>% promoción</th>
-        <th>Total</th>
-        <th>Eliminar</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let pedido of listaPedido; let i = index">
-        <td>{{ i + 1 }}</td>
-        <th>{{ pedido.fecha | date: "shortDate" }}</th>
-        <th>{{ pedido.codigoProducto }}</th>
-        <th>{{ pedido.codigoCliente }}</th>
-        <th>{{ pedido.direccionDomicilio }}</th>
-        <th>{{ pedido.placaVehiculo }}</th>
-        <th>{{ pedido.precioCompra | currency: "COP" }}</th>
-        <th>{{ (pedido.porcentajeDescuento / 100)| percent }}</th>
-        <th>{{ pedido.aplicaPromocion === 0 ? "0" : "0.5" | percent}}</th>
-        <th>{{ pedido.precioTotal | currency: "COP" }}</th>
-        <th>
-          <button (click)="eliminar(pedido.id)">
-            <span
-              class="mdi mdi mdi-24px mdi-delete"
-              style="cursor: pointer; color:hsl(348, 100%, 61%)"
-            ></span>
-          </button>
-        </th>
-      </tr>
-    </tbody>
-  </table>
+<table class="table" style="width: 100%; overflow-x: auto">
+  <caption id="idCaptionPedidosCreados" style="text-align: center">
+    {{
+      (pedidos | async).length
+    }}
+    Pedidos creados
+  </caption>
+  <thead>
+    <tr>
+      <td>#</td>
+      <th>Fecha</th>
+      <th>Código producto</th>
+      <th>Código cliente</th>
+      <th>Dirección domicilio</th>
+      <th>Placa vehículo</th>
+      <th>Precio compra</th>
+      <th>% descuento</th>
+      <th>% promoción</th>
+      <th>Total</th>
+      <th>Eliminar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pedido of pedidos | async; let i = index">
+      <td>{{ i + 1 }}</td>
+      <th>{{ pedido.fecha | date: "shortDate" }}</th>
+      <th>{{ pedido.codigoProducto }}</th>
+      <th>{{ pedido.codigoCliente }}</th>
+      <th>{{ pedido.direccionDomicilio }}</th>
+      <th>{{ pedido.placaVehiculo }}</th>
+      <th>{{ pedido.precioCompra | currency: "COP" }}</th>
+      <th>{{ pedido.porcentajeDescuento / 100 | percent }}</th>
+      <th>{{ pedido.aplicaPromocion === 0 ? "0" : ("0.5" | percent) }}</th>
+      <th>{{ pedido.precioTotal | currency: "COP" }}</th>
+      <th>
+        <button (click)="eliminar(pedido.id)">
+          <span
+            class="mdi mdi mdi-24px mdi-delete"
+            style="cursor: pointer; color: hsl(348, 100%, 61%)"
+          ></span>
+        </button>
+      </th>
+    </tr>
+  </tbody>
+</table>

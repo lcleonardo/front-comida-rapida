@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Observable } from "rxjs";
 import { Pedido } from "../../shared/model/pedido";
 import { PedidoService } from "../../shared/service/pedido.service";
 
@@ -8,7 +9,8 @@ import { PedidoService } from "../../shared/service/pedido.service";
   styleUrls: [],
 })
 export class ListarPedidoComponent implements OnInit {
-  listaPedido: Pedido[] = [];
+  
+   pedidos: Observable<Pedido[]>;
 
   constructor(protected pedidoService: PedidoService) {}
 
@@ -17,14 +19,13 @@ export class ListarPedidoComponent implements OnInit {
   }
 
   consultar(): void {
-    this.pedidoService
-      .consultar()
-      .subscribe((respuesta: Pedido[]) => (this.listaPedido = respuesta));
+    this.pedidos= this.pedidoService.consultar();
   }
 
   eliminar(id: number): void {
-    this.pedidoService.eliminar(id).subscribe(respuesta => console.log(respuesta)
-    );
+    this.pedidoService
+      .eliminar(id)
+      .subscribe((respuesta) => console.log(respuesta));
     this.consultar();
   }
 }
