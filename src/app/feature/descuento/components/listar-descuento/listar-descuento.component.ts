@@ -25,4 +25,5 @@ export class ListarDescuentoComponent implements OnInit {
     this.servicioDescuento.eliminar(id);
     this.consultar();
   }
+
 }

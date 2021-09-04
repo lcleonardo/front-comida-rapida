@@ -1,10 +1,9 @@
 <table class="table" style="width: 100%; overflow-x: auto">
-  <caption id="idCaptionPedidosCreados" style="text-align: center">
-    {{
-      (pedidos | async).length
-    }}
-    Pedidos creados
-  </caption>
+    <caption id="idCaptionDescuentosCreados" style="text-align: center">
+      <app-contador-items
+        [numeroDeItems]="(pedidos | async).length"
+      ></app-contador-items>
+    </caption>
   <thead>
     <tr>
       <td>#</td>

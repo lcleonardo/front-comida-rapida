@@ -10,7 +10,8 @@ import { CoreModule } from "@core/core.module";
 @NgModule({
   declarations: [
     AppComponent,
-     HomeComponent],
+     HomeComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

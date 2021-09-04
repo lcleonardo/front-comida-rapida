@@ -14,7 +14,7 @@ import { DatePipe } from '@angular/common';
   declarations: [
     DescuentoComponent,
     ListarDescuentoComponent,
-    CrearDescuentoComponent
+    CrearDescuentoComponent,
   ],
   imports: [
     SharedModule,

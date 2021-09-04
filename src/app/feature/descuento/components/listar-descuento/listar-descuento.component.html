@@ -1,11 +1,10 @@
 <div class="columns">
   <div class="column is-half">
     <table class="table" style="width: 100%; overflow-x: auto">
-      <caption id="idCaptionDescuentosCreados" style="text-align: center;">
-        {{
-          (descuentos | async).length
-        }}
-        Descuentos creados
+      <caption id="idCaptionDescuentosCreados" style="text-align: center">
+        <app-contador-items
+          [numeroDeItems]="(descuentos | async).length"
+        ></app-contador-items>
       </caption>
       <thead>
         <tr>

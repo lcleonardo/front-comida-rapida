@@ -9,9 +9,10 @@
     "changeOrigin": true
   }
   ,
-  "/trm": {
+  "/api/* ": {
     "target": "https://www.superfinanciera.gov.co",
     "secure": false,
+    "protocol": "https:",
     "logLevel": "debug",
     "pathRewrite": {
       "^/api": ""
