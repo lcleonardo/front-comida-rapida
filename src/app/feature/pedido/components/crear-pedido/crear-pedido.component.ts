@@ -1,11 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { Pedido } from "../../shared/model/pedido";
 import { PedidoService } from "../../shared/service/pedido.service";
 import { DatePipe } from "@angular/common";
 import { HttpErrorResponse } from "@angular/common/http";
 import { Router } from "@angular/router";
-import { Validador } from "@shared/utilidades/validador";
+import { ValidadorPersonalizado } from "@shared/utilidades/validador-personalizado";
 
 @Component({
   selector: "app-crear-pedido",
@@ -26,32 +25,21 @@ export class CrearPedidoComponent implements OnInit {
     this.construirFormulario();
   }
 
-  guardar(): void {
+  guardar(event: Event): void {
+    event.preventDefault();
     this.mensajeServidor = "";
     if (!this.formulario.valid) {
       this.formulario.markAllAsTouched();
       return;
     }
-    this.servicio.guardar(this.obtenerPedido()).subscribe(
-      () => {},
+    this.servicio.guardar(this.formulario.value).subscribe(
+      () => this.enrutador.navigate(["pedido/listar"]),
       (error) => this.obtenerMensajeServidor(error)
     );
-    this.enrutador.navigate(["pedido/listar"]);
   }
 
   private obtenerMensajeServidor(error: HttpErrorResponse): void {
     this.mensajeServidor = error.error["mensaje"];
-  }
-
-  private obtenerPedido(): Pedido {
-    return new Pedido(
-      this.formulario.get("fecha").value,
-      this.formulario.get("codigoCliente").value,
-      this.formulario.get("codigoProducto").value,
-      this.formulario.get("direccionDomicilio").value,
-      this.formulario.get("placaVehiculo").value.toUpperCase(),
-      this.formulario.get("precioCompra").value
-    );
   }
 
   private construirFormulario(): void {
@@ -59,7 +47,7 @@ export class CrearPedidoComponent implements OnInit {
       {
         fecha: new FormControl(
           this.formatoFecha.transform(Date.now(), "yyyy-MM-dd"),
-          [Validators.required, Validador.fechaMenorAFechaActual]
+          [Validators.required, ValidadorPersonalizado.fechaMenorAFechaActual]
         ),
         codigoCliente: new FormControl("", [
           Validators.required,
@@ -75,19 +63,15 @@ export class CrearPedidoComponent implements OnInit {
         ]),
         placaVehiculo: new FormControl("", [
           Validators.required,
-          Validador.validarPlacaVehiculo,
+          ValidadorPersonalizado.validarPlacaVehiculo,
           Validators.maxLength(25),
         ]),
         precioCompra: new FormControl("", [
           Validators.required,
-          Validador.menorOIgualACero,
+          ValidadorPersonalizado.menorOIgualACero,
         ]),
       },
       { updateOn: "blur" }
     );
-  }
-
-  get placaVehiculo() {
-    return this.formulario.get("placaVehiculo").value.toUpperCase();
   }
 }

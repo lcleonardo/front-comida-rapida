@@ -1,35 +1,39 @@
-<div class="columns">
-  <div class="column is-half">    
-    <app-mensaje-servidor [mensaje]="mensajeServidor"></app-mensaje-servidor>
-    <table class="table" style="width: 100%; overflow-x: auto">
-      <caption id="idDescuentosCreados" style="text-align: center">
-        <app-contador-items
-          [numeroDeItems]="(descuentos | async).length"
-        ></app-contador-items>
-      </caption>
-      <thead>
-        <tr>
-          <td>#</td>
-          <th>Fecha</th>
-          <th>% descuento</th>
-          <th>Eliminar</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let descuento of descuentos | async; let i = index">
-          <td>{{ i + 1 }}</td>
-          <th>{{ descuento.fecha }}</th>
-          <th>{{ descuento.porcentaje / 100 | percent }}</th>
-          <th>
-            <button (click)="eliminar(descuento.id)">
-              <span
-                class="mdi mdi mdi-24px mdi-delete"
-                style="cursor: pointer; color: hsl(348, 100%, 61%)"
-              ></span>
-            </button>
-          </th>
-        </tr>
-      </tbody>
-    </table>
+<div *ngIf="descuentos | async as descuentos">
+  <div class="columns">
+    <div class="column is-half">
+      <app-mensaje-servidor [mensaje]="mensajeServidor"></app-mensaje-servidor>
+      <table class="table" style="width: 100%; overflow-x: auto">
+        <caption id="idDescuentosCreados" style="text-align: center">
+          <app-contador-items
+            [numeroDeItems]="descuentos.length"
+          ></app-contador-items>
+        </caption>
+        <thead>
+          <tr>
+            <td>#</td>
+            <th>Fecha</th>
+            <th>% descuento</th>
+            <th>Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let descuento of descuentos; let i = index">
+            <td>{{ i + 1 }}</td>
+            <th>{{ descuento.fecha }}</th>
+            <th>{{ descuento.porcentaje / 100 | percent }}</th>
+            <th>
+              <div class="buttons are-small">
+                <button
+                  (click)="eliminar(descuento.id)"
+                  class="button is-danger"
+                >
+                  Eliminar
+                </button>
+              </div>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

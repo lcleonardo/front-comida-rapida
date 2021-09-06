@@ -6,7 +6,7 @@ export class Pedido {
   placaVehiculo: string;
   precioCompra: number;
   porcentajeDescuento: number;
-  precioTotal : number;
+  precioTotal: number;
   aplicaPromocion: number;
 
   constructor(
@@ -24,4 +24,5 @@ export class Pedido {
     this.placaVehiculo = placaVehiculo;
     this.precioCompra = precioCompra;
   }
+
 }

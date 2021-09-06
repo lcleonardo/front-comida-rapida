@@ -1,7 +1,7 @@
 import { DatePipe } from "@angular/common";
 import { AbstractControl } from "@angular/forms";
 
-export class Validador {
+export class ValidadorPersonalizado {
   static validarPlacaVehiculo(control: AbstractControl) {
     let ultimoCaracter = control.value.slice(-1);
     let num = parseInt(ultimoCaracter);
