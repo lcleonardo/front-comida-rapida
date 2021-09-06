@@ -14,9 +14,7 @@ import { DescuentoService } from "../../shared/service/descuento.service";
 })
 export class CrearDescuentoComponent implements OnInit {
   formulario: FormGroup;
-  empezarGuardado: boolean = false;
-  descuentoCreadoConExito: boolean = false;
-  mensajeError: string = "";
+  mensajeServidor: string = "";
 
   constructor(
     protected servicio: DescuentoService,
@@ -29,34 +27,27 @@ export class CrearDescuentoComponent implements OnInit {
   }
 
   guardar() {
-    this.descuentoCreadoConExito = false;
-    this.mensajeError = "";
+    this.mensajeServidor = "";
     if (!this.formulario.valid) {
       this.formulario.markAllAsTouched();
       return;
     }
-    this.empezarGuardado = true;
-    let descuento: Descuento = this.obtenerDescuento();
-    this.servicio.guardar(descuento).subscribe(
-      () => this.prepararNuevoDescuento(),
-      (error) => this.manejarError(error)
+    this.servicio.guardar(this.obtenerDescuento()).subscribe(
+      () => {},
+      (error) => this.obtenerMensajeDelServidor(error)
     );
-    this.empezarGuardado = false;
+    this.enrutador.navigate(["descuento/listar"]);
   }
 
-  private manejarError(error: HttpErrorResponse): void {
-    this.mensajeError = error.error["mensaje"];
+  private obtenerMensajeDelServidor(error: HttpErrorResponse): void {
+    this.mensajeServidor = error.error["mensaje"];
   }
 
   private obtenerDescuento(): Descuento {
-    let porcentaje = this.formulario.get("porcentaje").value;
-    return new Descuento(this.formulario.get("fecha").value, porcentaje);
-  }
-
-  private prepararNuevoDescuento(): void {
-    this.construirFormulario();
-    this.descuentoCreadoConExito = true;
-    this.enrutador.navigate(["descuento/listar"]);
+    return new Descuento(
+      this.formulario.get("fecha").value,
+      this.formulario.get("porcentaje").value
+    );
   }
 
   private construirFormulario(): void {
@@ -73,13 +64,5 @@ export class CrearDescuentoComponent implements OnInit {
       },
       { updateOn: "blur" }
     );
-  }
-
-  vaciarMensajeError() {
-    this.mensajeError = "";
-  }
-
-  mostrarMensajeError(): boolean {
-    return this.mensajeError.length !== 0;
   }
 }

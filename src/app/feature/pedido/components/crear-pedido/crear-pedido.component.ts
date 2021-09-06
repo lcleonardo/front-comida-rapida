@@ -14,9 +14,7 @@ import { Validador } from "@shared/utilidades/validador";
 })
 export class CrearPedidoComponent implements OnInit {
   formulario: FormGroup;
-  empezarGuardado: boolean = false;
-  pedidoCreadoConExito: boolean = false;
-  mensajeError: string = "";
+  mensajeServidor: string = "";
 
   constructor(
     protected servicio: PedidoService,
@@ -29,29 +27,20 @@ export class CrearPedidoComponent implements OnInit {
   }
 
   guardar(): void {
-    this.pedidoCreadoConExito = false;
-    this.mensajeError = "";
+    this.mensajeServidor = "";
     if (!this.formulario.valid) {
       this.formulario.markAllAsTouched();
       return;
     }
-    this.empezarGuardado = true;
-    this.servicio.guardar(
-      this.obtenerPedido()).subscribe(
-      () => this.prepararNuevoPedido(),
-      (error) => this.manejarError(error)
+    this.servicio.guardar(this.obtenerPedido()).subscribe(
+      () => {},
+      (error) => this.obtenerMensajeServidor(error)
     );
-    this.empezarGuardado = false;
-  }
-
-  private prepararNuevoPedido(): void {
-    this.construirFormulario();
-    this.pedidoCreadoConExito = true;
     this.enrutador.navigate(["pedido/listar"]);
   }
 
-  private manejarError(error: HttpErrorResponse): void {
-    this.mensajeError = error.error["mensaje"];
+  private obtenerMensajeServidor(error: HttpErrorResponse): void {
+    this.mensajeServidor = error.error["mensaje"];
   }
 
   private obtenerPedido(): Pedido {
@@ -72,12 +61,22 @@ export class CrearPedidoComponent implements OnInit {
           this.formatoFecha.transform(Date.now(), "yyyy-MM-dd"),
           [Validators.required, Validador.fechaMenorAFechaActual]
         ),
-        codigoCliente: new FormControl("", [Validators.required]),
-        codigoProducto: new FormControl("", [Validators.required]),
-        direccionDomicilio: new FormControl("", [Validators.required]),
+        codigoCliente: new FormControl("", [
+          Validators.required,
+          Validators.maxLength(250),
+        ]),
+        codigoProducto: new FormControl("", [
+          Validators.required,
+          Validators.maxLength(250),
+        ]),
+        direccionDomicilio: new FormControl("", [
+          Validators.required,
+          Validators.maxLength(250),
+        ]),
         placaVehiculo: new FormControl("", [
           Validators.required,
           Validador.validarPlacaVehiculo,
+          Validators.maxLength(25),
         ]),
         precioCompra: new FormControl("", [
           Validators.required,
@@ -88,11 +87,7 @@ export class CrearPedidoComponent implements OnInit {
     );
   }
 
-  vaciarMensajeError() {
-    this.mensajeError = "";
-  }
-
-  mostrarMensajeError(): boolean {
-    return this.mensajeError.length !== 0;
+  get placaVehiculo() {
+    return this.formulario.get("placaVehiculo").value.toUpperCase();
   }
 }

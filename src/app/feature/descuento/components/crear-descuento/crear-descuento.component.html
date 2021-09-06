@@ -2,21 +2,7 @@
   <div class="columns">
     <div class="column is-three-fifths">
       <br />
-      <div
-        id="idDivDescuentoCreado"
-        *ngIf="descuentoCreadoConExito"
-        class="notification is-info"
-      >
-        <button
-          class="delete"
-          (click)="descuentoCreadoConExito = false"
-        ></button>
-        <label>Descuento creado con éxito.</label>
-      </div>
-      <div *ngIf="mostrarMensajeError()" class="notification is-danger">
-        <button class="delete" (click)="vaciarMensajeError()"></button>
-        <label id="idLabelNoDescuentoCreado">{{ mensajeError }}</label>
-      </div>
+      <app-mensaje-servidor [mensaje]="mensajeServidor"></app-mensaje-servidor>
       <form [formGroup]="formulario" (ngSubmit)="guardar()">
         <div class="field">
           <label class="label">Fecha</label>
@@ -54,7 +40,6 @@
               id="idBotonCrearDescuento"
               type="submit"
               class="button is-success"
-              [disabled]="empezarGuardado"
             >
               Crear
             </button>

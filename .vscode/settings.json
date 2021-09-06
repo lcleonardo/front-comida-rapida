@@ -5,6 +5,7 @@
     "node_modules": true,
     "reports": true,
     "rules": true,
-    "tmp": true
+    "tmp": true,
+    "dist": true
   }
 }
