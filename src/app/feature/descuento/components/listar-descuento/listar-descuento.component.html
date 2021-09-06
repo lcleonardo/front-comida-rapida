@@ -1,7 +1,8 @@
 <div class="columns">
-  <div class="column is-half">
+  <div class="column is-half">    
+    <app-mensaje-servidor [mensaje]="mensajeServidor"></app-mensaje-servidor>
     <table class="table" style="width: 100%; overflow-x: auto">
-      <caption id="idCaptionDescuentosCreados" style="text-align: center">
+      <caption id="idDescuentosCreados" style="text-align: center">
         <app-contador-items
           [numeroDeItems]="(descuentos | async).length"
         ></app-contador-items>

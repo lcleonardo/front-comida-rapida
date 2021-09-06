@@ -10,6 +10,11 @@ const routes: Routes = [
     component: DescuentoComponent,
     children: [
       {
+        path: "",
+        redirectTo: '/descuento/listar',
+        pathMatch: 'full',
+      },
+      {
         path: "crear",
         component: CrearDescuentoComponent,
       },

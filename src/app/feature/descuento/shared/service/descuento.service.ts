@@ -23,11 +23,11 @@ export class DescuentoService {
       this.servicioHttp.createDefaultOptions());
   }
 
-  public eliminar(id: number) {
+  public eliminar(id: number): Observable<boolean> {
     return this.servicioHttp.doDelete<boolean>(
       `${environment.endpoint}/descuentos/${id}`,
       this.servicioHttp.optsName("eliminar descuentos")
-    ).subscribe();
+    );
   }
 
 }

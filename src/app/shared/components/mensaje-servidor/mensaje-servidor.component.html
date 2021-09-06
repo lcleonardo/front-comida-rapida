@@ -1,0 +1,4 @@
+<div *ngIf="mensaje.length !== 0" class="notification is-danger">
+  <button class="delete" (click)="cancelar()"></button>
+  <label id="idMensaje">{{ mensaje }}</label>
+</div>

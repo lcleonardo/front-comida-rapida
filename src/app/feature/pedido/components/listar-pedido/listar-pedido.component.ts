@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 import { Pedido } from "../../shared/model/pedido";
@@ -9,8 +10,8 @@ import { PedidoService } from "../../shared/service/pedido.service";
   styleUrls: [],
 })
 export class ListarPedidoComponent implements OnInit {
-  
-   pedidos: Observable<Pedido[]>;
+  pedidos: Observable<Pedido[]>;
+  mensajeServidor: string = "";
 
   constructor(protected pedidoService: PedidoService) {}
 
@@ -19,13 +20,19 @@ export class ListarPedidoComponent implements OnInit {
   }
 
   consultar(): void {
-    this.pedidos= this.pedidoService.consultar();
+    this.pedidos = this.pedidoService.consultar();
   }
 
   eliminar(id: number): void {
-    this.pedidoService
-      .eliminar(id)
-      .subscribe((respuesta) => console.log(respuesta));
+    this.mensajeServidor= "";
+    this.pedidoService.eliminar(id).subscribe(
+      () => {},
+      (error: HttpErrorResponse) => this.obtenerMensajeDelServidor(error)
+    );
     this.consultar();
+  }
+
+  obtenerMensajeDelServidor(error: HttpErrorResponse): void {
+    this.mensajeServidor = error.error["mensaje"];
   }
 }

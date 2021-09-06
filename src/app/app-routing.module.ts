@@ -4,10 +4,9 @@ import { SecurityGuard } from "@core/guard/security.guard";
 import { HomeComponent } from "@home/home.component";
 
 const routes: Routes = [
-  
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent, canActivate: [SecurityGuard]  },
-  { 
+  { path: "", redirectTo: "/home", pathMatch: "full" },
+  { path: "home", component: HomeComponent, canActivate: [SecurityGuard] },
+  {
     path: "pedido",
     loadChildren: () =>
       import("@pedido/pedido.module").then((m) => m.PedidoModule),
@@ -15,14 +14,12 @@ const routes: Routes = [
   {
     path: "descuento",
     loadChildren: () =>
-      import("@descuento/descuento.module").then(
-        (m) => m.DescuentoModule
-      ),
+      import("@descuento/descuento.module").then((m) => m.DescuentoModule),
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy'})],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: "legacy" })],
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}
