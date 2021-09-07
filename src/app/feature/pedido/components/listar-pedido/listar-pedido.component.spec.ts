@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { AppModule } from "src/app/app.module";
 
 import { ListarPedidoComponent } from "./listar-pedido.component";
 
@@ -9,7 +8,6 @@ describe("ListarPedidoComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppModule],
       declarations: [ListarPedidoComponent],
     }).compileComponents();
   });
@@ -22,10 +20,6 @@ describe("ListarPedidoComponent", () => {
 
   it("should create", async () => {
     expect(component).toBeTruthy();
-  });
-
-  it("deberia listar un pedido", async () => {
-    
   });
 
 });

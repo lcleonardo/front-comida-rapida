@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo("/");
-    expect(page.getTitleText()).toEqual('CEIBA-ADN | App de pedidos');
+    expect(page.getTitleText()).toEqual('Aplicación de pedidos');
   });
 
   afterEach(async () => {

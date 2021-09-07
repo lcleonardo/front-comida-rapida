@@ -1,8 +1,11 @@
 <app-mensaje-servidor [mensaje]="mensajeServidor"></app-mensaje-servidor>
 <div *ngIf="pedidos | async as pedidos">
-  <table class="table" style="width: 100%; overflow-x: auto">
-    <caption id="idCaptionDescuentosCreados" style="text-align: center">
-      <app-contador-items [numeroDeItems]="pedidos.length"></app-contador-items>
+  <table id="idTabla" class="table" style="width: 100%; overflow-x: auto">
+    <caption id="idDescuentosCreados" style="text-align: center">
+      <app-contador-items
+        id="idContadorItems"
+        [numeroDeItems]="pedidos.length"
+      ></app-contador-items>
     </caption>
     <thead>
       <tr>
@@ -33,7 +36,11 @@
         <th>{{ pedido.precioTotal | currency: "COP" }}</th>
         <th>
           <div class="buttons are-small">
-            <button (click)="eliminar(pedido.id)" class="button is-danger">
+            <button
+              id="idBotonEliminar"
+              (click)="eliminar(pedido.id)"
+              class="button is-danger"
+            >
               Eliminar
             </button>
           </div>

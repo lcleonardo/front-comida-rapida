@@ -2,9 +2,10 @@
   <div class="columns">
     <div class="column is-half">
       <app-mensaje-servidor [mensaje]="mensajeServidor"></app-mensaje-servidor>
-      <table class="table" style="width: 100%; overflow-x: auto">
+      <table id="idTabla" class="table" style="width: 100%; overflow-x: auto">
         <caption id="idDescuentosCreados" style="text-align: center">
           <app-contador-items
+            id="idContadorItems"
             [numeroDeItems]="descuentos.length"
           ></app-contador-items>
         </caption>
@@ -24,6 +25,7 @@
             <th>
               <div class="buttons are-small">
                 <button
+                  id="idBotonEliminar"
                   (click)="eliminar(descuento.id)"
                   class="button is-danger"
                 >

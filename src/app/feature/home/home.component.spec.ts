@@ -1,5 +1,4 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AppModule } from 'src/app/app.module';
 
 import { HomeComponent } from './home.component';
 
@@ -9,7 +8,6 @@ describe('HomeComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [AppModule],
       declarations: [ HomeComponent ]
     })
     .compileComponents();
