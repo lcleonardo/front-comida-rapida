@@ -6,7 +6,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { HomeComponent } from "@home/home.component";
 import { CookieService } from "ngx-cookie-service";
 import { CoreModule } from "@core/core.module";
-import { MaterialModule } from "./material.module";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -14,9 +14,8 @@ import { MaterialModule } from "./material.module";
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    MaterialModule,
+    BrowserAnimationsModule,
   ],
-  exports: [MaterialModule],
   providers: [CookieService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

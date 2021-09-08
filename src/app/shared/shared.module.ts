@@ -9,7 +9,7 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { TrackByPipe } from "./pipe/track-by.pipe";
 import { ContadorItemsComponent } from "./components/contador-items/contador-items.component";
 import { MensajeServidorComponent } from "./components/mensaje-servidor/mensaje-servidor.component";
-import { MatSliderModule } from "@angular/material/slider";
+import { MaterialModule } from "./material.module";
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { MatSliderModule } from "@angular/material/slider";
     ContadorItemsComponent,
     MensajeServidorComponent,
   ],
-  imports: [ReactiveFormsModule, FormsModule, CommonModule, MatSliderModule],
+  imports: [ReactiveFormsModule, FormsModule, CommonModule, MaterialModule],
   exports: [
     CommonModule,
     HttpClientModule,
@@ -33,6 +33,7 @@ import { MatSliderModule } from "@angular/material/slider";
     TrackByPipe,
     ContadorItemsComponent,
     MensajeServidorComponent,
+    MaterialModule
   ],
 })
 export class SharedModule {}

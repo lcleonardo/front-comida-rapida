@@ -10,14 +10,8 @@ import { HttpService } from "@core/services/http.service";
 import { DatePipe } from "@angular/common";
 
 @NgModule({
-  declarations: [
-    PedidoComponent, 
-    ListarPedidoComponent, 
-    CrearPedidoComponent,
-  ],
-  imports: [SharedModule ,PedidoRoutingModule 
-  ],
+  declarations: [PedidoComponent, ListarPedidoComponent, CrearPedidoComponent],
+  imports: [SharedModule, PedidoRoutingModule],
   providers: [PedidoService, HttpService, DatePipe],
-  
 })
 export class PedidoModule {}

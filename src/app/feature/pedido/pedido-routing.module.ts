@@ -10,18 +10,13 @@ const routes: Routes = [
     component: PedidoComponent,
     children: [
       {
-        path: "",
-        redirectTo: '/pedido/listar',
-        pathMatch: 'full',
+        path: "listar",
+        component: ListarPedidoComponent,
       },
       {
         path: "crear",
         component: CrearPedidoComponent,
       },
-      {
-        path: "listar",
-        component: ListarPedidoComponent,
-      }
     ],
   },
 ];

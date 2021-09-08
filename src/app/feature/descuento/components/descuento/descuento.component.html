@@ -1,22 +1,5 @@
-<div class="tabs">
-  <ul>
-    <li>
-      <a
-        id="idLinkCrearDescuento"
-        routerLink="/descuento/crear"
-        routerLinkActive="has-text-primary"
-        >Crear descuento
-      </a>
-    </li>
-    <li>
-      <a
-        id="idLinkListarDescuento"
-        routerLink="/descuento/listar"
-        routerLinkActive="has-text-primary"
-        >Listar descuentos
-      </a>
-    </li>
-  </ul>
-</div>
+<mat-tab-group (selectedTabChange)="onTabChanged($event)">
+  <mat-tab label="Listar descuentos"></mat-tab>
+  <mat-tab label="Crear descuentos"></mat-tab>
+</mat-tab-group>
 <router-outlet></router-outlet>
-

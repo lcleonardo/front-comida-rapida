@@ -1,16 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpService } from '@core/services/http.service';
+import { Component, OnInit } from "@angular/core";
+import { MatTabChangeEvent } from "@angular/material/tabs";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-descuento',
-  templateUrl: './descuento.component.html',
-  styleUrls: []
+  selector: "app-descuento",
+  templateUrl: "./descuento.component.html",
+  styleUrls: [],
 })
 export class DescuentoComponent implements OnInit {
+  constructor(protected router: Router) {}
 
-  constructor(protected servicioHttp: HttpService) { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  onTabChanged(event: MatTabChangeEvent): void {
+    switch (event.index) {
+      case 0:
+        this.router.navigate(["/descuento/listar"]);
+        break;
+      case 1:
+        this.router.navigate(["/descuento/crear"]);
+        break;
+    }
   }
-
 }
