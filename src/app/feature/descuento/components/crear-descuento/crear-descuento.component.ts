@@ -3,7 +3,8 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { ValidadorPersonalizado } from "@shared/utilidades/validador-personalizado";
+import { ValidadorComun } from "@shared/validador/validador-comun";
+import { ValidadorFecha } from "@shared/validador/validador-fecha";
 import { DescuentoService } from "../../shared/service/descuento.service";
 
 @Component({
@@ -25,8 +26,7 @@ export class CrearDescuentoComponent implements OnInit {
     this.construirFormulario();
   }
 
-  guardar(event: Event) {
-    event.preventDefault();
+  guardar() {
     this.mensajeServidor = "";
     if (!this.formulario.valid) {
       this.formulario.markAllAsTouched();
@@ -47,11 +47,11 @@ export class CrearDescuentoComponent implements OnInit {
       {
         fecha: new FormControl(
           this.formatoFecha.transform(Date.now(), "yyyy-MM-dd"),
-          [Validators.required, ValidadorPersonalizado.fechaMenorAFechaActual]
+          [Validators.required, ValidadorFecha.fechaMenorAFechaActual]
         ),
         porcentaje: new FormControl("0", [
           Validators.required,
-          ValidadorPersonalizado.menorOIgualACero,
+          ValidadorComun.menorOIgualACero,
         ]),
       },
       { updateOn: "blur" }

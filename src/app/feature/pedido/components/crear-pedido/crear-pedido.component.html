@@ -2,7 +2,10 @@
   <div class="columns">
     <div class="column is-three-fifths">
       <br />
+      
+      
       <app-mensaje-servidor [mensaje]="mensajeServidor"></app-mensaje-servidor>
+
       <form [formGroup]="formulario" (ngSubmit)="guardar($event)">
         <div class="field">
           <label class="label">Fecha</label>

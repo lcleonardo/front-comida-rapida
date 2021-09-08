@@ -1,16 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { By } from "@angular/platform-browser";
+import { RouterOutlet } from "@angular/router";
+import { RouterTestingModule } from "@angular/router/testing";
+import { PedidoComponent } from "./pedido.component";
 
-import { PedidoComponent } from './pedido.component';
-
-describe('PedidoComponent', () => {
-  let component: PedidoComponent;
+fdescribe("PedidoComponent", () => {
   let fixture: ComponentFixture<PedidoComponent>;
+  let component: PedidoComponent;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PedidoComponent ]
-    })
-    .compileComponents();
+      imports: [RouterTestingModule],
+      declarations: [PedidoComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +21,12 @@ describe('PedidoComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
+  });
+
+  it("deberia tener el router-outlet", () => {
+    const routerOutlet = fixture.debugElement.query(By.directive(RouterOutlet));
+    expect(routerOutlet).not.toBeNull;
   });
 });

@@ -4,7 +4,8 @@ import { PedidoService } from "../../shared/service/pedido.service";
 import { DatePipe } from "@angular/common";
 import { HttpErrorResponse } from "@angular/common/http";
 import { Router } from "@angular/router";
-import { ValidadorPersonalizado } from "@shared/utilidades/validador-personalizado";
+import { ValidadorFecha } from "@shared/validador/validador-fecha";
+import { ValidadorComun } from "@shared/validador/validador-comun";
 
 @Component({
   selector: "app-crear-pedido",
@@ -47,7 +48,7 @@ export class CrearPedidoComponent implements OnInit {
       {
         fecha: new FormControl(
           this.formatoFecha.transform(Date.now(), "yyyy-MM-dd"),
-          [Validators.required, ValidadorPersonalizado.fechaMenorAFechaActual]
+          [Validators.required, ValidadorFecha.fechaMenorAFechaActual]
         ),
         codigoCliente: new FormControl("", [
           Validators.required,
@@ -63,12 +64,12 @@ export class CrearPedidoComponent implements OnInit {
         ]),
         placaVehiculo: new FormControl("", [
           Validators.required,
-          ValidadorPersonalizado.validarPlacaVehiculo,
+          ValidadorComun.validarPlacaVehiculo,
           Validators.maxLength(25),
         ]),
         precioCompra: new FormControl("", [
           Validators.required,
-          ValidadorPersonalizado.menorOIgualACero,
+          ValidadorComun.menorOIgualACero,
         ]),
       },
       { updateOn: "blur" }
