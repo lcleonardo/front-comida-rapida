@@ -4,7 +4,7 @@ import { SecurityGuard } from "@core/guard/security.guard";
 import { HomeComponent } from "@home/home.component";
 
 export const routes: Routes = [
-  { path: "", redirectTo: "/home", pathMatch: "full" },
+  { path: "", redirectTo: "", pathMatch: "full" },
   { path: "home", component: HomeComponent, canActivate: [SecurityGuard] },
   {
     path: "pedido",

@@ -9,6 +9,7 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { TrackByPipe } from "./pipe/track-by.pipe";
 import { ContadorItemsComponent } from "./components/contador-items/contador-items.component";
 import { MensajeServidorComponent } from "./components/mensaje-servidor/mensaje-servidor.component";
+import { MatSliderModule } from "@angular/material/slider";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { MensajeServidorComponent } from "./components/mensaje-servidor/mensaje-
     ContadorItemsComponent,
     MensajeServidorComponent,
   ],
-  imports: [ReactiveFormsModule, FormsModule, CommonModule],
+  imports: [ReactiveFormsModule, FormsModule, CommonModule, MatSliderModule],
   exports: [
     CommonModule,
     HttpClientModule,

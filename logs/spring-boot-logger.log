@@ -1,0 +1,37 @@
+2021-09-08 13:36:29,776 INFO org.springframework.boot.StartupInfoLogger [main] Starting Application using Java 11 on LEONARDO-CRUZ with PID 21484 (D:\work\comida-rapida\microservicio\build\libs\venta-comida-domicilio-0.0.1-SNAPSHOT.jar started by leonardo.cruz in D:\work\angular-base)
+2021-09-08 13:36:29,776 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-09-08 13:36:29,968 INFO org.springframework.boot.logging.DeferredLog [main] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-09-08 13:36:32,387 INFO com.ulisesbocchio.jasyptspringboot.configuration.EnableEncryptablePropertiesBeanFactoryPostProcessor [main] Post-processing PropertySource instances
+2021-09-08 13:36:32,512 INFO com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter [main] Converting PropertySource configurationProperties [org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource] to AOP Proxy
+2021-09-08 13:36:32,512 INFO com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter [main] Converting PropertySource servletConfigInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2021-09-08 13:36:32,512 INFO com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter [main] Converting PropertySource servletContextInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2021-09-08 13:36:32,512 INFO com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter [main] Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2021-09-08 13:36:32,512 INFO com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter [main] Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableMapPropertySourceWrapper
+2021-09-08 13:36:32,512 INFO com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter [main] Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2021-09-08 13:36:32,512 INFO com.ulisesbocchio.jasyptspringboot.EncryptablePropertySourceConverter [main] Converting PropertySource Config resource 'class path resource [application.yaml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2021-09-08 13:36:32,543 INFO com.ulisesbocchio.jasyptspringboot.filter.DefaultLazyPropertyFilter [main] Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+2021-09-08 13:36:33,120 INFO com.ulisesbocchio.jasyptspringboot.resolver.DefaultLazyPropertyResolver [main] Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2021-09-08 13:36:33,126 INFO com.ulisesbocchio.jasyptspringboot.detector.DefaultLazyPropertyDetector [main] Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2021-09-08 13:36:34,208 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8083 (http)
+2021-09-08 13:36:34,226 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8083"]
+2021-09-08 13:36:34,227 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-09-08 13:36:34,228 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.48]
+2021-09-08 13:36:34,333 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-09-08 13:36:34,333 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 4363 ms
+2021-09-08 13:36:34,693 INFO com.zaxxer.hikari.HikariDataSource [main] pool - Starting...
+2021-09-08 13:36:35,383 INFO com.zaxxer.hikari.HikariDataSource [main] pool - Start completed.
+2021-09-08 13:36:35,427 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Flyway Community Edition 5.2.1 by Boxfuse
+2021-09-08 13:36:35,458 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Database: jdbc:mysql://172.29.208.1:3308/delivery_comida (MySQL 8.0)
+2021-09-08 13:36:35,719 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Successfully validated 1 migration (execution time 00:00.067s)
+2021-09-08 13:36:35,772 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Current version of schema `delivery_comida`: 1.0
+2021-09-08 13:36:35,780 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Schema `delivery_comida` is up to date. No migration necessary.
+2021-09-08 13:36:36,824 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2021-09-08 13:36:36,999 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [main] Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-09-08 13:36:37,513 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8083"]
+2021-09-08 13:36:37,544 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8083 (http) with context path '/venta-comida-domicilio'
+2021-09-08 13:36:37,544 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Context refreshed
+2021-09-08 13:36:37,616 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Found 1 custom documentation plugin(s)
+2021-09-08 13:36:37,669 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [main] Scanning for api listing references
+2021-09-08 13:36:37,942 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [main] Generating unique operation named: crearUsingPOST_1
+2021-09-08 13:36:37,946 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [main] Generating unique operation named: eliminarUsingDELETE_1
+2021-09-08 13:36:38,026 INFO org.springframework.boot.StartupInfoLogger [main] Started Application in 9.634 seconds (JVM running for 10.402)

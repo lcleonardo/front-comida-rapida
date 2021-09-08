@@ -1,22 +1,5 @@
-<nav class="navbar is-success" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a
-      role="button"
-      class="navbar-burger"
-      aria-label="menu"
-      aria-expanded="false"
-      data-target="navbarBasicExample"
-    >
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
+<mat-toolbar color="primary">
+  <div *ngFor="let item of items" [routerLink]="item.url">
+    <a mat-button target="_blank">{{ item.nombre }}</a>
   </div>
-  <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-      <a class="navbar-item" *ngFor="let item of items" [routerLink]="item.url"
-        >{{ item.nombre | uppercase }}
-      </a>
-    </div>
-  </div>
-</nav>
+</mat-toolbar>
