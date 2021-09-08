@@ -4,7 +4,7 @@ import { RouterOutlet } from "@angular/router";
 import { RouterTestingModule } from "@angular/router/testing";
 import { PedidoComponent } from "./pedido.component";
 
-fdescribe("PedidoComponent", () => {
+describe("PedidoComponent", () => {
   let fixture: ComponentFixture<PedidoComponent>;
   let component: PedidoComponent;
 
