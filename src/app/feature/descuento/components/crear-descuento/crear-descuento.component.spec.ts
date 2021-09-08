@@ -51,4 +51,14 @@ fdescribe("CrearDescuentoComponent", () => {
     expect(component).toBeTruthy();
   });
 
+  it("deberia constuir el formulario", () => {
+    expect(Object.keys(component.formulario.controls)).toEqual([
+      "fecha",
+      "porcentaje",
+    ]);
+  });
+
+  it("deberia ejecutar el metodo de guardar", () => {
+    //TODO: Crear test de metodo guardar
+  });
 });
