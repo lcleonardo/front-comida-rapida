@@ -4,8 +4,12 @@ import { MatMenuModule } from "@angular/material/menu";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
-import { MatDividerModule } from "@angular/material/divider";
 import { MatTabsModule } from "@angular/material/tabs";
+import { MatInputModule } from "@angular/material/input";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatNativeDateModule } from "@angular/material/core";
+import { MatGridListModule } from "@angular/material/grid-list";
+import { MatCardModule } from "@angular/material/card";
 
 @NgModule({
   declarations: [],
@@ -16,7 +20,11 @@ import { MatTabsModule } from "@angular/material/tabs";
     MatButtonToggleModule,
     MatButtonModule,
     MatIconModule,
-    MatDividerModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatGridListModule,
+    MatCardModule,
   ],
   exports: [
     MatTabsModule,
@@ -25,7 +33,12 @@ import { MatTabsModule } from "@angular/material/tabs";
     MatButtonToggleModule,
     MatButtonModule,
     MatIconModule,
-    MatDividerModule,
+    MatButtonModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatGridListModule,
+    MatCardModule,
   ],
 })
 export class MaterialModule {}

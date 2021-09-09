@@ -10,7 +10,7 @@ import { DescuentoService } from "../../shared/service/descuento.service";
 @Component({
   selector: "app-crear-descuento",
   templateUrl: "./crear-descuento.component.html",
-  styleUrls: [],
+  styleUrls: ["././crear-descuento.component.css"],
 })
 export class CrearDescuentoComponent implements OnInit {
   formulario: FormGroup;
@@ -46,7 +46,8 @@ export class CrearDescuentoComponent implements OnInit {
     this.formulario = new FormGroup(
       {
         fecha: new FormControl(
-          this.formatoFecha.transform(Date.now(), "yyyy-MM-dd"),
+          "",
+          // this.formatoFecha.transform(Date.now(), "yyyy-MM-dd"),
           [Validators.required, ValidadorFecha.fechaMenorAFechaActual]
         ),
         porcentaje: new FormControl("0", [

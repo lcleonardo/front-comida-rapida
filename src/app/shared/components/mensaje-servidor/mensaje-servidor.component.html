@@ -1,4 +1,11 @@
-<div *ngIf="mensaje.length !== 0" class="notification is-danger">
-  <button class="delete" (click)="cancelar()"></button>
-  <label id="idMensaje">{{ mensaje }}</label>
+<div class="container" *ngIf="mensaje.length !== 0">
+  <mat-card class="card">
+    <mat-card-title>Error de validación!</mat-card-title>
+    <mat-card-content>
+      <p style="color: #f44336">{{ mensaje }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="cerrar()">CERRAR</button>
+    </mat-card-actions>
+  </mat-card>
 </div>

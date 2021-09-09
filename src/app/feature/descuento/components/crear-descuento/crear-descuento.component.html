@@ -1,51 +1,39 @@
 <div class="container">
-  <div class="columns">
-    <div class="column is-three-fifths">
-      <br />
-      <app-mensaje-servidor id="idMensajeServidor" [mensaje]="mensajeServidor"></app-mensaje-servidor>
-      <form [formGroup]="formulario" (ngSubmit)="guardar()">
-        <div class="field">
-          <label class="label">Fecha</label>
-          <div class="control">
-            <input
-              validar
-              validacionInicial
-              id="idFecha"
-              class="input is-small"
-              type="date"
-              placeholder="Ingrese la fecha"
-              formControlName="fecha"
-            />
-          </div>
-        </div>
-        <div class="field">
-          <label class="label">Porcentaje de descuento</label>
-          <div class="control">
-            <input
-              validar
-              validacionInicial
-              id="idPorcentajeDescuento"
-              class="input is-small"
-              type="number"
-              formControlName="porcentaje"
-              min="0"
-              placeholder="Ingrese el porcentaje de descuento."
-            />
-          </div>
-        </div>
-        <br />
-        <div class="field is-grouped">
-          <div class="control">
-            <button
-              id="idBotonCrearDescuento"
-              type="submit"
-              class="button is-success"
-            >
-              Crear
-            </button>
-          </div>
-        </div>
-      </form>
+  <app-mensaje-servidor
+    id="idMensajeServidor"
+    [mensaje]="mensajeServidor"
+  ></app-mensaje-servidor>
+
+  <form [formGroup]="formulario" (ngSubmit)="guardar()">
+    <div class="item">
+      <mat-form-field appearance="outline" class="mat-form-field">
+        <mat-label>Fecha del descuento</mat-label>
+        <input
+          validar
+          validacionInicial
+          matInput
+          [matDatepicker]="picker"
+          formControlName="fecha"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
     </div>
-  </div>
+    <div class="item">
+      <mat-form-field class="item" appearance="outline" class="mat-form-field">
+        <mat-label>Porcentaje de descuento</mat-label>
+        <input
+          matInput
+          validar
+          validacionInicial
+          type="number"
+          min="0"
+          formControlName="porcentaje"
+        />
+      </mat-form-field>
+    </div>
+    <div class="item">
+      <button mat-raised-button type="submit" color="primary">Crear</button>
+    </div>
+  </form>
 </div>

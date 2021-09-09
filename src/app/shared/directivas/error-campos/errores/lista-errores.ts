@@ -10,9 +10,9 @@ export const listaErrores = {
     `Mínimo <strong>${requiredLength}</strong> caracteres, actual <strong>${actualLength}</strong>`,
   maxlength: ({ requiredLength, actualLength }) =>
     `Máximo <strong>${requiredLength}</strong> caracteres, actual <strong>${actualLength}</strong>`,
-  fechaMenorAFechaActual: (_) => `La fecha no puede ser menor a la fecha actual`,
-  menorOIgualACero: (_) => `No puede ser menor o igual a 0`,
-  validarPlacaVehiculo: (_) => `La placa del vehiculo debe terminar en un número entero del 0 al 9.`,
+  fechaMenorAFechaActual: (_) => `Debe ser igual o mayor a la fecha actual`,
+  menorOIgualACero: (_) => `Debe ser mayor a: 0.0`,
+  validarPlacaVehiculo: (_) => `Debe terminar en un número entero del 0 al 9.`,
 };
 
 export const FORM_ERRORS = new InjectionToken("FORM_ERRORS", {
