@@ -11,7 +11,7 @@ const routes: Routes = [
     children: [
       {
         path: "",
-        redirectTo: "/descuento/listar",
+        redirectTo: "listar",
         pathMatch: "full",
       },
       {

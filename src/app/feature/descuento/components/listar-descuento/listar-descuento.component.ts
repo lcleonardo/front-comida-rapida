@@ -24,7 +24,7 @@ export class ListarDescuentoComponent implements OnInit {
   }
 
   eliminar(id: number): void {
-    this.servicioDescuento.eliminar(id);
+    this.servicioDescuento.eliminar(id).subscribe();
     this.consultar();
   }
 }

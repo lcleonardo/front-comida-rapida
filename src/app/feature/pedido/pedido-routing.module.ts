@@ -10,6 +10,11 @@ const routes: Routes = [
     component: PedidoComponent,
     children: [
       {
+        path: "",
+        redirectTo: "listar",
+        pathMatch: "full",
+      },
+      {
         path: "listar",
         component: ListarPedidoComponent,
       },

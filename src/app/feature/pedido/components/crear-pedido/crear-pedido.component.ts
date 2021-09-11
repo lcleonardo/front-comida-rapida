@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { PedidoService } from "../../shared/service/pedido.service";
 import { DatePipe } from "@angular/common";
-import { HttpErrorResponse } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { ValidadorFecha } from "@shared/validador/validador-fecha";
 import { ValidadorComun } from "@shared/validador/validador-comun";
@@ -14,7 +13,6 @@ import { ValidadorComun } from "@shared/validador/validador-comun";
 })
 export class CrearPedidoComponent implements OnInit {
   formulario: FormGroup;
-  mensajeServidor: string = "";
 
   constructor(
     protected servicio: PedidoService,
@@ -26,21 +24,13 @@ export class CrearPedidoComponent implements OnInit {
     this.construirFormulario();
   }
 
-  guardar(event: Event): void {
-    event.preventDefault();
-    this.mensajeServidor = "";
+  guardar(): void {
     if (!this.formulario.valid) {
       this.formulario.markAllAsTouched();
       return;
     }
-    this.servicio.guardar(this.formulario.value).subscribe(
-      () => this.enrutador.navigate(["pedido/listar"]),
-      (error) => this.obtenerMensajeServidor(error)
-    );
-  }
-
-  private obtenerMensajeServidor(error: HttpErrorResponse): void {
-    this.mensajeServidor = error.error["mensaje"];
+    this.servicio.guardar(this.formulario.value);
+    this.enrutador.navigate(["/pedido"]);
   }
 
   private construirFormulario(): void {

@@ -10,11 +10,10 @@ import { DescuentoService } from "../../shared/service/descuento.service";
 @Component({
   selector: "app-crear-descuento",
   templateUrl: "./crear-descuento.component.html",
-  styleUrls: ["././crear-descuento.component.css"],
+  styleUrls: ["./crear-descuento.component.css"],
 })
 export class CrearDescuentoComponent implements OnInit {
   formulario: FormGroup;
-  mensajeServidor: string = "";
 
   constructor(
     protected servicio: DescuentoService,
@@ -27,15 +26,12 @@ export class CrearDescuentoComponent implements OnInit {
   }
 
   guardar() {
-    this.mensajeServidor = "";
     if (!this.formulario.valid) {
       this.formulario.markAllAsTouched();
       return;
     }
-    let obs = this.servicio.guardar(this.obtenerDescuento());
-    console.log("XXXXXX");
-    obs.subscribe((value) => console.log(value));
-    this.enrutador.navigate(["descuento/listar"]);
+    this.servicio.guardar(this.obtenerDescuento());
+    this.enrutador.navigate(["/descuento"]);
   }
 
   private obtenerDescuento(): Descuento {
