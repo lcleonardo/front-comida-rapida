@@ -1,51 +1,9 @@
-<app-mensaje-servidor [mensaje]="mensajeServidor"></app-mensaje-servidor>
-<div *ngIf="pedidos | async as pedidos">
-  <table id="idTabla" class="table" style="width: 100%; overflow-x: auto">
-    <caption id="idDescuentosCreados" style="text-align: center">
-      <app-contador-items
-        id="idContadorItems"
-        [numeroDeItems]="pedidos.length"
-      ></app-contador-items>
-    </caption>
-    <thead>
-      <tr>
-        <td>#</td>
-        <th>Fecha</th>
-        <th>Código producto</th>
-        <th>Código cliente</th>
-        <th>Dirección domicilio</th>
-        <th>Placa vehículo</th>
-        <th>Precio compra</th>
-        <th>% descuento</th>
-        <th>% promoción</th>
-        <th>Total</th>
-        <th>Eliminar</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let pedido of pedidos; let i = index">
-        <td>{{ i + 1 }}</td>
-        <th>{{ pedido.fecha | date: "shortDate" }}</th>
-        <th>{{ pedido.codigoProducto }}</th>
-        <th>{{ pedido.codigoCliente }}</th>
-        <th>{{ pedido.direccionDomicilio }}</th>
-        <th>{{ pedido.placaVehiculo }}</th>
-        <th>{{ pedido.precioCompra | currency: "COP" }}</th>
-        <th>{{ pedido.porcentajeDescuento / 100 | percent }}</th>
-        <th>{{ pedido.aplicaPromocion === 0 ? 0 : (0.5 | percent) }}</th>
-        <th>{{ pedido.precioTotal | currency: "COP" }}</th>
-        <th>
-          <div class="buttons are-small">
-            <button
-              id="idBotonEliminar"
-              (click)="eliminar(pedido.id)"
-              class="button is-danger"
-            >
-              Eliminar
-            </button>
-          </div>
-        </th>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<table mat-table [dataSource]="pedidos" class="mat-elevation-z8">
+  <ng-container matColumnDef="fecha">
+    <th mat-header-cell *matHeaderCellDef>Fecha</th>
+    <td mat-cell *matCellDef="let element">{{ element.fecha }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

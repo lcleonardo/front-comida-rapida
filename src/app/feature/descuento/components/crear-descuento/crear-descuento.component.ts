@@ -1,8 +1,8 @@
 import { DatePipe } from "@angular/common";
-import { HttpErrorResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { Descuento } from "@descuento/shared/model/descuento";
 import { ValidadorComun } from "@shared/validador/validador-comun";
 import { ValidadorFecha } from "@shared/validador/validador-fecha";
 import { DescuentoService } from "../../shared/service/descuento.service";
@@ -32,24 +32,28 @@ export class CrearDescuentoComponent implements OnInit {
       this.formulario.markAllAsTouched();
       return;
     }
-    this.servicio.guardar(this.formulario.value).subscribe(
-      () => this.enrutador.navigate(["descuento/listar"]),
-      (error) => this.obtenerMensajeDelServidor(error)
-    );
+    let obs = this.servicio.guardar(this.obtenerDescuento());
+    console.log("XXXXXX");
+    obs.subscribe((value) => console.log(value));
+    this.enrutador.navigate(["descuento/listar"]);
   }
 
-  private obtenerMensajeDelServidor(error: HttpErrorResponse): void {
-    this.mensajeServidor = error.error["mensaje"];
+  private obtenerDescuento(): Descuento {
+    const fecha = this.formatoFecha.transform(
+      this.formulario.get("fecha").value,
+      "yyyy-MM-dd"
+    );
+    let porcentaje: number = this.formulario.get("porcentaje").value;
+    return new Descuento(fecha, porcentaje);
   }
 
   private construirFormulario(): void {
     this.formulario = new FormGroup(
       {
-        fecha: new FormControl(
-          "",
-          // this.formatoFecha.transform(Date.now(), "yyyy-MM-dd"),
-          [Validators.required, ValidadorFecha.fechaMenorAFechaActual]
-        ),
+        fecha: new FormControl(new Date().toISOString(), [
+          Validators.required,
+          ValidadorFecha.fechaMenorAFechaActual,
+        ]),
         porcentaje: new FormControl("0", [
           Validators.required,
           ValidadorComun.menorOIgualACero,

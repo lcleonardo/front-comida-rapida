@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
   <div *ngFor="let item of items" [routerLink]="item.url">
-    <a mat-button target="_blank">{{ item.nombre }}</a>
+    <a mat-button target="_blank">{{ item.nombre | uppercase }}</a>
   </div>
 </mat-toolbar>

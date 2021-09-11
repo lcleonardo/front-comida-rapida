@@ -15,13 +15,15 @@ class DescuentoServiceStub {
 }
 
 class DatePipeStub {
-  transform() {
-    return "2021-09-01";
+  transform(fecha: string) {
+    return fecha;
   }
 }
 
 class RouterStub {
-  navigate() {}
+  // navigate(ruta: string): Promise<boolean> {
+  //   return Promise.resolve(true);
+  // }
 }
 
 fdescribe("CrearDescuentoComponent", () => {
@@ -58,7 +60,13 @@ fdescribe("CrearDescuentoComponent", () => {
     ]);
   });
 
-  it("deberia ejecutar el metodo de guardar", () => {
-    //TODO: Crear test de metodo guardar
+  it("deberia guardar un descuento", () => {
+    
+    // spyOn();
+
+
   });
+
+
+
 });

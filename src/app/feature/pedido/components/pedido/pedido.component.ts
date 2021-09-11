@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { MatTabChangeEvent } from "@angular/material/tabs";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-pedido",
@@ -6,11 +8,18 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: [],
 })
 export class PedidoComponent implements OnInit {
-  
+  constructor(protected router: Router) {}
 
-  constructor() {}
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  
+  onTabChanged(event: MatTabChangeEvent): void {
+    switch (event.index) {
+      case 0:
+        this.router.navigate(["/pedido/crear"]);
+        break;
+      case 1:
+        this.router.navigate(["/pedido/listar"]);
+        break;
+    }
   }
 }

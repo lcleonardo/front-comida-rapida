@@ -10,6 +10,7 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatCardModule } from "@angular/material/card";
+import { MatTableModule } from "@angular/material/table";
 
 @NgModule({
   declarations: [],
@@ -25,6 +26,7 @@ import { MatCardModule } from "@angular/material/card";
     MatNativeDateModule,
     MatGridListModule,
     MatCardModule,
+    MatTableModule,
   ],
   exports: [
     MatTabsModule,
@@ -39,6 +41,7 @@ import { MatCardModule } from "@angular/material/card";
     MatNativeDateModule,
     MatGridListModule,
     MatCardModule,
+    MatTableModule,
   ],
 })
 export class MaterialModule {}

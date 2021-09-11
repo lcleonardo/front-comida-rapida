@@ -1,22 +1,5 @@
-<button mat-raised-button color="primary">Primary</button>
-<div class="tabs">
-  <ul>
-    <li>
-      <a
-        id="idLinkCrearPedido"
-        routerLink="/pedido/crear"
-        routerLinkActive="has-text-primary"
-        >Crear pedido
-      </a>
-    </li>
-    <li>
-      <a
-        id="idLinkListarPedido"
-        routerLink="/pedido/listar"
-        routerLinkActive="has-text-primary"
-        >Listar pedidos
-      </a>
-    </li>
-  </ul>
-</div>
+<mat-tab-group (selectedTabChange)="onTabChanged($event)">
+  <mat-tab label="Crear pedido"></mat-tab>
+  <mat-tab label="Listar pedidos"></mat-tab>
+</mat-tab-group>
 <router-outlet></router-outlet>
