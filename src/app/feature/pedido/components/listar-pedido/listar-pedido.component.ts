@@ -6,21 +6,20 @@ import { PedidoService } from "../../shared/service/pedido.service";
 @Component({
   selector: "app-listar-pedido",
   templateUrl: "./listar-pedido.component.html",
-  styleUrls: [],
+  styleUrls: ["./listar-pedido.component.css"],
 })
 export class ListarPedidoComponent implements OnInit {
   displayedColumns: string[] = [
-    "#",
     "fecha",
-    "Código producto",
-    "Código cliente",
-    "Dirección domicilio",
-    "Placa vehículo",
-    "Precio compra",
-    "% descuento",
-    "% promoción",
-    "Total",
-    "Acciones",
+    "codigoProducto",
+    "codigoCliente",
+    "direccionDomicilio",
+    "placaVehiculo",
+    "precioCompra",
+    "porcentajeDescuento",
+    "porcentajePromocion",
+    "precioTotal",
+    "acciones",
   ];
   pedidos: Observable<Pedido[]>;
 

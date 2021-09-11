@@ -10,7 +10,7 @@ import { ValidadorComun } from "@shared/validador/validador-comun";
 @Component({
   selector: "app-crear-pedido",
   templateUrl: "./crear-pedido.component.html",
-  styleUrls: [],
+  styleUrls: ["./crear-pedido.component.css"],
 })
 export class CrearPedidoComponent implements OnInit {
   formulario: FormGroup;

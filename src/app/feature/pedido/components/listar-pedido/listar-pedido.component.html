@@ -1,7 +1,54 @@
-<table mat-table [dataSource]="pedidos" class="mat-elevation-z8">
+<table mat-table [dataSource]="pedidos | async" class="mat-elevation-z8">
   <ng-container matColumnDef="fecha">
     <th mat-header-cell *matHeaderCellDef>Fecha</th>
     <td mat-cell *matCellDef="let element">{{ element.fecha }}</td>
+  </ng-container>
+  <ng-container matColumnDef="codigoProducto">
+    <th mat-header-cell *matHeaderCellDef>Código producto</th>
+    <td mat-cell *matCellDef="let element">{{ element.codigoProducto }}</td>
+  </ng-container>
+  <ng-container matColumnDef="codigoCliente">
+    <th mat-header-cell *matHeaderCellDef>Código cliente</th>
+    <td mat-cell *matCellDef="let element">{{ element.codigoCliente }}</td>
+  </ng-container>
+  <ng-container matColumnDef="direccionDomicilio">
+    <th mat-header-cell *matHeaderCellDef>Dirección domicilio</th>
+    <td mat-cell *matCellDef="let element">{{ element.direccionDomicilio }}</td>
+  </ng-container>
+  <ng-container matColumnDef="placaVehiculo">
+    <th mat-header-cell *matHeaderCellDef>Placa vehículo</th>
+    <td mat-cell *matCellDef="let element">{{ element.placaVehiculo }}</td>
+  </ng-container>
+  <ng-container matColumnDef="precioCompra">
+    <th mat-header-cell *matHeaderCellDef>Precio compra</th>
+    <td mat-cell *matCellDef="let element">{{ element.precioCompra }}</td>
+  </ng-container>
+  <ng-container matColumnDef="porcentajeDescuento">
+    <th mat-header-cell *matHeaderCellDef>% descuento</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.porcentajeDescuento }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="porcentajePromocion">
+    <th mat-header-cell *matHeaderCellDef>% promoción</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.porcentajePromocion }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="precioTotal">
+    <th mat-header-cell *matHeaderCellDef>Precio total</th>
+    <td mat-cell *matCellDef="let element">{{ element.precioTotal }}</td>
+  </ng-container>
+  <ng-container matColumnDef="acciones">
+    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="accent">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="eliminar(element.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+.item {
+  /* Para pruebas ya que estoy aprendiendo css */
+  /* background-color: blueviolet; */
+  margin-left: 20px;
+  flex-grow: 1;
+}
+
+.mat-form-field {
+  width: 50%;
+}
+
+.btn {
+  margin: 20px;
+  padding-right: 25px;
+  padding-left: 25px;
+}
+
+.m-top{
+  margin-top: 15px;
+}

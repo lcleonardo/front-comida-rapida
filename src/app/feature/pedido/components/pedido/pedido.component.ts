@@ -15,10 +15,10 @@ export class PedidoComponent implements OnInit {
   onTabChanged(event: MatTabChangeEvent): void {
     switch (event.index) {
       case 0:
-        this.router.navigate(["/pedido/crear"]);
+        this.router.navigate(["/pedido/listar"]);
         break;
       case 1:
-        this.router.navigate(["/pedido/listar"]);
+        this.router.navigate(["/pedido/crear"]);
         break;
     }
   }

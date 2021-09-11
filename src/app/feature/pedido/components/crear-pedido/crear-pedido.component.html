@@ -1,110 +1,80 @@
 <div class="container">
-  <div class="columns">
-    <div class="column is-three-fifths">
-      <br />
-      
-      
-      <app-mensaje-servidor [mensaje]="mensajeServidor"></app-mensaje-servidor>
-
-      <form [formGroup]="formulario" (ngSubmit)="guardar($event)">
-        <div class="field">
-          <label class="label">Fecha</label>
-          <div class="control">
-            <input
-              validar
-              validacionInicial
-              id="idFecha"
-              class="input is-small"
-              type="date"
-              placeholder="Ingrese la fecha"
-              formControlName="fecha"
-            />
-          </div>
-        </div>
-        <div class="field">
-          <label class="label">Código del producto</label>
-          <div class="control">
-            <input
-              validar
-              validacionInicial
-              id="idCodigoProducto"
-              class="input is-small"
-              type="text"
-              placeholder="Ingrese el código del producto"
-              formControlName="codigoProducto"
-            />
-          </div>
-        </div>
-        <div class="field">
-          <label class="label">Código del cliente</label>
-          <div class="control">
-            <input
-              validar
-              validacionInicial
-              id="idCodigoCliente"
-              class="input is-small"
-              type="text"
-              placeholder="Ingrese el código del cliente"
-              formControlName="codigoCliente"
-            />
-          </div>
-        </div>
-        <div class="field">
-          <label class="label">Dirección del domicilio</label>
-          <div class="control">
-            <input
-              validar
-              validacionInicial
-              id="idDireccionDomicilio"
-              class="input is-small"
-              type="text"
-              placeholder="Ingrese la dirección del domicilio"
-              formControlName="direccionDomicilio"
-            />
-          </div>
-        </div>
-        <div class="field">
-          <label class="label">Placa del vehículo</label>
-          <div class="control">
-            <input
-              validar
-              validacionInicial
-              id="idPlacaVehiculo"
-              class="input is-small"
-              type="text"
-              placeholder="Ingrese la placa del vehículo"
-              formControlName="placaVehiculo"
-            />
-          </div>
-        </div>
-        <div class="field">
-          <label class="label">Precio de la compra</label>
-          <div class="control">
-            <input
-              validar
-              validacionInicial
-              id="idPrecioTotalCompra"
-              class="input is-small"
-              type="number"
-              min="0"
-              placeholder="Ingrese el precio de la compra"
-              formControlName="precioCompra"
-            />
-          </div>
-        </div>
-        <br />
-        <div class="field is-grouped">
-          <div class="control">
-            <button
-              id="idBotonCrearPedido"
-              type="submit"
-              class="button is-success"
-            >
-              Crear
-            </button>
-          </div>
-        </div>
-      </form>
+  <form [formGroup]="formulario" (ngSubmit)="guardar($event)">
+    <div class="item m-top">
+      <mat-form-field appearance="outline" class="mat-form-field">
+        <mat-label>Fecha del pedido</mat-label>
+        <input
+          validar
+          validacionInicial
+          matInput
+          [matDatepicker]="picker"
+          formControlName="fecha"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
     </div>
-  </div>
+    <div class="item">
+      <mat-form-field class="item" appearance="outline" class="mat-form-field">
+        <mat-label>Código del producto</mat-label>
+        <input
+          matInput
+          validar
+          validacionInicial
+          type="text"
+          formControlName="codigoProducto"
+        />
+      </mat-form-field>
+    </div>
+    <div class="item">
+      <mat-form-field class="item" appearance="outline" class="mat-form-field">
+        <mat-label>Código del cliente</mat-label>
+        <input
+          matInput
+          validar
+          validacionInicial
+          type="text"
+          formControlName="codigoCliente"
+        />
+      </mat-form-field>
+    </div>
+    <div class="item">
+      <mat-form-field class="item" appearance="outline" class="mat-form-field">
+        <mat-label>Dirección del domicilio</mat-label>
+        <input
+          matInput
+          validar
+          validacionInicial
+          type="text"
+          formControlName="direccionDomicilio"
+        />
+      </mat-form-field>
+    </div>
+    <div class="item">
+      <mat-form-field class="item" appearance="outline" class="mat-form-field">
+        <mat-label>Placa del vehículo</mat-label>
+        <input
+          matInput
+          validar
+          validacionInicial
+          type="text"
+          formControlName="placaVehiculo"
+        />
+      </mat-form-field>
+    </div>
+    <div class="item">
+      <mat-form-field class="item" appearance="outline" class="mat-form-field">
+        <mat-label>Precio de la compra</mat-label>
+        <input
+          matInput
+          validar
+          validacionInicial
+          min="0"
+          type="number"
+          formControlName="precioCompra"
+        />
+      </mat-form-field>
+    </div>
+    <button class="btn" mat-raised-button color="primary" type="submit">Crear</button>
+  </form>
 </div>
