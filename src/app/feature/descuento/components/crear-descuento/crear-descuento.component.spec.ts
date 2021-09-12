@@ -26,7 +26,7 @@ class RouterStub {
   // }
 }
 
-fdescribe("CrearDescuentoComponent", () => {
+describe("CrearDescuentoComponent", () => {
   let component: CrearDescuentoComponent;
   let fixture: ComponentFixture<CrearDescuentoComponent>;
 
