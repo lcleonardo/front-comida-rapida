@@ -1,13 +1,12 @@
-import { Injectable } from '@angular/core';
-import { HttpService, Options } from '@core/services/http.service';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment.prod';
-import { Descuento } from '../model/descuento';
+import { Injectable } from "@angular/core";
+import { HttpService } from "@core/services/http.service";
+import { Observable } from "rxjs";
+import { environment } from "src/environments/environment.prod";
+import { Descuento } from "../model/descuento";
 
 @Injectable()
 export class DescuentoService {
-
-  constructor(protected servicioHttp : HttpService) { }
+  constructor(protected servicioHttp: HttpService) {}
 
   public consultar(): Observable<Descuento[]> {
     return this.servicioHttp.doGet<Descuento[]>(
@@ -16,11 +15,12 @@ export class DescuentoService {
     );
   }
 
-  public guardar(descuento: Descuento) : Observable<Options>{
-    return this.servicioHttp.doPost<Descuento, Options>(
+  public guardar(descuento: Descuento): Observable<number> {
+    return this.servicioHttp.doPost<Descuento, number>(
       `${environment.endpoint}/descuentos`,
       descuento,
-      this.servicioHttp.createDefaultOptions());
+      this.servicioHttp.createDefaultOptions()
+    );
   }
 
   public eliminar(id: number): Observable<boolean> {
@@ -29,5 +29,4 @@ export class DescuentoService {
       this.servicioHttp.optsName("eliminar descuentos")
     );
   }
-
 }

@@ -5,12 +5,13 @@ import { HttpService } from "@core/services/http.service";
 import { of } from "rxjs";
 import { Descuento } from "../model/descuento";
 
-fdescribe("Test servicio descuento", () => {
+fdescribe("Test servicio descuento DescuentoService", () => {
   let descuentoService: DescuentoService;
   let httpServiceSpy;
   beforeEach(async () => {
     httpServiceSpy = jasmine.createSpyObj("HttpService", [
       "optsName",
+      "createDefaultOptions",
       "doGet",
       "doPost",
       "doDelete",
@@ -29,16 +30,39 @@ fdescribe("Test servicio descuento", () => {
     expect(descuentoService).toBeTruthy;
   });
 
-  it("deberia consulatr pedidos", async () => {
+  it("deberia consultar descuentos", async () => {
     //Arrange
     let descuentos: Descuento[] = [];
-    let descuento: Descuento = new Descuento("2021,09-01", 10);
+    let descuento: Descuento = new Descuento("2021-09-01", 10);
     //Act
     httpServiceSpy.doGet.and.returnValue(of([descuento]));
     descuentoService.consultar().subscribe((res) => (descuentos = res));
     //Assert
     expect(descuentos.length).toBe(1);
-    expect(descuentos[0].fecha).toEqual("2021,09-01");
+    expect(descuentos[0].fecha).toEqual("2021-09-01");
     expect(descuentos[0].porcentaje).toEqual(10);
+  });
+
+  it("deberia guadar un descuento", async () => {
+    //Arrange
+    let respuesta: number;
+    let descuento: Descuento = new Descuento("2021-09-01", 10);
+    //Act
+    httpServiceSpy.doPost.and.returnValue(of([new Object("1")]));
+    descuentoService.guardar(descuento).subscribe((res) => (respuesta = res));
+    //Assert
+    expect(respuesta.toString()).toEqual("1");
+    expect(respuesta).not.toBeNull;
+  });
+
+  it("deberia eliminar un descuento", async () => {
+    //Arrange
+    let respuesta: boolean = false;
+    let id: number = 1;
+    //Act
+    httpServiceSpy.doDelete.and.returnValue(of([true]));
+    descuentoService.eliminar(id).subscribe((res) => (respuesta = res));
+    //Assert
+    expect(respuesta).toBeTrue;
   });
 });

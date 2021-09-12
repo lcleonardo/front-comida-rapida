@@ -15,8 +15,8 @@ export class PedidoService {
     );
   }
 
-  public guardar(pedido: Pedido): Observable<Options> {
-    return this.servicioHttp.doPost<Pedido, Options>(
+  public guardar(pedido: Pedido): Observable<number> {
+    return this.servicioHttp.doPost<Pedido, number>(
       `${environment.endpoint}/pedidos`,
       pedido,
       this.servicioHttp.createDefaultOptions()
@@ -24,10 +24,9 @@ export class PedidoService {
   }
 
   public eliminar(id: number): Observable<boolean> {
-    return this.servicioHttp
-      .doDelete<boolean>(
-        `${environment.endpoint}/pedidos/${id}`,
-        this.servicioHttp.optsName("eliminar pedido")
-      );
+    return this.servicioHttp.doDelete<boolean>(
+      `${environment.endpoint}/pedidos/${id}`,
+      this.servicioHttp.optsName("eliminar pedido")
+    );
   }
 }

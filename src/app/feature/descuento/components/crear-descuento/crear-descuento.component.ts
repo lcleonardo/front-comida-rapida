@@ -31,6 +31,7 @@ export class CrearDescuentoComponent implements OnInit {
       return;
     }
     this.servicio.guardar(this.obtenerDescuento());
+    this.servicio.consultar().subscribe();
     this.enrutador.navigate(["/descuento"]);
   }
 
