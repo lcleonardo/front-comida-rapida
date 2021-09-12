@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpService, Options } from "@core/services/http.service";
+import { HttpService } from "@core/services/http.service";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment.prod";
 import { Pedido } from "../model/pedido";
