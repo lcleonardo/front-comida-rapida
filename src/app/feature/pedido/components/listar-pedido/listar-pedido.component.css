@@ -1,7 +1,11 @@
-table {
-  width: 100%;
+:host {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  
 }
 
-mat-header-cell, mat-cell {
-  justify-content: center;
+table {
+  width: 98%;
+  text-align: end;
 }

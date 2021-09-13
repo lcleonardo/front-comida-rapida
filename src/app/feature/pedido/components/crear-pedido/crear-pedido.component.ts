@@ -5,6 +5,11 @@ import { DatePipe } from "@angular/common";
 import { Router } from "@angular/router";
 import { ValidadorFecha } from "@shared/validador/validador-fecha";
 import { ValidadorComun } from "@shared/validador/validador-comun";
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-crear-pedido",
@@ -13,11 +18,14 @@ import { ValidadorComun } from "@shared/validador/validador-comun";
 })
 export class CrearPedidoComponent implements OnInit {
   formulario: FormGroup;
+  horizontalPosition: MatSnackBarHorizontalPosition = "start";
+  verticalPosition: MatSnackBarVerticalPosition = "bottom";
 
   constructor(
     protected servicio: PedidoService,
     protected formatoFecha: DatePipe,
-    protected enrutador: Router
+    protected enrutador: Router,
+    protected snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -31,6 +39,7 @@ export class CrearPedidoComponent implements OnInit {
     }
     this.servicio.guardar(this.formulario.value);
     this.enrutador.navigate(["/pedido"]);
+    this.openSnackBar("Pedido creado con exíto.");
   }
 
   private construirFormulario(): void {
@@ -64,5 +73,13 @@ export class CrearPedidoComponent implements OnInit {
       },
       { updateOn: "blur" }
     );
+  }
+
+  openSnackBar(mensaje: string) {
+    this.snackBar.open(mensaje, "INFORMACIÓN", {
+      duration: 5 * 1000,
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
   }
 }

@@ -1,4 +1,6 @@
-.toolbar{
+.toolbar {
   display: flex;
   justify-content: space-between;
+  background-color: black;
+  height: 35px;
 }
