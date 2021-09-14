@@ -1,8 +1,37 @@
-table {
-  width: 50%;
+/* Los colores son de guia, solo para pruebas de diseño */
+:host {
+  /* background-color: antiquewhite; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-mat-header-cell,
-mat-cell {
-  justify-content: center;
+.flex-container {
+  /* background-color: cadetblue; */
+  margin: 16px;
+  width: 35%;
+}
+
+.flex-item1 {
+  /* background-color: burlywood; */
+  margin: 8px;
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buscar {
+  margin: 1px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.flex-item2 {
+  /* background-color: blue; */
+  margin: 8px;
+}
+
+table {
+  width: 100%;
 }

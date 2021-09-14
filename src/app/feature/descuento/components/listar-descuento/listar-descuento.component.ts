@@ -9,8 +9,8 @@ import { DescuentoService } from "../../shared/service/descuento.service";
   styleUrls: ["./listar-descuento.component.css"],
 })
 export class ListarDescuentoComponent implements OnInit {
+  filtro : string = "";
   descuentos: Observable<Descuento[]>;
-
   displayedColumns: string[] = ["fecha", "descuento", "acciones"];
 
   constructor(protected servicioDescuento: DescuentoService) {}
