@@ -1,4 +1,7 @@
-<div class="flex-container">
+<div
+  class="flex-container"
+  *ngIf="descuentos | async | filtroPipe: filtro as desc"
+>
   <div class="flex-item1">
     <button mat-mini-fab color="primary" (click)="abrirDialogo()">
       <mat-icon>add</mat-icon>
@@ -17,15 +20,15 @@
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
-      <small># de elementos</small>
+      <small>{{
+        desc.length === 1
+          ? desc.length + " descuento"
+          : desc.length + " descuentos"
+      }}</small>
     </div>
   </div>
   <div class="flex-item2">
-    <table
-      mat-table
-      [dataSource]="descuentos | async | filtroPipe: filtro"
-      class="mat-elevation-z8"
-    >
+    <table mat-table [dataSource]="desc" class="mat-elevation-z8">
       <ng-container matColumnDef="fecha">
         <th style="text-align: center" mat-header-cell *matHeaderCellDef>
           Fecha
