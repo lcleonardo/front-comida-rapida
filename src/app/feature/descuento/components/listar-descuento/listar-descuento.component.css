@@ -1,13 +1,13 @@
 /* Los colores son de guia, solo para pruebas de diseño */
 :host {
-  /* background-color: antiquewhite; */
+  /* background-color: bisque; */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .flex-container {
-  /* background-color: cadetblue; */
+  /* background-color: rgb(217, 233, 248); */
   margin: 16px;
   width: 35%;
 }
@@ -29,9 +29,11 @@
 
 .flex-item2 {
   /* background-color: blue; */
+  border: solid 1px #3F51B5;
   margin: 8px;
 }
 
 table {
   width: 100%;
+  padding-bottom: 4px;
 }

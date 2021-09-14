@@ -1,7 +1,6 @@
 import { DatePipe } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
 import { Descuento } from "@descuento/shared/model/descuento";
 import { ValidadorComun } from "@shared/validador/validador-comun";
 import { ValidadorFecha } from "@shared/validador/validador-fecha";
@@ -17,8 +16,7 @@ export class CrearDescuentoComponent implements OnInit {
 
   constructor(
     protected servicio: DescuentoService,
-    protected formatoFecha: DatePipe,
-    protected enrutador: Router
+    protected formatoFecha: DatePipe
   ) {}
 
   ngOnInit(): void {
@@ -30,9 +28,8 @@ export class CrearDescuentoComponent implements OnInit {
       this.formulario.markAllAsTouched();
       return;
     }
-    this.servicio.guardar(this.obtenerDescuento());
-    this.servicio.consultar().subscribe();
-    this.enrutador.navigate(["/descuento"]);
+    this.servicio.guardar(this.obtenerDescuento()).subscribe(res => console.log(res)
+    );
   }
 
   private obtenerDescuento(): Descuento {

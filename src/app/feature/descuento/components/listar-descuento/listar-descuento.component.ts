@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { Observable } from "rxjs";
 import { Descuento } from "../../shared/model/descuento";
 import { DescuentoService } from "../../shared/service/descuento.service";
+import { CrearDescuentoComponent } from "../crear-descuento/crear-descuento.component";
 
 @Component({
   selector: "app-listar-descuento",
@@ -9,11 +11,14 @@ import { DescuentoService } from "../../shared/service/descuento.service";
   styleUrls: ["./listar-descuento.component.css"],
 })
 export class ListarDescuentoComponent implements OnInit {
-  filtro : string = "";
+  filtro: string = "";
   descuentos: Observable<Descuento[]>;
   displayedColumns: string[] = ["fecha", "descuento", "acciones"];
 
-  constructor(protected servicioDescuento: DescuentoService) {}
+  constructor(
+    protected servicioDescuento: DescuentoService,
+    protected dialogo: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.consultar();
@@ -26,5 +31,15 @@ export class ListarDescuentoComponent implements OnInit {
   eliminar(id: number): void {
     this.servicioDescuento.eliminar(id).subscribe();
     this.consultar();
+  }
+
+  abrirDialogo() {
+    const dialogRef = this.dialogo.open(CrearDescuentoComponent, {
+      disableClose: true,
+      width: "35%",
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }
