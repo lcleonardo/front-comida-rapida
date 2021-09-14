@@ -17,9 +17,6 @@ export class DescuentoComponent implements OnInit {
       case 0:
         this.router.navigate(["/descuento/listar"]);
         break;
-        case 1:
-        this.router.navigate(["/descuento/crear"]);
-        break;
     }
   }
 }

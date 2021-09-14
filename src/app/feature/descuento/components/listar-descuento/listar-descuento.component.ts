@@ -42,4 +42,10 @@ export class ListarDescuentoComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
+
+  contador(descuentos: Descuento[]): string {
+    return descuentos.length === 1
+      ? descuentos.length + " descuento"
+      : descuentos.length + " descuentos";
+  }
 }
