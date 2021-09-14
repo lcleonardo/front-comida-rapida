@@ -28,8 +28,7 @@ export class CrearDescuentoComponent implements OnInit {
       this.formulario.markAllAsTouched();
       return;
     }
-    this.servicio.guardar(this.obtenerDescuento()).subscribe(res => console.log(res)
-    );
+    this.servicio.guardar(this.obtenerDescuento());
   }
 
   private obtenerDescuento(): Descuento {

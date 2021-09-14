@@ -21,7 +21,11 @@
     </div>
   </div>
   <div class="flex-item2">
-    <table mat-table [dataSource]="descuentos | async" class="mat-elevation-z8">
+    <table
+      mat-table
+      [dataSource]="descuentos | async | filtroPipe: filtro"
+      class="mat-elevation-z8"
+    >
       <ng-container matColumnDef="fecha">
         <th style="text-align: center" mat-header-cell *matHeaderCellDef>
           Fecha
