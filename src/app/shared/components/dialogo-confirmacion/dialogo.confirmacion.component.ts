@@ -15,6 +15,5 @@ export class DialogConfirmacionComponent implements OnInit {
 
   confirmar(opcion: boolean) {
     this.eliminar = opcion;
-    console.log(this.eliminar);
   }
 }

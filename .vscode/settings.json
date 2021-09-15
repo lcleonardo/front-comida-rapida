@@ -2,10 +2,10 @@
   "files.exclude": {
     ".gradle": true,
     ".vscode": true,
-    "node_modules": true,
     "rules": true,
     "tmp": true,
-    "dist": true
+    "dist": true,
+    "node_modules": true
   },
   "prettier.singleQuote": true
 }
