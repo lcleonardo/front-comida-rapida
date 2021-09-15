@@ -1,31 +1,32 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { DialogConfirmacionComponent } from "@shared/components/dialogo-confirmacion/dialogo.confirmacion.component";
-import { Observable } from "rxjs";
 import { Descuento } from "../../shared/model/descuento";
 import { DescuentoService } from "../../shared/service/descuento.service";
 import { CrearDescuentoComponent } from "../crear-descuento/crear-descuento.component";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-listar-descuento",
   templateUrl: "./listar-descuento.component.html",
   styleUrls: ["./listar-descuento.component.css"],
 })
-export class ListarDescuentoComponent implements OnInit {
-  filtro: string = "";
+export class ListarDescuentoComponent implements OnInit, OnDestroy {
   descuentos: Observable<Descuento[]>;
+  filtro: string = "";
   displayedColumns: string[] = ["fecha", "descuento", "acciones"];
 
   constructor(
     protected servicioDescuento: DescuentoService,
     protected dialogo: MatDialog
   ) {}
+  ngOnDestroy(): void {}
 
   ngOnInit(): void {
     this.consultar();
   }
 
-  consultar(): void {
+  consultar() {
     this.descuentos = this.servicioDescuento.consultar();
   }
 
