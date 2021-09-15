@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core'
+import { Component, NgZone, OnDestroy, OnInit } from '@angular/core'
 import { MatDialog, MatDialogRef } from '@angular/material/dialog'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { DialogConfirmacionComponent } from '@shared/components/dialogo-confirmacion/dialogo.confirmacion.component'
 import { Descuento } from '../../shared/model/descuento'
 import { DescuentoService } from '../../shared/service/descuento.service'
@@ -18,6 +19,8 @@ export class ListarDescuentoComponent implements OnInit, OnDestroy {
   constructor(
     protected servicioDescuento: DescuentoService,
     protected dialogo: MatDialog,
+    protected matSnackBar: MatSnackBar,
+    protected ngZone: NgZone,
   ) {}
 
   ngOnDestroy(): void {
@@ -57,6 +60,7 @@ export class ListarDescuentoComponent implements OnInit, OnDestroy {
       this.descuentos = this.descuentos.filter(
         (descuento: Descuento) => descuento.id !== id,
       )
+      this.openMatSnackBar('Descuento eliminado con exíto.')
     })
   }
 
@@ -70,7 +74,15 @@ export class ListarDescuentoComponent implements OnInit, OnDestroy {
     })
   }
 
-  contador(descuentos: Descuento[]): string {
+  private openMatSnackBar(mensaje: string) {
+    this.ngZone.run(() => {
+      this.matSnackBar.open(mensaje, 'INFORMACIÓN', {
+        duration: 10 * 1000,
+      })
+    })
+  }
+
+  public contador(descuentos: Descuento[]): string {
     return descuentos.length === 1
       ? descuentos.length + ' descuento'
       : descuentos.length + ' descuentos'

@@ -12,7 +12,7 @@ export class ManejadorError implements ErrorHandler {
     const mensajeError = this.mensajePorDefecto(error)
     this.imprimirErrorConsola(mensajeError)
     const notificacionService = this.injector.get(NotificacionService)
-    notificacionService.mostrar(mensajeError)
+    notificacionService.mostrarError(mensajeError)
   }
 
   private mensajePorDefecto(error) {

@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar'
 export class NotificacionService {
   constructor(protected matSnackBar: MatSnackBar, protected ngZone: NgZone) {}
 
-  public mostrar(mensaje: Object) {
+  public mostrarError(mensaje: Object) {
     let nombreExcepcion: string = mensaje['error']['nombreExcepcion']
     if (
       nombreExcepcion.includes('ExcepcionAccionNoPermitida') ||
@@ -15,5 +15,11 @@ export class NotificacionService {
         this.matSnackBar.open(mensaje['error']['mensaje'], 'Cerrar')
       })
     }
+  }
+
+  public mostrarMensaje(mensaje: string) {
+    this.ngZone.run(() => {
+      this.matSnackBar.open(mensaje, 'Cerrar')
+    })
   }
 }
