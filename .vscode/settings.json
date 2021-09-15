@@ -6,5 +6,6 @@
     "rules": true,
     "tmp": true,
     "dist": true
-  }
+  },
+  "prettier.singleQuote": true
 }

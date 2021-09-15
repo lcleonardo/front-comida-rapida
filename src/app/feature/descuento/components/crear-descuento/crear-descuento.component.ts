@@ -1,16 +1,16 @@
-import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
-import { Descuento } from '@descuento/shared/model/descuento';
-import { ValidadorComun } from '@shared/validador/validador-comun';
-import { ValidadorFecha } from '@shared/validador/validador-fecha';
-import { DescuentoService } from '../../shared/service/descuento.service';
+import { DatePipe } from "@angular/common";
+import { Component, OnInit } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { MatDialogRef } from "@angular/material/dialog";
+import { Descuento } from "@descuento/shared/model/descuento";
+import { ValidadorComun } from "@shared/validador/validador-comun";
+import { ValidadorFecha } from "@shared/validador/validador-fecha";
+import { DescuentoService } from "../../shared/service/descuento.service";
 
 @Component({
-  selector: 'app-crear-descuento',
-  templateUrl: './crear-descuento.component.html',
-  styleUrls: ['./crear-descuento.component.css'],
+  selector: "app-crear-descuento",
+  templateUrl: "./crear-descuento.component.html",
+  styleUrls: ["./crear-descuento.component.css"],
 })
 export class CrearDescuentoComponent implements OnInit {
   formulario: FormGroup;
@@ -31,16 +31,15 @@ export class CrearDescuentoComponent implements OnInit {
       return;
     }
     this.servicio.guardar(this.obtenerDescuento()).subscribe();
-    this.servicio.consultar();
     this.dialogo.close();
   }
 
   private obtenerDescuento(): Descuento {
     const fecha = this.formatoFecha.transform(
-      this.formulario.get('fecha').value,
-      'yyyy-MM-dd'
+      this.formulario.get("fecha").value,
+      "yyyy-MM-dd"
     );
-    let porcentaje: number = this.formulario.get('porcentaje').value;
+    const porcentaje: number = this.formulario.get("porcentaje").value;
     return new Descuento(fecha, porcentaje);
   }
 
@@ -51,12 +50,12 @@ export class CrearDescuentoComponent implements OnInit {
           Validators.required,
           ValidadorFecha.fechaMenorAFechaActual,
         ]),
-        porcentaje: new FormControl('0', [
+        porcentaje: new FormControl("0", [
           Validators.required,
           ValidadorComun.menorOIgualACero,
         ]),
       },
-      { updateOn: 'blur' }
+      { updateOn: "blur" }
     );
   }
 }

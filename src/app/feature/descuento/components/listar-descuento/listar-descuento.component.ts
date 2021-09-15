@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
+import { DialogConfirmacionComponent } from "@shared/components/dialogo-confirmacion/dialogo.confirmacion.component";
 import { Observable } from "rxjs";
 import { Descuento } from "../../shared/model/descuento";
 import { DescuentoService } from "../../shared/service/descuento.service";
@@ -29,8 +30,17 @@ export class ListarDescuentoComponent implements OnInit {
   }
 
   eliminar(id: number): void {
-    this.servicioDescuento.eliminar(id).subscribe();
-    this.consultar();
+    const dialogRef = this.dialogo.open(DialogConfirmacionComponent, {
+      disableClose: true,
+      width: "25%",
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      const respuesta: boolean = dialogRef.componentInstance.respuesta;
+      if (respuesta) {
+        this.servicioDescuento.eliminar(id).subscribe();
+        this.consultar();
+      }
+    });
   }
 
   abrirDialogo() {
@@ -38,7 +48,9 @@ export class ListarDescuentoComponent implements OnInit {
       disableClose: true,
       width: "35%",
     });
-    dialogRef.afterClosed().subscribe((value) => {});
+    dialogRef.afterClosed().subscribe(() => {
+      this.consultar();
+    });
   }
 
   contador(descuentos: Descuento[]): string {

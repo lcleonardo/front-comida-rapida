@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>{{ titulo }}</h2>
+<mat-dialog-content #dialogo class="mat-typography">
+  {{ mensaje }}
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button
+    mat-button
+    mat-dialog-close
+    type="button"
+    color="warn"
+    (click)="confirmar(true)"
+  >
+    SI
+  </button>
+  <button mat-button mat-dialog-close>NO</button>
+</mat-dialog-actions>

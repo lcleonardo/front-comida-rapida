@@ -10,6 +10,7 @@ import { TrackByPipe } from "./pipe/track-by.pipe";
 import { ContadorItemsComponent } from "./components/contador-items/contador-items.component";
 import { MensajeServidorComponent } from "./components/mensaje-servidor/mensaje-servidor.component";
 import { MaterialModule } from "./material.module";
+import { DialogConfirmacionComponent } from "./components/dialogo-confirmacion/dialogo.confirmacion.component";
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { MaterialModule } from "./material.module";
     TrackByPipe,
     ContadorItemsComponent,
     MensajeServidorComponent,
+    DialogConfirmacionComponent,
   ],
   imports: [ReactiveFormsModule, FormsModule, CommonModule, MaterialModule],
   exports: [
@@ -33,7 +35,8 @@ import { MaterialModule } from "./material.module";
     TrackByPipe,
     ContadorItemsComponent,
     MensajeServidorComponent,
-    MaterialModule
+    DialogConfirmacionComponent,
+    MaterialModule,
   ],
 })
 export class SharedModule {}
