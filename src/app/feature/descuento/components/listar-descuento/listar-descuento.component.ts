@@ -1,62 +1,78 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
-import { DialogConfirmacionComponent } from "@shared/components/dialogo-confirmacion/dialogo.confirmacion.component";
-import { Descuento } from "../../shared/model/descuento";
-import { DescuentoService } from "../../shared/service/descuento.service";
-import { CrearDescuentoComponent } from "../crear-descuento/crear-descuento.component";
-import { Observable } from "rxjs";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DialogConfirmacionComponent } from '@shared/components/dialogo-confirmacion/dialogo.confirmacion.component';
+import { Descuento } from '../../shared/model/descuento';
+import { DescuentoService } from '../../shared/service/descuento.service';
+import { CrearDescuentoComponent } from '../crear-descuento/crear-descuento.component';
 
 @Component({
-  selector: "app-listar-descuento",
-  templateUrl: "./listar-descuento.component.html",
-  styleUrls: ["./listar-descuento.component.css"],
+  selector: 'app-listar-descuento',
+  templateUrl: './listar-descuento.component.html',
+  styleUrls: ['./listar-descuento.component.css'],
 })
 export class ListarDescuentoComponent implements OnInit, OnDestroy {
-  descuentos: Observable<Descuento[]>;
-  filtro: string = "";
-  displayedColumns: string[] = ["fecha", "descuento", "acciones"];
+  descuentos: Descuento[];
+  filtro: string = '';
+  displayedColumns: string[] = ['fecha', 'descuento', 'acciones'];
 
   constructor(
     protected servicioDescuento: DescuentoService,
     protected dialogo: MatDialog
   ) {}
-  ngOnDestroy(): void {}
+
+  ngOnDestroy(): void {
+    this.servicioDescuento.consultar().subscribe().unsubscribe();
+  }
 
   ngOnInit(): void {
     this.consultar();
   }
 
   consultar() {
-    this.descuentos = this.servicioDescuento.consultar();
+    this.servicioDescuento
+      .consultar()
+      .subscribe((valor) => (this.descuentos = valor));
+  }
+
+  private abrirDialogoConfirmacion(): MatDialogRef<DialogConfirmacionComponent> {
+    return this.dialogo.open(DialogConfirmacionComponent, {
+      disableClose: true,
+      width: '25%',
+    });
   }
 
   eliminar(id: number): void {
-    const dialogRef = this.dialogo.open(DialogConfirmacionComponent, {
-      disableClose: true,
-      width: "25%",
-    });
-    dialogRef.afterClosed().subscribe(() => {
-      const respuesta: boolean = dialogRef.componentInstance.respuesta;
-      if (respuesta) {
-        this.servicioDescuento.eliminar(id).subscribe();
-        this.consultar();
+    const dialogo = this.abrirDialogoConfirmacion();
+    dialogo.afterClosed().subscribe(() => {
+      if (dialogo.componentInstance.eliminar) {
+        this.eliminarEnServicio(id);
       }
     });
   }
 
-  abrirDialogo() {
-    const dialogRef = this.dialogo.open(CrearDescuentoComponent, {
-      disableClose: true,
-      width: "35%",
+  private eliminarEnServicio(id: number) {
+    this.servicioDescuento.eliminar(id).subscribe((respuesta: boolean) => {
+      if (respuesta) {
+        this.descuentos = this.descuentos.filter(
+          (descuento: Descuento) => descuento.id !== id
+        );
+      }
     });
-    dialogRef.afterClosed().subscribe(() => {
+  }
+
+  abrirDialogoCrearDescuento() {
+    const dialogo = this.dialogo.open(CrearDescuentoComponent, {
+      disableClose: true,
+      width: '35%',
+    });
+    dialogo.afterClosed().subscribe(() => {
       this.consultar();
     });
   }
 
   contador(descuentos: Descuento[]): string {
     return descuentos.length === 1
-      ? descuentos.length + " descuento"
-      : descuentos.length + " descuentos";
+      ? descuentos.length + ' descuento'
+      : descuentos.length + ' descuentos';
   }
 }

@@ -1,9 +1,6 @@
-<div
-  class="flex-container"
-  *ngIf="descuentos | async | filtroPipe: filtro as desc"
->
+<div class="flex-container" *ngIf="descuentos | filtroPipe: filtro as desc">
   <div class="flex-item1">
-    <button mat-mini-fab color="primary" (click)="abrirDialogo()">
+    <button mat-mini-fab color="primary" (click)="abrirDialogoCrearDescuento()">
       <mat-icon>add</mat-icon>
     </button>
     <div class="buscar">
