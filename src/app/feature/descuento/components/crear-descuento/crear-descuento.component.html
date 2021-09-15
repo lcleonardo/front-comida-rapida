@@ -1,6 +1,6 @@
 <form [formGroup]="formulario" (ngSubmit)="guardar()">
   <h2 mat-dialog-title>Crear descuento</h2>
-  <mat-dialog-content class="mat-typography">
+  <mat-dialog-content #dialogo class="mat-typography">
     <div class="item">
       <mat-form-field appearance="outline" class="mat-form-field">
         <mat-label>Fecha del descuento</mat-label>

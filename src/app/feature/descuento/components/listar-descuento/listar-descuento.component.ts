@@ -38,9 +38,7 @@ export class ListarDescuentoComponent implements OnInit {
       disableClose: true,
       width: "35%",
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
+    dialogRef.afterClosed().subscribe((value) => {});
   }
 
   contador(descuentos: Descuento[]): string {
