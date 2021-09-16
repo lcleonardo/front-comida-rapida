@@ -1,4 +1,7 @@
-<div class="flex-container" *ngIf="descuentos | filtroPipe: filtro as desc">
+<div
+  class="flex-container"
+  *ngIf="descuentos | filtroDescuentos: texto as desc"
+>
   <div class="flex-item1">
     <button mat-mini-fab color="primary" (click)="abrirDialogoCrearDescuento()">
       <mat-icon>add</mat-icon>
@@ -6,19 +9,19 @@
     <div class="buscar">
       <mat-form-field class="form-field-buscar" appearance="fill">
         <mat-label>Buscar</mat-label>
-        <input #input1 matInput type="text" [(ngModel)]="filtro" />
+        <input #inputFiltro matInput type="text" [(ngModel)]="texto" />
         <button
-          *ngIf="filtro"
+          *ngIf="texto"
           matSuffix
           mat-icon-button
           aria-label="Clear"
-          (click)="filtro = ''"
+          (click)="texto = ''"
         >
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
       <small>
-        {{ contador() }}
+        {{ contador(desc) }}
       </small>
     </div>
   </div>

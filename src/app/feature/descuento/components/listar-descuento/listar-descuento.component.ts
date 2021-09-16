@@ -20,9 +20,9 @@ import { CrearDescuentoComponent } from '../crear-descuento/crear-descuento.comp
 })
 export class ListarDescuentoComponent implements OnInit, OnDestroy {
   public descuentos: Descuento[]
-  public filtro: string = ''
+  public texto: string = ''
   public displayedColumns: string[] = ['fecha', 'descuento', 'acciones']
-  @ViewChild('input1', { read: ElementRef }) inputEl: ElementRef
+  @ViewChild('inputFiltro', { read: ElementRef }) inputEl: ElementRef
 
   constructor(
     protected servicioDescuento: DescuentoService,
@@ -93,9 +93,9 @@ export class ListarDescuentoComponent implements OnInit, OnDestroy {
     })
   }
 
-  public contador(): string {
-    return this.descuentos.length === 1
-      ? this.descuentos.length + ' descuento'
-      : this.descuentos.length + ' descuentos'
+  public contador(descuentos: Descuento[]): string {
+    return descuentos.length === 1
+      ? descuentos.length + ' descuento'
+      : descuentos.length + ' descuentos'
   }
 }
