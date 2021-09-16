@@ -6,7 +6,7 @@
     <div class="buscar">
       <mat-form-field class="form-field-buscar" appearance="fill">
         <mat-label>Buscar</mat-label>
-        <input matInput type="text" [(ngModel)]="filtro" />
+        <input #input1 matInput type="text" [(ngModel)]="filtro" />
         <button
           *ngIf="filtro"
           matSuffix
@@ -17,36 +17,34 @@
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
-      <small>{{
-        desc.length === 1
-          ? desc.length + " descuento"
-          : desc.length + " descuentos"
-      }}</small>
+      <small>
+        {{ contador() }}
+      </small>
     </div>
   </div>
   <div class="flex-item2">
     <table mat-table [dataSource]="desc" class="mat-elevation-z8">
       <ng-container matColumnDef="fecha">
-        <th style="text-align: center" mat-header-cell *matHeaderCellDef>
+        <th style="text-align: center;" mat-header-cell *matHeaderCellDef>
           Fecha
         </th>
-        <td style="text-align: center" mat-cell *matCellDef="let element">
+        <td style="text-align: center;" mat-cell *matCellDef="let element">
           {{ element.fecha }}
         </td>
       </ng-container>
       <ng-container matColumnDef="descuento">
-        <th style="text-align: right" mat-header-cell *matHeaderCellDef>
+        <th style="text-align: right;" mat-header-cell *matHeaderCellDef>
           % descuento
         </th>
-        <td style="text-align: right" mat-cell *matCellDef="let element">
+        <td style="text-align: right;" mat-cell *matCellDef="let element">
           {{ element.porcentaje / 100 | percent }}
         </td>
       </ng-container>
       <ng-container matColumnDef="acciones">
-        <th style="text-align: center" mat-header-cell *matHeaderCellDef>
+        <th style="text-align: center;" mat-header-cell *matHeaderCellDef>
           Acciones
         </th>
-        <td style="text-align: center" mat-cell *matCellDef="let element">
+        <td style="text-align: center;" mat-cell *matCellDef="let element">
           <button mat-icon-button color="warn" (click)="eliminar(element.id)">
             <mat-icon>delete</mat-icon>
           </button>

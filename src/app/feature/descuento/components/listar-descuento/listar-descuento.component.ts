@@ -1,4 +1,11 @@
-import { Component, NgZone, OnDestroy, OnInit } from '@angular/core'
+import {
+  Component,
+  ElementRef,
+  NgZone,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core'
 import { MatDialog, MatDialogRef } from '@angular/material/dialog'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { DialogConfirmacionComponent } from '@shared/components/dialogo-confirmacion/dialogo.confirmacion.component'
@@ -12,9 +19,10 @@ import { CrearDescuentoComponent } from '../crear-descuento/crear-descuento.comp
   styleUrls: ['./listar-descuento.component.css'],
 })
 export class ListarDescuentoComponent implements OnInit, OnDestroy {
-  descuentos: Descuento[]
-  filtro: string = ''
-  displayedColumns: string[] = ['fecha', 'descuento', 'acciones']
+  public descuentos: Descuento[]
+  public filtro: string = ''
+  public displayedColumns: string[] = ['fecha', 'descuento', 'acciones']
+  @ViewChild('input1', { read: ElementRef }) inputEl: ElementRef
 
   constructor(
     protected servicioDescuento: DescuentoService,
@@ -29,9 +37,12 @@ export class ListarDescuentoComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.consultar()
+    setTimeout(() => {
+      this.inputEl.nativeElement.focus()
+    }, 500)
   }
 
-  consultar() {
+  private consultar() {
     this.servicioDescuento
       .consultar()
       .subscribe((valor) => (this.descuentos = valor))
@@ -46,7 +57,7 @@ export class ListarDescuentoComponent implements OnInit, OnDestroy {
     })
   }
 
-  eliminar(id: number): void {
+  public eliminar(id: number): void {
     const dialogo = this.abrirDialogoConfirmacion()
     dialogo.afterClosed().subscribe(() => {
       if (dialogo.componentInstance.eliminar) {
@@ -64,7 +75,7 @@ export class ListarDescuentoComponent implements OnInit, OnDestroy {
     })
   }
 
-  abrirDialogoCrearDescuento() {
+  public abrirDialogoCrearDescuento() {
     const dialogo = this.dialogo.open(CrearDescuentoComponent, {
       disableClose: true,
       width: '35%',
@@ -82,9 +93,9 @@ export class ListarDescuentoComponent implements OnInit, OnDestroy {
     })
   }
 
-  public contador(descuentos: Descuento[]): string {
-    return descuentos.length === 1
-      ? descuentos.length + ' descuento'
-      : descuentos.length + ' descuentos'
+  public contador(): string {
+    return this.descuentos.length === 1
+      ? this.descuentos.length + ' descuento'
+      : this.descuentos.length + ' descuentos'
   }
 }
