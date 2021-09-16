@@ -1,72 +1,31 @@
-import { DatePipe } from "@angular/common";
-import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from "@angular/core";
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { ReactiveFormsModule } from "@angular/forms";
-import { Router } from "@angular/router";
-import { DescuentoService } from "@descuento/shared/service/descuento.service";
-import { of } from "rxjs";
+import { DatePipe } from '@angular/common'
+import { TestBed } from '@angular/core/testing'
+import { MatDialogRef } from '@angular/material/dialog'
+import { MatSnackBar } from '@angular/material/snack-bar'
+import { DescuentoService } from '@descuento/shared/service/descuento.service'
+import { CrearDescuentoComponent } from './crear-descuento.component'
 
-import { CrearDescuentoComponent } from "./crear-descuento.component";
-
-class DescuentoServiceStub {
-  guardar() {
-    return of(true);
-  }
-}
-
-class DatePipeStub {
-  transform(fecha: string) {
-    return fecha;
-  }
-}
-
-class RouterStub {
-  // navigate(ruta: string): Promise<boolean> {
-  //   return Promise.resolve(true);
-  // }
-}
-
-describe("CrearDescuentoComponent", () => {
-  let component: CrearDescuentoComponent;
-  let fixture: ComponentFixture<CrearDescuentoComponent>;
+fdescribe('Test crear descuento CrearDescuentoComponent', () => {
+  let componente: CrearDescuentoComponent
+  let descuentoServiceSpy: DescuentoService
+  let datePipeSpy: DatePipe
+  let matDialogSpy: MatDialogRef<CrearDescuentoComponent>
+  let matSnackBarSpy: MatSnackBar
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [CrearDescuentoComponent],
+    TestBed.configureTestingModule({
       providers: [
-        { provide: DescuentoService, useClass: DescuentoServiceStub },
-        { provide: DatePipe, useClass: DatePipeStub },
-        { provide: Router, useClass: RouterStub },
+        CrearDescuentoComponent,
+        { provide: DescuentoService, useValue: descuentoServiceSpy },
+        { provide: DatePipe, useValue: datePipeSpy },
+        { provide: MatDialogRef, useValue: matDialogSpy },
+        { provide: MatSnackBar, useValue: matSnackBarSpy },
       ],
-      schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
-      imports: [ReactiveFormsModule],
-    }).compileComponents();
-  });
+    }).compileComponents()
+    componente = TestBed.inject(CrearDescuentoComponent)
+  })
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(CrearDescuentoComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it("should create", () => {
-    expect(component).toBeTruthy();
-  });
-
-  it("deberia constuir el formulario", () => {
-    expect(Object.keys(component.formulario.controls)).toEqual([
-      "fecha",
-      "porcentaje",
-    ]);
-  });
-
-  it("deberia guardar un descuento", () => {
-    
-    // spyOn();
-
-
-  });
-
-
-
-});
+  it('should be initialized', async () => {
+    expect(componente).toBeTruthy
+  })
+})
