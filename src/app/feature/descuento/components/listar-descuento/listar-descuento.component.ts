@@ -37,9 +37,13 @@ export class ListarDescuentoComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.consultar()
+    this.focusInputFiltro()
+  }
+
+  private focusInputFiltro(): void {
     setTimeout(() => {
       this.inputEl.nativeElement.focus()
-    }, 500)
+    }, 250)
   }
 
   private consultar() {
@@ -63,6 +67,7 @@ export class ListarDescuentoComponent implements OnInit, OnDestroy {
       if (dialogo.componentInstance.eliminar) {
         this.eliminarEnServicio(id)
       }
+      this.focusInputFiltro()
     })
   }
 
@@ -72,6 +77,7 @@ export class ListarDescuentoComponent implements OnInit, OnDestroy {
         (descuento: Descuento) => descuento.id !== id,
       )
       this.openMatSnackBar('Descuento eliminado con exíto.')
+      this.focusInputFiltro()
     })
   }
 
@@ -82,13 +88,14 @@ export class ListarDescuentoComponent implements OnInit, OnDestroy {
     })
     dialogo.afterClosed().subscribe(() => {
       this.consultar()
+      this.focusInputFiltro()
     })
   }
 
   private openMatSnackBar(mensaje: string) {
     this.ngZone.run(() => {
       this.matSnackBar.open(mensaje, 'INFORMACIÓN', {
-        duration: 10 * 1000,
+        duration: 6 * 1000,
       })
     })
   }

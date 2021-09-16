@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common'
-import { Component, NgZone, OnInit } from '@angular/core'
+import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatDialogRef } from '@angular/material/dialog'
 import { MatSnackBar } from '@angular/material/snack-bar'
@@ -15,6 +15,7 @@ import { DescuentoService } from '../../shared/service/descuento.service'
 })
 export class CrearDescuentoComponent implements OnInit {
   formulario: FormGroup
+  @ViewChild('inputFecha', { read: ElementRef }) inputEl: ElementRef
 
   constructor(
     protected servicio: DescuentoService,
@@ -26,9 +27,17 @@ export class CrearDescuentoComponent implements OnInit {
 
   ngOnInit(): void {
     this.construirFormulario()
+    this.focusInputFecha()
   }
 
-  guardar() {
+  public focusInputFecha(): void {
+    setTimeout(() => {
+      this.inputEl.nativeElement.focus()
+      this.inputEl.nativeElement.setSelectionRange(0, 1)
+    }, 250)
+  }
+
+  public guardar(): void {
     if (!this.formulario.valid) {
       this.formulario.markAllAsTouched()
       return
@@ -41,7 +50,7 @@ export class CrearDescuentoComponent implements OnInit {
   private openMatSnackBar(mensaje: string) {
     this.ngZone.run(() => {
       this.matSnackBar.open(mensaje, 'INFORMACIÓN', {
-        duration: 10 * 1000,
+        duration: 6 * 1000,
       })
     })
   }

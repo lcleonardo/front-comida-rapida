@@ -16,7 +16,9 @@ export class NotificacionService {
       nombreExcepcion.includes('ExcepcionValorObligatorio')
     ) {
       this.ngZone.run(() => {
-        this.matSnackBar.open(mensaje['error']['mensaje'], 'Cerrar')
+        this.matSnackBar.open(mensaje['error']['mensaje'], 'Cerrar', {
+          duration: 10 * 1000,
+        })
       })
     }
   }

@@ -5,6 +5,7 @@
       <mat-form-field appearance="outline" class="mat-form-field">
         <mat-label>Fecha del descuento</mat-label>
         <input
+          #inputFecha
           validar
           validacionInicial
           matInput
@@ -12,7 +13,7 @@
           formControlName="fecha"
         />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <mat-datepicker #picker (closed)="focusInputFecha()"></mat-datepicker>
       </mat-form-field>
     </div>
     <div class="item">
