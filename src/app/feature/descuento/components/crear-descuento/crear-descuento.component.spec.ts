@@ -14,6 +14,8 @@ fdescribe('Test crear descuento CrearDescuentoComponent', () => {
   let matSnackBarSpy: MatSnackBar
 
   beforeEach(async () => {
+    descuentoServiceSpy = jasmine.createSpyObj('DescuentoService', ['guardar'])
+    datePipeSpy = jasmine.createSpyObj('DatePipe', ['transform'])
     TestBed.configureTestingModule({
       providers: [
         CrearDescuentoComponent,
@@ -47,5 +49,32 @@ fdescribe('Test crear descuento CrearDescuentoComponent', () => {
     await porcentaje.setValue(10)
     componente.formulario.markAllAsTouched()
     expect(componente.formulario.invalid).toBe(true)
+  })
+
+  it('deberia guardar un descuento', async () => {
+    //Arrange
+    let fechaActual = new Date().toISOString()
+    let fecha = componente.formulario.get('fecha')
+    fecha.setValue(fechaActual)
+    let porcentaje = componente.formulario.get('porcentaje')
+    porcentaje.setValue(10)
+    //Act
+    //TODO: Debe ser dinamico
+    // spyOn<any>(componente, 'obtenerDescuento').and.returnValue(
+    //   new Descuento('2021-09-16', 10),
+    // )
+
+    // spyOn<any>(datePipeSpy, 'transform')
+    //   .withArgs(fecha.value)
+    //   .and.returnValue('2021-09-16')
+
+    componente.guardar()
+
+    // spyOn<any>(componente, 'obtenerDescuento').and.returnValue(
+    //   new Descuento(fecha.value, porcentaje.value),
+    // )
+    // spyOn(descuentoServiceSpy, 'guardar').and.returnValue(of(1))
+    // componente.guardar()
+    // expect(componente.guardar()).toHaveBeenCalled()
   })
 })
