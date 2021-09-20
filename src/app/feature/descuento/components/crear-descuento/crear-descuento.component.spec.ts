@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar'
 import { DescuentoService } from '@descuento/shared/service/descuento.service'
 import { CrearDescuentoComponent } from './crear-descuento.component'
 
-fdescribe('Test crear descuento CrearDescuentoComponent', () => {
+describe('Test crear descuento CrearDescuentoComponent', () => {
   let fixture: ComponentFixture<CrearDescuentoComponent>
   let componente: CrearDescuentoComponent
   let descuentoServiceSpy: DescuentoService

@@ -43,7 +43,7 @@ describe('Test servicio descuento DescuentoService', () => {
     expect(descuentos[0].porcentaje).toEqual(10)
   })
 
-  it('deberia guadar un descuento', async () => {
+  it('deberia guardar un descuento', async () => {
     //Arrange
     let respuesta: number
     let descuento: Descuento = new Descuento('2021-09-01', 10)
@@ -53,16 +53,5 @@ describe('Test servicio descuento DescuentoService', () => {
     //Assert
     expect(respuesta.toString()).toEqual('1')
     expect(respuesta).not.toBeNull
-  })
-
-  it('deberia eliminar un descuento', async () => {
-    //Arrange
-    let respuesta: boolean = false
-    let id: number = 1
-    //Act
-    httpServiceSpy.doDelete.and.returnValue(of([true]))
-    descuentoService.eliminar(id).subscribe((res) => (respuesta = res))
-    //Assert
-    expect(respuesta).toBeTrue
   })
 })

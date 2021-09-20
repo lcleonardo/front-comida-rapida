@@ -42,9 +42,12 @@ export class CrearDescuentoComponent implements OnInit {
       this.formulario.markAllAsTouched()
       return
     }
-    this.servicio.guardar(this.obtenerDescuento()).subscribe()
-    this.openMatSnackBar('Descuento creado con exíto.')
-    this.dialogo.close()
+    this.servicio.guardar(this.obtenerDescuento()).subscribe((respuesta) => {
+      if (respuesta) {
+        this.dialogo.close()
+        this.openMatSnackBar('Descuento creado con exíto.')
+      }
+    })
   }
 
   private openMatSnackBar(mensaje: string) {
