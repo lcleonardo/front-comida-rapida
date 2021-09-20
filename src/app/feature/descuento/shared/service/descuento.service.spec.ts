@@ -5,7 +5,7 @@ import { HttpService } from '@core/services/http.service'
 import { of } from 'rxjs'
 import { Descuento } from '../model/descuento'
 
-describe('Test servicio descuento DescuentoService', () => {
+fdescribe('Test servicio descuento DescuentoService', () => {
   let descuentoService: DescuentoService
   let httpServiceSpy
   beforeEach(async () => {
@@ -14,6 +14,7 @@ describe('Test servicio descuento DescuentoService', () => {
       'createDefaultOptions',
       'doGet',
       'doPost',
+      'optsName',
       'doDelete',
     ])
     TestBed.configureTestingModule({
@@ -53,5 +54,11 @@ describe('Test servicio descuento DescuentoService', () => {
     //Assert
     expect(respuesta.toString()).toEqual('1')
     expect(respuesta).not.toBeNull
+  })
+
+  it('deberia eliminar un descuento', async () => {
+    let id: number = 1
+    descuentoService.eliminar(id)
+    expect(httpServiceSpy.doDelete.calls.count()).toBe(1)
   })
 })
