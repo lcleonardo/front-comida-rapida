@@ -22,7 +22,7 @@ export class ListarDescuentoComponent implements OnInit, OnDestroy {
   public descuentos: Descuento[]
   public texto: string = ''
   public displayedColumns: string[] = ['fecha', 'descuento', 'acciones']
-  @ViewChild('inputFiltro', { read: ElementRef }) inputEl: ElementRef
+  @ViewChild('inputFiltro', { read: ElementRef }) inputFiltro: ElementRef
 
   constructor(
     protected servicioDescuento: DescuentoService,
@@ -42,14 +42,17 @@ export class ListarDescuentoComponent implements OnInit, OnDestroy {
 
   private focusInputFiltro(): void {
     setTimeout(() => {
-      this.inputEl.nativeElement.focus()
+      this.inputFiltro.nativeElement.focus()
     }, 250)
   }
 
-  private consultar() {
-    this.servicioDescuento
-      .consultar()
-      .subscribe((valor) => (this.descuentos = valor))
+  private consultar(): void {
+    this.descuentos = []
+    this.servicioDescuento.consultar().subscribe((valor) => {
+      if (valor) {
+        this.descuentos = valor
+      }
+    })
   }
 
   private abrirDialogoConfirmacion(): MatDialogRef<

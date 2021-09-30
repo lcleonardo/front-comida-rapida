@@ -6,3 +6,7 @@ mat-form-field {
 button {
   padding: 2px 16px;
 }
+
+.btn:focus{
+  background-color: black;
+}

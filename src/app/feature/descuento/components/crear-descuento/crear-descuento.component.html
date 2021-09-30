@@ -5,7 +5,7 @@
       <mat-form-field appearance="outline" class="mat-form-field">
         <mat-label>Fecha del descuento</mat-label>
         <input
-          #inputFecha
+          #matInputFecha
           validar
           validacionInicial
           matInput
@@ -32,7 +32,9 @@
     </div>
   </mat-dialog-content>
   <mat-dialog-actions align="start">
-    <button mat-raised-button type="submit" color="primary">Crear</button>
+    <button class="btn" mat-raised-button type="submit" color="primary">
+      Crear
+    </button>
     <button mat-button mat-dialog-close>Cancelar</button>
   </mat-dialog-actions>
 </form>

@@ -15,11 +15,10 @@ import { DescuentoService } from '../../shared/service/descuento.service'
 })
 export class CrearDescuentoComponent implements OnInit {
   formulario: FormGroup
-  @ViewChild('inputFecha', { read: ElementRef }) inputEl: ElementRef
+  @ViewChild('matInputFecha', { read: ElementRef }) matInputFecha: ElementRef
 
   constructor(
     protected servicio: DescuentoService,
-    protected formatoFecha: DatePipe,
     public dialogo: MatDialogRef<CrearDescuentoComponent>,
     protected matSnackBar: MatSnackBar,
     protected ngZone: NgZone,
@@ -32,8 +31,8 @@ export class CrearDescuentoComponent implements OnInit {
 
   public focusInputFecha(): void {
     setTimeout(() => {
-      this.inputEl.nativeElement.focus()
-      this.inputEl.nativeElement.setSelectionRange(0, 1)
+      this.matInputFecha.nativeElement.focus()
+      this.matInputFecha.nativeElement.setSelectionRange(0, 1)
     }, 250)
   }
 
@@ -59,7 +58,8 @@ export class CrearDescuentoComponent implements OnInit {
   }
 
   private obtenerDescuento(): Descuento {
-    const fecha = this.formatoFecha.transform(
+    const datepipe: DatePipe = new DatePipe('en-US')
+    const fecha = datepipe.transform(
       this.formulario.get('fecha').value,
       'yyyy-MM-dd',
     )

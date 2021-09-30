@@ -15,8 +15,9 @@ import { FiltroDescuentosPipe } from './shared/pipe/filtro-descuentos.pipe'
     DescuentoComponent,
     ListarDescuentoComponent,
     CrearDescuentoComponent,
+    FiltroDescuentosPipe
   ],
   imports: [SharedModule, DescuentoRoutingModule],
-  providers: [DescuentoService, HttpService, FiltroDescuentosPipe, DatePipe],
+  providers: [DescuentoService, HttpService,  DatePipe],
 })
 export class DescuentoModule {}
