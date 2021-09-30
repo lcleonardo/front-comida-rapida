@@ -7,7 +7,7 @@ import { CrearDescuentoComponent } from './crear-descuento.component'
 
 fdescribe('Test CrearDescuentoComponent', () => {
   let fixture: ComponentFixture<CrearDescuentoComponent>
-  let descuento: CrearDescuentoComponent
+  let descuentoComponent: CrearDescuentoComponent
   let descuentoServiceSpy: DescuentoService
   let datePipeSpy: DatePipe
   let matDialogSpy: MatDialogRef<CrearDescuentoComponent>
@@ -24,19 +24,29 @@ fdescribe('Test CrearDescuentoComponent', () => {
       ],
     }).compileComponents()
     fixture = TestBed.createComponent(CrearDescuentoComponent)
-    descuento = fixture.componentInstance
+    descuentoComponent = fixture.componentInstance
     fixture.detectChanges()
   })
 
   it('should be initialized', async () => {
-    expect(descuento).toBeTruthy
+    expect(descuentoComponent).toBeTruthy
   })
 
-  // it('deberia retornar un formulario valido', async () => {
-  //   let fecha = descuento.formulario.get('fecha')
-  //   fecha.setValue(new Date().toISOString())
-  //   let porcentaje = descuento.formulario.get('porcentaje')
-  //   porcentaje.setValue(10)
-  //   expect(descuento.formulario.valid).toBe(true)
-  // })
+  it('obtener objeto descuento', async () => {
+    const datepipe: DatePipe = new DatePipe('en-US')
+    const fecha: string = new Date().toISOString()
+
+    let inputFecha = descuentoComponent.formulario.get('fecha')
+    inputFecha.setValue(fecha)
+
+    let inputPorcentaje = descuentoComponent.formulario.get('porcentaje')
+    inputPorcentaje.setValue(10)
+
+    descuentoComponent['crearDescuento']()
+
+    expect(descuentoComponent.descuento.fecha).toEqual(
+      datepipe.transform(fecha, 'yyyy-MM-dd'),
+    )
+    expect(descuentoComponent.descuento.porcentaje).toEqual(10)
+  })
 })

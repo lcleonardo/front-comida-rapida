@@ -14,6 +14,7 @@ import { DescuentoService } from '../../shared/service/descuento.service'
   styleUrls: ['./crear-descuento.component.css'],
 })
 export class CrearDescuentoComponent implements OnInit {
+  descuento: Descuento
   formulario: FormGroup
   @ViewChild('matInputFecha', { read: ElementRef }) matInputFecha: ElementRef
 
@@ -41,7 +42,8 @@ export class CrearDescuentoComponent implements OnInit {
       this.formulario.markAllAsTouched()
       return
     }
-    this.servicio.guardar(this.obtenerDescuento()).subscribe((respuesta) => {
+    this.crearDescuento()
+    this.servicio.guardar(this.descuento).subscribe((respuesta) => {
       if (respuesta) {
         this.dialogo.close()
         this.openMatSnackBar('Descuento creado con exíto.')
@@ -57,14 +59,14 @@ export class CrearDescuentoComponent implements OnInit {
     })
   }
 
-  private obtenerDescuento(): Descuento {
+  private crearDescuento(): void {
     const datepipe: DatePipe = new DatePipe('en-US')
     const fecha = datepipe.transform(
       this.formulario.get('fecha').value,
       'yyyy-MM-dd',
     )
     const porcentaje: number = this.formulario.get('porcentaje').value
-    return new Descuento(fecha, porcentaje)
+    this.descuento = new Descuento(fecha, porcentaje)
   }
 
   private construirFormulario(): void {
