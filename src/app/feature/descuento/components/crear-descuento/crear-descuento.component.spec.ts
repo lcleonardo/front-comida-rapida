@@ -32,10 +32,15 @@ fdescribe('Test CrearDescuentoComponent', () => {
     expect(descuentoComponent).toBeTruthy
   })
 
+  fit('guardar', async () => {
+    descuentoComponent.guardar()
+  })
+
   it('obtener objeto descuento', async () => {
+    //Arr
     const datepipe: DatePipe = new DatePipe('en-US')
     const fecha: string = new Date().toISOString()
-
+    //Act
     let inputFecha = descuentoComponent.formulario.get('fecha')
     inputFecha.setValue(fecha)
 
@@ -43,7 +48,7 @@ fdescribe('Test CrearDescuentoComponent', () => {
     inputPorcentaje.setValue(10)
 
     descuentoComponent['crearDescuento']()
-
+    //Assert
     expect(descuentoComponent.descuento.fecha).toEqual(
       datepipe.transform(fecha, 'yyyy-MM-dd'),
     )
