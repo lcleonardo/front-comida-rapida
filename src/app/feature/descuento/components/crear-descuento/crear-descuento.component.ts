@@ -33,7 +33,7 @@ export class CrearDescuentoComponent implements OnInit {
   public focusInputFecha(): void {
     setTimeout(() => {
       this.matInputFecha.nativeElement.focus()
-      this.matInputFecha.nativeElement.setSelectionRange(0, 1)
+      this.matInputFecha.nativeElement.setSelectionRange(0, 10)
     }, 250)
   }
 

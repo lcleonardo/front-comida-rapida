@@ -11,14 +11,7 @@ export class DialogoService {
     protected ngZone: NgZone,
   ) {}
 
-  public abrir(
-    componente: ComponentType<any>,
-    disableClose: boolean,
-    width: number,
-  ): MatDialogRef<any, any> {
-    return this.dialogo.open(componente, {
-      disableClose: disableClose,
-      width: `${width}`,
-    })
+  public abrir(componente: ComponentType<any>): MatDialogRef<any, any> {
+    return this.dialogo.open(componente)
   }
 }

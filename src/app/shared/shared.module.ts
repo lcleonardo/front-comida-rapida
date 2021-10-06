@@ -12,6 +12,7 @@ import { MensajeServidorComponent } from './components/mensaje-servidor/mensaje-
 import { MaterialModule } from './material.module'
 import { DialogConfirmacionComponent } from './components/dialogo-confirmacion/dialogo.confirmacion.component'
 import { DialogoService } from './servicios/Dialogo.service'
+import { SnackBarService } from './servicios/snackbar.service'
 
 @NgModule({
   declarations: [
@@ -39,6 +40,6 @@ import { DialogoService } from './servicios/Dialogo.service'
     DialogConfirmacionComponent,
     MaterialModule,
   ],
-  providers:[DialogoService]
+  providers: [DialogoService, SnackBarService],
 })
 export class SharedModule {}
