@@ -11,7 +11,6 @@ import { ContadorItemsComponent } from './components/contador-items/contador-ite
 import { MensajeServidorComponent } from './components/mensaje-servidor/mensaje-servidor.component'
 import { MaterialModule } from './material.module'
 import { DialogConfirmacionComponent } from './components/dialogo-confirmacion/dialogo.confirmacion.component'
-import { DialogoService } from './servicios/Dialogo.service'
 import { SnackBarService } from './servicios/snackbar.service'
 
 @NgModule({
@@ -40,6 +39,6 @@ import { SnackBarService } from './servicios/snackbar.service'
     DialogConfirmacionComponent,
     MaterialModule,
   ],
-  providers: [DialogoService, SnackBarService],
+  providers: [SnackBarService],
 })
 export class SharedModule {}

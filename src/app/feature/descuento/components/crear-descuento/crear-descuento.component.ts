@@ -1,9 +1,9 @@
 import { DatePipe } from '@angular/common'
-import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core'
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatDialogRef } from '@angular/material/dialog'
-import { MatSnackBar } from '@angular/material/snack-bar'
 import { Descuento } from '@descuento/shared/model/descuento'
+import { SnackBarService } from '@shared/servicios/snackbar.service'
 import { ValidadorComun } from '@shared/validador/validador-comun'
 import { ValidadorFecha } from '@shared/validador/validador-fecha'
 import { DescuentoService } from '../../shared/service/descuento.service'
@@ -14,23 +14,21 @@ import { DescuentoService } from '../../shared/service/descuento.service'
   styleUrls: ['./crear-descuento.component.css'],
 })
 export class CrearDescuentoComponent implements OnInit {
-  descuento: Descuento
   formulario: FormGroup
   @ViewChild('matInputFecha', { read: ElementRef }) matInputFecha: ElementRef
 
   constructor(
     protected servicio: DescuentoService,
     public dialogo: MatDialogRef<CrearDescuentoComponent>,
-    protected matSnackBar: MatSnackBar,
-    protected ngZone: NgZone,
+    protected snackBarService: SnackBarService,
   ) {}
 
   ngOnInit(): void {
     this.construirFormulario()
-    this.focusInputFecha()
+    this.focus()
   }
 
-  public focusInputFecha(): void {
+  public focus(): void {
     setTimeout(() => {
       this.matInputFecha.nativeElement.focus()
       this.matInputFecha.nativeElement.setSelectionRange(0, 10)
@@ -42,31 +40,22 @@ export class CrearDescuentoComponent implements OnInit {
       this.formulario.markAllAsTouched()
       return
     }
-    this.crearDescuento()
-    this.servicio.guardar(this.descuento).subscribe((respuesta) => {
+    this.servicio.guardar(this.obtenerDescuento()).subscribe((respuesta) => {
       if (respuesta) {
         this.dialogo.close()
-        this.openMatSnackBar('Descuento creado con exíto.')
+        this.snackBarService.abrir('Descuento creado con exíto.')
       }
     })
   }
 
-  private openMatSnackBar(mensaje: string) {
-    this.ngZone.run(() => {
-      this.matSnackBar.open(mensaje, 'INFORMACIÓN', {
-        duration: 6 * 1000,
-      })
-    })
-  }
-
-  private crearDescuento(): void {
+  private obtenerDescuento(): Descuento {
     const datepipe: DatePipe = new DatePipe('en-US')
     const fecha = datepipe.transform(
       this.formulario.get('fecha').value,
       'yyyy-MM-dd',
     )
     const porcentaje: number = this.formulario.get('porcentaje').value
-    this.descuento = new Descuento(fecha, porcentaje)
+    return new Descuento(fecha, porcentaje)
   }
 
   private construirFormulario(): void {
@@ -76,7 +65,7 @@ export class CrearDescuentoComponent implements OnInit {
           Validators.required,
           ValidadorFecha.fechaMenorAFechaActual,
         ]),
-        porcentaje: new FormControl('0', [
+        porcentaje: new FormControl('', [
           Validators.required,
           ValidadorComun.menorOIgualACero,
         ]),

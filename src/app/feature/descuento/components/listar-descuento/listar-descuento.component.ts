@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core'
+import { MatDialog } from '@angular/material/dialog'
 import { DialogConfirmacionComponent } from '@shared/components/dialogo-confirmacion/dialogo.confirmacion.component'
-import { DialogoService } from '@shared/servicios/Dialogo.service'
 import { SnackBarService } from '@shared/servicios/snackbar.service'
 import { Observable } from 'rxjs'
 import { Descuento } from '../../shared/model/descuento'
@@ -20,7 +20,7 @@ export class ListarDescuentoComponent implements OnInit {
 
   constructor(
     protected descuentoService: DescuentoService,
-    protected dialogoService: DialogoService,
+    protected matDialog: MatDialog,
     protected snackBarService: SnackBarService,
   ) {}
 
@@ -40,7 +40,7 @@ export class ListarDescuentoComponent implements OnInit {
   }
 
   public eliminar(id: number): void {
-    const dialogo = this.dialogoService.abrir(DialogConfirmacionComponent)
+    const dialogo = this.matDialog.open(DialogConfirmacionComponent)
     dialogo.afterClosed().subscribe(() => {
       if (dialogo.componentInstance.eliminar) {
         this.descuentoService.eliminar(id).subscribe(() => {
@@ -53,7 +53,7 @@ export class ListarDescuentoComponent implements OnInit {
   }
 
   public abrirDialogoCrearDescuento() {
-    const dialogo = this.dialogoService.abrir(CrearDescuentoComponent)
+    const dialogo = this.matDialog.open(CrearDescuentoComponent)
     dialogo.afterClosed().subscribe(() => {
       this.consultar()
       this.focus()
