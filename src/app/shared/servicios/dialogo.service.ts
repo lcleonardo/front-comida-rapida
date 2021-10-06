@@ -13,8 +13,8 @@ export class DialogoService {
 
   public abrir(
     componente: ComponentType<any>,
-    disableClose: boolean = true,
-    width: number = 25,
+    disableClose: boolean,
+    width: number,
   ): MatDialogRef<any, any> {
     return this.dialogo.open(componente, {
       disableClose: disableClose,

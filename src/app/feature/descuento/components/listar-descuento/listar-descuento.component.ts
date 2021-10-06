@@ -1,7 +1,8 @@
 import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core'
-import { MatDialog, MatDialogRef } from '@angular/material/dialog'
+import { MatDialog } from '@angular/material/dialog'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { DialogConfirmacionComponent } from '@shared/components/dialogo-confirmacion/dialogo.confirmacion.component'
+import { DialogoService } from '@shared/servicios/Dialogo.service'
 import { Observable } from 'rxjs'
 import { Descuento } from '../../shared/model/descuento'
 import { DescuentoService } from '../../shared/service/descuento.service'
@@ -19,10 +20,11 @@ export class ListarDescuentoComponent implements OnInit {
   @ViewChild('inputFiltro', { read: ElementRef }) inputFiltro: ElementRef
 
   constructor(
-    protected servicioDescuento: DescuentoService,
+    protected descuentoService: DescuentoService,
     protected dialogo: MatDialog,
     protected matSnackBar: MatSnackBar,
     protected ngZone: NgZone,
+    protected dialogoService: DialogoService,
   ) {}
 
   ngOnInit(): void {
@@ -35,33 +37,23 @@ export class ListarDescuentoComponent implements OnInit {
   }
 
   private consultar(): void {
-    this.descuentos$ = this.servicioDescuento.consultar()
-  }
-
-  private abrirDialogoConfirmacion(): MatDialogRef<
-    DialogConfirmacionComponent
-  > {
-    return this.dialogo.open(DialogConfirmacionComponent, {
-      disableClose: true,
-      width: '25%',
-    })
+    this.descuentos$ = this.descuentoService.consultar()
   }
 
   public eliminar(id: number): void {
-    const dialogo = this.abrirDialogoConfirmacion()
+    const dialogo = this.dialogoService.abrir(
+      DialogConfirmacionComponent,
+      true,
+      50,
+    )
     dialogo.afterClosed().subscribe(() => {
       if (dialogo.componentInstance.eliminar) {
-        this.eliminarEnServicio(id)
+        this.descuentoService.eliminar(id).subscribe(() => {
+          this.consultar()
+          this.openMatSnackBar('Descuento eliminado con exíto.')
+          this.focus()
+        })
       }
-      this.focus()
-    })
-  }
-
-  private eliminarEnServicio(id: number) {
-    this.servicioDescuento.eliminar(id).subscribe(() => {
-      this.consultar()
-      this.focus()
-      this.openMatSnackBar('Descuento eliminado con exíto.')
     })
   }
 
