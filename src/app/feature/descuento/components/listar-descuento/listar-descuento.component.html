@@ -1,6 +1,6 @@
 <div
   class="flex-container"
-  *ngIf="descuentos | filtroDescuentos: texto as desc"
+  *ngIf="descuentos$ | async | filtroDescuentos: texto as desc"
 >
   <div class="flex-item1">
     <button mat-mini-fab color="primary" (click)="abrirDialogoCrearDescuento()">

@@ -1,14 +1,8 @@
-import {
-  Component,
-  ElementRef,
-  NgZone,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from '@angular/core'
+import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core'
 import { MatDialog, MatDialogRef } from '@angular/material/dialog'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { DialogConfirmacionComponent } from '@shared/components/dialogo-confirmacion/dialogo.confirmacion.component'
+import { Observable } from 'rxjs'
 import { Descuento } from '../../shared/model/descuento'
 import { DescuentoService } from '../../shared/service/descuento.service'
 import { CrearDescuentoComponent } from '../crear-descuento/crear-descuento.component'
@@ -18,8 +12,8 @@ import { CrearDescuentoComponent } from '../crear-descuento/crear-descuento.comp
   templateUrl: './listar-descuento.component.html',
   styleUrls: ['./listar-descuento.component.css'],
 })
-export class ListarDescuentoComponent implements OnInit, OnDestroy {
-  public descuentos: Descuento[]
+export class ListarDescuentoComponent implements OnInit {
+  public descuentos$: Observable<Descuento[]>
   public texto: string = ''
   public displayedColumns: string[] = ['fecha', 'descuento', 'acciones']
   @ViewChild('inputFiltro', { read: ElementRef }) inputFiltro: ElementRef
@@ -31,28 +25,17 @@ export class ListarDescuentoComponent implements OnInit, OnDestroy {
     protected ngZone: NgZone,
   ) {}
 
-  ngOnDestroy(): void {
-    this.servicioDescuento.consultar().subscribe().unsubscribe()
-  }
-
   ngOnInit(): void {
     this.consultar()
-    this.focusInputFiltro()
+    this.focus()
   }
 
-  private focusInputFiltro(): void {
-    setTimeout(() => {
-      this.inputFiltro.nativeElement.focus()
-    }, 250)
+  private focus(): void {
+    setTimeout(() => this.inputFiltro.nativeElement.focus(), 300)
   }
 
   private consultar(): void {
-    this.descuentos = []
-    this.servicioDescuento.consultar().subscribe((valor) => {
-      if (valor) {
-        this.descuentos = valor
-      }
-    })
+    this.descuentos$ = this.servicioDescuento.consultar()
   }
 
   private abrirDialogoConfirmacion(): MatDialogRef<
@@ -70,17 +53,15 @@ export class ListarDescuentoComponent implements OnInit, OnDestroy {
       if (dialogo.componentInstance.eliminar) {
         this.eliminarEnServicio(id)
       }
-      this.focusInputFiltro()
+      this.focus()
     })
   }
 
   private eliminarEnServicio(id: number) {
     this.servicioDescuento.eliminar(id).subscribe(() => {
-      this.descuentos = this.descuentos.filter(
-        (descuento: Descuento) => descuento.id !== id,
-      )
+      this.consultar()
+      this.focus()
       this.openMatSnackBar('Descuento eliminado con exíto.')
-      this.focusInputFiltro()
     })
   }
 
@@ -91,7 +72,7 @@ export class ListarDescuentoComponent implements OnInit, OnDestroy {
     })
     dialogo.afterClosed().subscribe(() => {
       this.consultar()
-      this.focusInputFiltro()
+      this.focus()
     })
   }
 

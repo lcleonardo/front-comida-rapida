@@ -11,6 +11,7 @@ import { ContadorItemsComponent } from './components/contador-items/contador-ite
 import { MensajeServidorComponent } from './components/mensaje-servidor/mensaje-servidor.component'
 import { MaterialModule } from './material.module'
 import { DialogConfirmacionComponent } from './components/dialogo-confirmacion/dialogo.confirmacion.component'
+import { DialogoService } from './servicios/Dialogo.service'
 
 @NgModule({
   declarations: [
@@ -38,5 +39,6 @@ import { DialogConfirmacionComponent } from './components/dialogo-confirmacion/d
     DialogConfirmacionComponent,
     MaterialModule,
   ],
+  providers:[DialogoService]
 })
 export class SharedModule {}
