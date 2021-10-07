@@ -1,27 +1,26 @@
-import { DatePipe } from '@angular/common'
+import { NO_ERRORS_SCHEMA } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { MatDialogRef } from '@angular/material/dialog'
-import { MatSnackBar } from '@angular/material/snack-bar'
 import { DescuentoService } from '@descuento/shared/service/descuento.service'
+import { SnackBarService } from '@shared/servicios/snackbar.service'
 import { CrearDescuentoComponent } from './crear-descuento.component'
 
 fdescribe('Test CrearDescuentoComponent', () => {
   let fixture: ComponentFixture<CrearDescuentoComponent>
   let descuentoComponent: CrearDescuentoComponent
   let descuentoServiceSpy: DescuentoService
-  let datePipeSpy: DatePipe
-  let matDialogSpy: MatDialogRef<CrearDescuentoComponent>
-  let matSnackBarSpy: MatSnackBar
+  let matDialogRef: MatDialogRef<CrearDescuentoComponent>
+  let snackBarService: SnackBarService
 
   beforeEach(async () => {
-    TestBed.configureTestingModule({
+    await TestBed.configureTestingModule({
+      declarations: [CrearDescuentoComponent],
       providers: [
-        CrearDescuentoComponent,
         { provide: DescuentoService, useValue: descuentoServiceSpy },
-        { provide: DatePipe, useValue: datePipeSpy },
-        { provide: MatDialogRef, useValue: matDialogSpy },
-        { provide: MatSnackBar, useValue: matSnackBarSpy },
+        { provide: MatDialogRef, useValue: matDialogRef },
+        { provide: SnackBarService, useValue: snackBarService },
       ],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents()
     fixture = TestBed.createComponent(CrearDescuentoComponent)
     descuentoComponent = fixture.componentInstance
@@ -32,26 +31,5 @@ fdescribe('Test CrearDescuentoComponent', () => {
     expect(descuentoComponent).toBeTruthy
   })
 
-  fit('guardar', async () => {
-    descuentoComponent.guardar()
-  })
-
-  it('obtener objeto descuento', async () => {
-    //Arr
-    const datepipe: DatePipe = new DatePipe('en-US')
-    const fecha: string = new Date().toISOString()
-    //Act
-    let inputFecha = descuentoComponent.formulario.get('fecha')
-    inputFecha.setValue(fecha)
-
-    let inputPorcentaje = descuentoComponent.formulario.get('porcentaje')
-    inputPorcentaje.setValue(10)
-
-    descuentoComponent['crearDescuento']()
-    //Assert
-    expect(descuentoComponent.descuento.fecha).toEqual(
-      datepipe.transform(fecha, 'yyyy-MM-dd'),
-    )
-    expect(descuentoComponent.descuento.porcentaje).toEqual(10)
-  })
+  // it('deberia crear un descuento', async () => {})
 })
